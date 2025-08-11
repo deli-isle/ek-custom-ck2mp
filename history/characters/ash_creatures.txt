@@ -1,0 +1,104 @@
+138000 = {
+	name = Araynys
+	dynasty = 160777
+	culture = ashlander
+	religion = sixth_house
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = ash_vampire
+	add_trait = zealous
+
+	
+	400.1.1 = { birth = yes }
+	440.1.1 = { add_trait = disabler immortal_age = 40 }
+}
+
+138001 = {
+	name = Endus
+	dynasty = 160777
+	culture = ashlander
+	religion = sixth_house
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = ash_vampire
+	add_trait = zealous
+
+	
+	400.1.1 = { birth = yes }
+	440.1.1 = { add_trait = disabler immortal_age = 40 }
+}
+
+138002 = {
+	name = Gilvoth
+	dynasty = 160777
+	culture = ashlander
+	religion = sixth_house
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = ash_vampire
+	add_trait = zealous
+
+	
+	400.1.1 = { birth = yes }
+	440.1.1 = { add_trait = disabler immortal_age = 40 }
+}
+
+138003 = {
+	name = Odros
+	dynasty = 160777
+	culture = ashlander
+	religion = sixth_house
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = ash_vampire
+	add_trait = zealous
+
+	
+	400.1.1 = { birth = yes }
+	440.1.1 = { add_trait = disabler immortal_age = 40 }
+}
+
+138004 = {
+	name = Tureynul
+	dynasty = 160777
+	culture = ashlander
+	religion = sixth_house
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = ash_vampire
+	add_trait = zealous
+
+	
+	400.1.1 = { birth = yes }
+	440.1.1 = { add_trait = disabler immortal_age = 40 }
+}
+
+138005 = {
+	name = Uthol
+	dynasty = 160777
+	culture = ashlander
+	religion = sixth_house
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = ash_vampire
+	add_trait = zealous
+
+	
+	400.1.1 = { birth = yes }
+	440.1.1 = { add_trait = disabler immortal_age = 40 }
+}
+
+138006 = {
+	name = Vemyn
+	dynasty = 160777
+	culture = ashlander
+	religion = sixth_house
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = ash_vampire
+	add_trait = zealous
+
+	
+	400.1.1 = { birth = yes }
+	440.1.1 = { add_trait = disabler immortal_age = 40 }
+}

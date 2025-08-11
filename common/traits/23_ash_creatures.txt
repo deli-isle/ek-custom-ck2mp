@@ -1,0 +1,198 @@
+#Ashvampire
+ash_vampire = {
+	opposites = {
+		ascended_sleeper
+		ash_ghoul
+		ash_zombie
+		ash_slave
+		lame_corprus
+		corprus_stalker
+	}
+	random = no
+	immortal = yes
+	customizer = no
+	fertility = -10
+	martial = 3
+	learning = 4
+	intrigue = 2
+	diplomacy = -2
+	combat_rating = 24
+	
+	monthly_character_piety = 1
+	sixth_house_opinion = 85
+	same_opinion = 25
+	almsivi_opinion = -50
+	nerevarine_opinion = -40
+	almsivi_old_velothi_opinion = -25
+	reclamationist_opinion = -25
+	general_opinion = -75
+}
+
+ascended_sleeper = {
+	opposites = {
+		ash_vampire
+		ash_ghoul
+		ash_zombie
+		ash_slave
+		lame_corprus
+		corprus_stalker
+	}
+	random = no
+	immortal = yes
+	customizer = no
+	fertility = -10
+	martial = 2
+	learning = 3
+	intrigue = 1
+	diplomacy = -4
+	combat_rating = 16
+	
+	monthly_character_piety = 0.8
+	sixth_house_opinion = 80
+	same_opinion = 25
+	almsivi_opinion = -50
+	nerevarine_opinion = -40
+	almsivi_old_velothi_opinion = -25
+	reclamationist_opinion = -25
+	general_opinion = -75
+}
+
+ash_ghoul = {
+	opposites = {
+		ash_vampire
+		ascended_sleeper
+		ash_zombie
+		ash_slave
+		lame_corprus
+		corprus_stalker
+	}
+	random = no
+	immortal = yes
+	customizer = no
+	fertility = -10
+	martial = 1
+	learning = 2
+	intrigue = 1
+	diplomacy = -6
+	combat_rating = 8
+	
+	monthly_character_piety = 0.6
+	sixth_house_opinion = 75
+	same_opinion = 25
+	almsivi_opinion = -50
+	nerevarine_opinion = -40
+	almsivi_old_velothi_opinion = -25
+	reclamationist_opinion = -25
+	general_opinion = -75
+}
+
+ash_zombie = {
+	opposites = {
+		ash_vampire
+		ascended_sleeper
+		ash_ghoul
+		ash_slave
+		lame_corprus
+		corprus_stalker
+	}
+	random = no
+	immortal = yes
+	customizer = no
+	fertility = -10
+	martial = 1
+	learning = 2
+	diplomacy = -8
+	combat_rating = 6
+	
+	monthly_character_piety = 0.4
+	sixth_house_opinion = 75
+	same_opinion = 25
+	almsivi_opinion = -50
+	nerevarine_opinion = -40
+	almsivi_old_velothi_opinion = -25
+	reclamationist_opinion = -25
+	general_opinion = -75
+}
+
+ash_slave = {
+	opposites = {
+		ash_vampire
+		ascended_sleeper
+		ash_ghoul
+		ash_zombie
+		lame_corprus
+		corprus_stalker
+	}
+	random = no
+	immortal = yes
+	customizer = no
+	fertility = -10
+	learning = 2
+	diplomacy = -8
+	combat_rating = 4
+	
+	monthly_character_piety = 0.2
+	sixth_house_opinion = 75
+	same_opinion = 25
+	almsivi_opinion = -50
+	nerevarine_opinion = -40
+	almsivi_old_velothi_opinion = -25
+	reclamationist_opinion = -25
+	general_opinion = -75
+}
+
+lame_corprus = {
+	opposites = {
+		ash_vampire
+		ascended_sleeper
+		ash_ghoul
+		ash_zombie
+		ash_slave
+		corprus_stalker
+	}
+	random = no
+	incapacitating = yes
+	immortal = yes
+	customizer = no
+	fertility = -10
+	diplomacy = -12
+	intrigue = -4
+	learning = -2
+	combat_rating = 2
+	
+	sixth_house_opinion = 75
+	same_opinion = 25
+	almsivi_opinion = -50
+	nerevarine_opinion = -40
+	almsivi_old_velothi_opinion = -25
+	reclamationist_opinion = -25
+	general_opinion = -75
+}
+
+corprus_stalker = {
+	opposites = {
+		ash_vampire
+		ascended_sleeper
+		ash_ghoul
+		ash_zombie
+		ash_slave
+		lame_corprus
+	}
+	incapacitating = yes
+	immortal = yes
+	customizer = no
+	fertility = -10
+	diplomacy = -12
+	intrigue = -6
+	learning = -4
+	
+	sixth_house_opinion = 75
+	same_opinion = 25
+	almsivi_opinion = -50
+	nerevarine_opinion = -40
+	almsivi_old_velothi_opinion = -25
+	reclamationist_opinion = -25
+	general_opinion = -75
+}
+
+

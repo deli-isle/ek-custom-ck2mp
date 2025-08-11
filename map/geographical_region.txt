@@ -74,7 +74,7 @@ nirn_tamriel_highrock = {
 }
 nirn_tamriel_vvardenfell = {
 	duchies = {
-		d_northernvvardenfell d_vivec d_grazelands d_southernvvardenfell
+		d_northernvvardenfell d_vivec d_grazelands d_southernvvardenfell d_redmountain
 	}
 }
 nirn_tamriel_morrowind = {

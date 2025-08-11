@@ -1,0 +1,5 @@
+700.1.1 = {
+	holder = 250003
+	status = dagoth_10
+	policy = dagoth_cordial
+}

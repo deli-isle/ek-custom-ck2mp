@@ -386,6 +386,7 @@ character_event = {
 			owns = 62 #Sheogorad, Vvardenfell, Morrowind
 			owns = 64 #Azura's Coast, Vvardenfell, Morrowind
 			owns = 347 #Ald'Ruhn, Vvardenfell, Morrowind
+			owns = 342 #Red Mountain, Vvardenfell, Morrowind
 			owns = 349 #Maar Gan, Vvardenfell, Morrowind
 			
 			owns = 34 #Alftand, Skyrim
@@ -1357,6 +1358,7 @@ province_event = {
 					province_id = 62 #Sheogorad, Vvardenfell, Morrowind
 					province_id = 64 #Azura's Coast, Vvardenfell, Morrowind
 					province_id = 347 #Ald'Ruhn, Vvardenfell, Morrowind
+					province_id = 342 #Red Mountain, Vvardenfell, Morrowind
 					province_id = 349 #Maar Gan, Vvardenfell, Morrowind
 					
 					province_id = 34 #Alftand, Skyrim

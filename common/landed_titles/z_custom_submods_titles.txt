@@ -1,0 +1,60 @@
+# ------ DAGOTH SUBMOD ------ #
+e_heartwright_voryn = {
+	color={ 150 10 10 }
+	color2={ 255 255 255 }
+	
+	title = "Heartwright"
+	title_female = "Heartwright"
+	
+	capital = 342 #Red Mountain
+	
+	religion = sixth_house
+	culture = ashlander #needs_change
+	
+	landless = yes
+	short_name = yes
+	primary = yes
+	dignity = 1000
+}
+
+k_dagoth_religion = {
+	color={ 170 10 20 }
+	color2={ 255 255 255 }
+	capital = 342 # Red Mountain
+	
+	title = dreamer
+	
+	controls_religion = sixth_house
+	religion = sixth_house
+
+	location_ruler_title = yes
+	landless = yes
+	short_name = yes
+	primary = yes
+	dynasty_title_names = no
+	assimilate = no
+}
+
+k_vvardenfell = {
+	d_redmountain = {
+		color = { 130 0 70 }
+		color2 = { 255 255 255 }
+		capital = 342
+		dynasty_title_names = no
+
+		chimer = "Red Mountain"
+    	de_jure_liege = k_vvardenfell
+
+		c_redmountain = {
+			color = { 130 0 70 }
+			color2 = { 255 255 255 }
+
+			b_dagothur = {}
+			b_endusal = {}
+			b_odrosal = {}
+			b_tureynulal = {}
+			b_vemynal = {}
+			b_bthanchend  = {}
+		}
+	}
+}

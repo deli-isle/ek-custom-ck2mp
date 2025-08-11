@@ -1,0 +1,2674 @@
+#Special decisions for the Dagoth offmap power, REQUIRES JADE DRAGON DLC
+
+#Efforts to earn Dagoth support
+offmap_decisions = {
+	dagoth_send_donation = {
+		only_playable = yes
+		button_name = offmap_gifts
+		
+		ai_check_interval = 36
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+	
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+		}
+
+		allow = {
+			k_dagoth_religion = {
+				holder_scope = {
+					NOT = { war_with = FROM }
+				}
+			}
+			FROM = {
+				show_scope_change = no
+				prisoner = no
+				NOT = { trait = incapable }
+				NOT = { war_with = ROOT }
+				NOT = { has_character_modifier = dagoth_recent_donation }
+				is_inaccessible_trigger = no
+				scaled_wealth = { value = 1 min = 30 }
+			}
+		}
+	
+		effect = {
+			k_dagoth_religion = {
+				holder_scope = {
+					transfer_scaled_wealth = {
+						to = THIS
+						from = FROM
+						value = 1
+						min = 30
+					}
+				}
+			}
+			FROM = {
+				sound_effect = china_grace_gain
+				add_character_modifier = {
+					modifier = dagoth_recent_donation
+					days = 1825
+				}
+				character_event = { id = ekdagoth.10 }
+			}
+		}
+	
+
+	
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.075 # slow down
+			}
+			modifier = {
+				factor = 0.1
+				FROM = { NOT = { monthly_income = 2.5 } } #That's over 30 gold every 3 years
+			}
+			modifier = {
+				factor = 3
+				OR = {
+					ROOT = {
+						is_offmap_tag = dagoth_voryn
+					}
+#					FROM = { trait = p_almalexia } #needs_change
+				}
+			}
+		}
+	}
+	
+	dagoth_show_trial = {
+		only_playable = yes
+		button_name = offmap_gifts
+		
+		third_party_filter = home_court
+		ai_third_party_filter = home_court
+		third_party = FROM
+		ai_check_interval = 24
+		show_third_party_potential = yes
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+	
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+		}
+		
+		third_party_potential = {
+			show_only_failed_conditions = yes
+			FROM = {
+				any_courtier = { 
+					character = FROMFROM
+				}
+			}
+			FROMFROM = {
+				show_scope_change = no
+				AND = {
+					NOT = { religion = sixth_house }
+					OR = { #Must be a heretic or a follower of the House of Troubles
+						is_heretic = yes
+						religion = daedra_malacath
+						religion = daedra_mehrunes
+						religion = daedra_molag
+						religion = daedra_sheogorath
+						religion = almsivi
+					}
+				}
+				prisoner = yes
+				is_adult = yes
+				NOT = { has_character_flag = dagoth_show_trial_defendant }
+				NOT = { #You cannot try the same person more than once
+					has_opinion_modifier = { who = FROM modifier = opinion_show_trial_defendant }
+				}
+			}
+		}
+		
+		third_party_allow = {
+			show_only_failed_conditions = yes
+		}
+		
+		third_party_score = {
+			factor = 25
+			
+			additive_modifier = {
+				value = 5
+				FROMFROM = { 
+					show_scope_change = no
+					diplomacy = 8					
+					hidden_trigger = {
+						NOT = { diplomacy = 12 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 10
+				FROMFROM = { 
+					show_scope_change = no
+					diplomacy = 12					
+					hidden_trigger = {
+						NOT = { diplomacy = 16 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 20
+				FROMFROM = { 
+					show_scope_change = no
+					diplomacy = 16				
+					hidden_trigger = {
+						NOT = { diplomacy = 20 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 50
+				FROMFROM = { 
+					show_scope_change = no
+					diplomacy = 20
+				}
+			}
+			additive_modifier = {
+				value = 5
+				FROMFROM = { 
+					show_scope_change = no
+					martial = 8					
+					hidden_trigger = {
+						NOT = { martial = 12 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 10
+				FROMFROM = { 
+					show_scope_change = no
+					martial = 12					
+					hidden_trigger = {
+						NOT = { martial = 16 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 20
+				FROMFROM = {
+					show_scope_change = no 
+					martial = 16				
+					hidden_trigger = {
+						NOT = { martial = 20 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 50
+				FROMFROM = { 
+					show_scope_change = no
+					martial = 20
+				}
+			}
+			additive_modifier = {
+				value = 5
+				FROMFROM = { 
+					show_scope_change = no
+					stewardship = 8					
+					hidden_trigger = {
+						NOT = { stewardship = 12 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 10
+				FROMFROM = { 
+					show_scope_change = no
+					stewardship = 12					
+					hidden_trigger = {
+						NOT = { stewardship = 16 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 20
+				FROMFROM = { 
+					show_scope_change = no
+					stewardship = 16				
+					hidden_trigger = {
+						NOT = { stewardship = 20 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 50
+				FROMFROM = { 
+					show_scope_change = no
+					stewardship = 20
+				}
+			}
+			additive_modifier = {
+				value = 5
+				FROMFROM = { 
+					show_scope_change = no
+					intrigue = 8					
+					hidden_trigger = {
+						NOT = { intrigue = 12 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 10
+				FROMFROM = { 
+					show_scope_change = no
+					intrigue = 12					
+					hidden_trigger = {
+						NOT = { intrigue = 16 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 20
+				FROMFROM = { 
+					show_scope_change = no
+					intrigue = 16				
+					hidden_trigger = {
+						NOT = { intrigue = 20 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 50
+				FROMFROM = { 
+					show_scope_change = no
+					intrigue = 20
+				}
+			}
+			additive_modifier = {
+				value = 5
+				FROMFROM = { 
+					show_scope_change = no
+					learning = 8					
+					hidden_trigger = {
+						NOT = { learning = 12 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 10
+				FROMFROM = { 
+					show_scope_change = no
+					learning = 12					
+					hidden_trigger = {
+						NOT = { learning = 16 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 20
+				FROMFROM = { 
+					show_scope_change = no
+					learning = 16				
+					hidden_trigger = {
+						NOT = { learning = 20 }
+					}
+				}
+			}
+			additive_modifier = {
+				value = 50
+				FROMFROM = { 
+					show_scope_change = no
+					learning = 20
+				}
+			}
+			additive_modifier = {
+				value = 25
+				FROMFROM = { 
+					show_scope_change = no
+					tier == BARON
+				}
+			}
+			additive_modifier = {
+				value = 75
+				FROMFROM = { 
+					show_scope_change = no
+					tier == COUNT
+				}
+			}
+			additive_modifier = {
+				value = 150
+				FROMFROM = { 
+					show_scope_change = no
+					tier == DUKE
+				}
+			}
+			additive_modifier = {
+				value = 400
+				FROMFROM = { 
+					show_scope_change = no
+					tier == KING
+				}
+			}
+			additive_modifier = {
+				value = 1000
+				FROMFROM = { 
+					show_scope_change = no
+					tier == EMPEROR
+				}
+			}
+			additive_modifier = {
+				value = 2500
+				FROMFROM = { 
+					show_scope_change = no
+					trait = dragonborn
+				}
+			}
+			additive_modifier = {
+				value = 250
+				FROMFROM = { 
+					show_scope_change = no
+					trait = dragonborn_descendant
+				}
+			}
+			additive_modifier = {
+				value = 100
+				FROMFROM = { 
+					show_scope_change = no
+					has_bloodline = yes
+				}
+			}
+		}
+	
+		effect = {
+			FROM = {
+				sound_effect = china_grace_gain
+			}
+			FROMFROM = {
+				set_character_flag = dagoth_show_trial_defendant
+				long_character_event = { id = ekdagoth.50 }
+			}
+		}
+	
+
+	
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.75 # slow down
+			}
+		}
+	}
+	
+}
+
+offmap_decisions = {
+	#Cleanse Province - Dagoth Ur destroys ALL province disasters in your demesne
+	dagoth_cleanse_province = {
+		only_playable = yes
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+		}
+
+		potential = {
+			OR = {
+				AND = {
+					is_offmap_tag = dagoth_voryn
+					dagoth_voryn = {
+						NOT = { has_status = dagoth_0 }
+						OR = {
+							has_policy = dagoth_warlike
+							has_policy = dagoth_convivial
+						}
+					}
+					dagoth_voryn_boon_decisions_enabled_trigger = yes
+				}
+			}
+		}
+	
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				NOT = { has_character_flag = dagoth_decision_pending }
+				any_demesne_province = {
+					custom_tooltip = {
+						text = EKDagothProvinceDisasters
+						hidden_tooltip = {
+							OR = {
+								has_province_modifier = goblin_infestation
+								has_province_modifier = falmer_infestation
+								has_province_modifier = skeever_infestation
+								has_province_modifier = kwama_infestation
+								has_province_modifier = undead_infestation
+								has_province_modifier = lycan_infestation
+								has_province_modifier = vampire_infestation
+								has_province_modifier = highway_robber_band
+								has_province_modifier = trolls
+								has_province_modifier = giants
+							}
+						}
+					}
+				}
+				
+				# Voryn
+				trigger_if = {
+					limit = { ROOT = { is_offmap_tag = dagoth_voryn } }
+					
+					trigger_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_10
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 500 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_9
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 575 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_8
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 650 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_7
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 725 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_6
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 800 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_5
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 875 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_4
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 950 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_3
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1025 }
+					}
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_2
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1100 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_1
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1175 }
+					}
+				}
+				
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				set_character_flag = dagoth_decision_pending
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -500
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -625
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -750
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -875
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1000
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1125
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1250
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1375
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1500
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -2000
+					}
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+					}
+					FROM = { narrative_event = { id = ekdagoth.305 } }
+				}
+			}
+		}
+
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1 # slow down
+			}
+			modifier = {
+				FROM = {
+					NOT = { has_grace_major_trigger = yes }
+				}
+				factor = 0.1
+			}
+		}
+	}
+	
+	dagoth_temple_forces = {
+		only_playable = yes
+		button_name = offmap_boons
+		ai_check_interval = 1
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+			war = yes
+		}
+
+		potential = {
+			OR = {
+				AND = {
+					is_offmap_tag = dagoth_voryn
+					dagoth_voryn = {
+						NOT = { has_status = dagoth_0 }
+					}
+				}
+			}
+		}
+	
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				war = yes
+				any_war = {
+					any_defender = {
+						character = PREVPREV
+					}
+					any_attacker = {
+						NOT = {
+							religion = sixth_house
+						}
+					}
+				}
+				NOT = { has_character_flag = dagoth_decision_pending }
+				
+				trigger_if = {
+					limit = { ROOT = { is_offmap_tag = dagoth_voryn } }
+					
+					trigger_if = {
+						limit = {
+							OR = {
+								dagoth_voryn = { has_policy = dagoth_warlike }
+								has_landed_title = k_dagoth_religion
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 750 }
+					}
+					
+					trigger_else = {
+						has_offmap_currency = { offmap = dagoth_voryn value = 1500 }
+					}
+				}
+				
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				set_character_flag = dagoth_decision_pending
+				if = {
+					limit = { NOT = { has_landed_title = k_dagoth_religion } }
+					if = {
+						limit = {
+							ROOT = {
+								is_offmap_tag = dagoth_voryn
+								dagoth_voryn = {
+									has_policy = dagoth_warlike
+								}
+							}
+						}
+						add_offmap_currency = {
+							offmap = dagoth_voryn
+							value = -750
+						}
+					}
+					if = {
+						limit = {
+							ROOT = {
+								is_offmap_tag = dagoth_voryn
+								dagoth_voryn = {
+									NOT = { has_policy = dagoth_warlike }
+								}
+							}
+						}
+						add_offmap_currency = {
+							offmap = dagoth_voryn
+							value = -1500
+						}
+					}
+				}
+				if = {
+					limit = { has_landed_title = k_dagoth_religion }
+					if = {
+						limit = {
+							ROOT = {
+								is_offmap_tag = dagoth_voryn
+							}
+						}
+						add_offmap_currency = {
+							offmap = dagoth_voryn
+							value = -750
+						}
+					}
+				}
+				character_event = { id = ekdagoth.325 }
+			}
+		}
+
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.25 # slow down
+			}
+			modifier = {
+				FROM = {
+					any_war = {
+						defender = {
+							character = PREVPREV
+						}
+						attacker = {
+							NOT = {
+								religion = sixth_house
+							}
+						}
+#						NOT = { war_score = 0 }
+						war_score = -85 #No point in spending for an army that dissolves the next day
+					}
+				}
+				factor = 100
+			}
+		}
+	}
+	
+	#Influencing dreams - dreams reduce restlessness
+	dagoth_influencing_dreams = {
+		only_playable = yes
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+		}
+
+		potential = {
+			OR = {
+				AND = {
+					is_offmap_tag = dagoth_voryn
+					dagoth_voryn = {
+						NOT = { has_status = dagoth_0 }
+					}
+				}
+			}
+		}
+	
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				NOT = { has_character_flag = dagoth_decision_pending }
+				OR = {
+					any_demesne_province = {
+						NOT = { religion = sixth_house }
+					}
+					any_realm_character = {
+						is_landed = yes
+						higher_tier_than = BARON
+						any_demesne_province = {
+							NOT = { religion = sixth_house }
+						}
+					}
+				}
+				# Dagoth
+				trigger_if = {
+					limit = { ROOT = { is_offmap_tag = dagoth_voryn } }
+					
+					trigger_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_10
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 750 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_9
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 825 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_8
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 900 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_7
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 975 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_6
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1050 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_5
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1125 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_4
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1200 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_3
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1275 }
+					}
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_2
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1350 }
+					}
+					
+					trigger_else_if = {
+						limit = {
+							dagoth_voryn = {
+								has_status = dagoth_1
+							}
+						}
+						has_offmap_currency = { offmap = dagoth_voryn value = 1425 }
+					}
+				}
+				
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				set_character_flag = dagoth_decision_pending
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -750
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -825
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -900
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -975
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1050
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1125
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1200
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1275
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1350
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1500
+					}
+				}
+			}
+			hidden_effect = {
+				FROM = { narrative_event = { id = ekdagoth.310 } }
+			}
+		}
+
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				FROM = {
+					any_demesne_province = {
+						has_province_modifier = dagoth_dreams
+					}
+				}
+			}
+			modifier = {
+				factor = 10
+				FROM = {
+					any_demesne_province = {
+						NOT = { religion = sixth_house }
+					}
+				}
+			}
+			modifier = {
+				factor = 0.1 # slow down
+			}
+			modifier = {
+				FROM = {
+					NOT = { has_grace_major_trigger = yes } #test is this right? trigger has no tribunal in scope
+				}
+				factor = 0.1
+			}
+		}
+	}
+	
+	dagoth_voryn_grace = {
+		only_playable = yes
+		button_name = offmap_boons
+		ai_check_interval = 12
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+		}
+
+		potential = {
+			is_offmap_tag = dagoth_voryn
+			dagoth_voryn = {
+				NOT = { has_status = dagoth_0 }
+			}
+		}
+	
+		allow = {
+			show_only_failed_conditions = yes
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+			FROM = {
+				show_scope_change = no
+				OR = {
+					trait = depressed
+					trait = stressed
+					trait = lunatic
+					trait = possessed
+				}
+				NOT = { has_character_flag = dagoth_decision_pending }
+				
+				trigger_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 750 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 900 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1050 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1200 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1350 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1500 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1650 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1800 }
+				}
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1950 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 2100 }
+				}
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				set_character_flag = dagoth_decision_pending
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -750
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -900
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1050
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1200
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1350
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1500
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1650
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1800
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1950
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -2100
+					}
+				}
+				narrative_event = { id = ekdagoth.340 }
+			}
+		}
+
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = { #AI needs to be willing to use this since it's niche...but strong
+				factor = 10
+			}
+		}
+	}
+	
+	dagoth_voryn_blessing = {
+		only_playable = yes
+		button_name = offmap_boons
+		ai_check_interval = 12
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+		}
+
+		potential = {
+			is_offmap_tag = dagoth_voryn
+			dagoth_voryn = {
+				NOT = { has_status = dagoth_0 }
+			}
+		}
+	
+		allow = {
+			show_only_failed_conditions = yes
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+			FROM = {
+				show_scope_change = no
+				NOT = { has_character_modifier = dagoth_voryn_blessing_modifier }
+				NOT = { has_character_flag = dagoth_decision_pending }
+				
+				trigger_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 750 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 900 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1050 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1200 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1350 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1500 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1650 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1800 }
+				}
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1950 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 2100 }
+				}
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				set_character_flag = dagoth_decision_pending
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -750
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -900
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1050
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1200
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1350
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1500
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1650
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1800
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1950
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -2100
+					}
+				}
+				narrative_event = { id = ekdagoth.345 }
+			}
+		}
+
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = { #Slow it down
+				factor = 0.1
+			}
+		}
+	}
+	
+	dagoth_voryn_touch = {
+		only_playable = yes
+		button_name = offmap_boons
+		ai_check_interval = 1
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+			is_adult = yes
+			religion = sixth_house
+		}
+
+		potential = {
+			is_offmap_tag = dagoth_voryn
+			dagoth_voryn = {
+				NOT = { has_status = dagoth_0 }
+			}
+		}
+	
+		allow = {
+			show_only_failed_conditions = yes
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+			FROM = {
+				show_scope_change = no
+				has_disease_trigger = yes
+				NOT = { has_character_flag = dagoth_decision_pending }
+				
+				trigger_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 750 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 900 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1050 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1200 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1350 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1500 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1650 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1800 }
+				}
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 1950 }
+				}
+				
+				trigger_else_if = {
+					limit = {
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					has_offmap_currency = { offmap = dagoth_voryn value = 2100 }
+				}
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				set_character_flag = dagoth_decision_pending
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_10
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -750
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_9
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -900
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_8
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1050
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_7
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1200
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_6
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1350
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_5
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1500
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_4
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1650
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_3
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1800
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_2
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -1950
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							is_offmap_tag = dagoth_voryn
+						}
+						dagoth_voryn = {
+							has_status = dagoth_1
+						}
+					}
+					add_offmap_currency = {
+						offmap = dagoth_voryn
+						value = -2100
+					}
+				}
+				narrative_event = { id = ekdagoth.350 }
+			}
+		}
+
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = { #AI will always try to cure itself if it can
+				factor = 10
+			}
+		}
+	}
+	
+#	dagoth_voryn_corprus = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+#		button_name = offmap_boons
+#		ai_check_interval = 60
+#
+#		from_potential = {
+#			has_dlc = "Jade Dragon"
+#			mercenary = no
+#			holy_order = no
+#			is_landed = yes
+##			is_indisposed = no #test first levels of corprus make you indisposed
+#			is_adult = yes
+#			OR = {
+#				is_disease_immune = no
+#				AND = {
+#					is_disease_immune = yes
+#					is_corprus_creature = yes
+#					NOT = { trait = ash_vampire }
+#				}
+#			}
+#			NOR = {
+#				has_character_flag = corprus_decision
+##				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+##				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+#			}
+#		}
+#
+#		potential = {
+#			AND = {
+#				is_offmap_tag = dagoth_voryn
+#				dagoth_voryn = {
+#					NOT = { has_status = dagoth_0 }
+#				}
+#			}
+#		}
+#
+#		allow = {
+#			show_only_failed_conditions = yes
+#			FROM = {
+#				show_scope_change = no
+#				ROOT = {
+#					is_offmap_tag = dagoth_voryn
+#				}
+#				has_offmap_currency = { offmap = dagoth_voryn value = 2000 }
+#				prisoner = no
+#				NOT = { trait = incapable }
+#				is_inaccessible_trigger = no
+#			}
+#			ROOT = { is_offmap_tag = dagoth_voryn }
+#			dagoth_voryn_boon_decisions_enabled_trigger = yes
+#		}
+#
+#		effect = {
+#			FROM = {
+#				show_scope_change = no
+#				sound_effect = china_grace_spend
+#				add_offmap_currency = {
+#					offmap = dagoth_voryn
+#					value = -2000
+#				}
+#			}
+#			hidden_effect = {
+#				FROM = {
+#					#set_china_boon_cd_effect = yes
+#					set_character_flag = corprus_decision
+#					long_character_event = { id = ekdagoth.360 }
+#				}
+#			}
+#		}
+#
+#		ai_will_do = {
+#			factor = 1
+#			modifier = {
+#				factor = 0.1 # slow down
+#			}
+#		}
+#	}
+#}
+
+    dagoth_voryn_corprus_1 = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+        religion = sixth_house
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+#			is_indisposed = no #test first levels of corprus make you indisposed
+			is_adult = yes
+			is_disease_immune = no
+			NOR = {
+				has_character_flag = corprus_decision
+#				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+#				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+			}
+		}
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				ROOT = {
+					is_offmap_tag = dagoth_voryn
+				}
+				has_offmap_currency = { offmap = dagoth_voryn value = 500 }
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+			}
+			ROOT = { is_offmap_tag = dagoth_voryn }
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				add_offmap_currency = {
+					offmap = dagoth_voryn
+					value = -500
+				}
+			}
+			hidden_effect = {
+				FROM = {
+					#set_china_boon_cd_effect = yes
+					set_character_flag = corprus_decision
+					long_character_event = { id = ekdagoth.360 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1 # slow down
+			}
+		}
+	}
+
+
+    dagoth_voryn_corprus_2 = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+        religion = sixth_house
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+#			is_indisposed = no #test first levels of corprus make you indisposed
+			is_adult = yes
+            trait = corprus_stalker
+			NOR = {
+				has_character_flag = corprus_decision
+#				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+#				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+			}
+		}
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				ROOT = {
+					is_offmap_tag = dagoth_voryn
+				}
+				has_offmap_currency = { offmap = dagoth_voryn value = 1000 }
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+				NOT = { has_character_modifier = recently_improved_corprus }
+			}
+			ROOT = { is_offmap_tag = dagoth_voryn }
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				add_offmap_currency = {
+					offmap = dagoth_voryn
+					value = -1000
+				}
+			}
+			hidden_effect = {
+				FROM = {
+					#set_china_boon_cd_effect = yes
+					set_character_flag = corprus_decision
+					long_character_event = { id = ekdagoth.360 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+    dagoth_voryn_corprus_3 = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+        religion = sixth_house
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+#			is_indisposed = no #test first levels of corprus make you indisposed
+			is_adult = yes
+            trait = lame_corprus
+			NOR = {
+				has_character_flag = corprus_decision
+#				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+#				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+			}
+		}
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				ROOT = {
+					is_offmap_tag = dagoth_voryn
+				}
+				has_offmap_currency = { offmap = dagoth_voryn value = 1500 }
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+				NOT = { has_character_modifier = recently_improved_corprus }
+			}
+			ROOT = { is_offmap_tag = dagoth_voryn }
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				add_offmap_currency = {
+					offmap = dagoth_voryn
+					value = -1500
+				}
+			}
+			hidden_effect = {
+				FROM = {
+					#set_china_boon_cd_effect = yes
+					set_character_flag = corprus_decision
+					long_character_event = { id = ekdagoth.360 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+    dagoth_voryn_corprus_4 = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+        religion = sixth_house
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+#			is_indisposed = no #test first levels of corprus make you indisposed
+			is_adult = yes
+            trait = ash_slave
+			NOR = {
+				has_character_flag = corprus_decision
+#				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+#				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+			}
+		}
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				ROOT = {
+					is_offmap_tag = dagoth_voryn
+				}
+				has_offmap_currency = { offmap = dagoth_voryn value = 2000 }
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+				NOT = { has_character_modifier = recently_improved_corprus }
+			}
+			ROOT = { is_offmap_tag = dagoth_voryn }
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				add_offmap_currency = {
+					offmap = dagoth_voryn
+					value = -2000
+				}
+			}
+			hidden_effect = {
+				FROM = {
+					#set_china_boon_cd_effect = yes
+					set_character_flag = corprus_decision
+					long_character_event = { id = ekdagoth.360 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.8 # slow down
+			}
+		}
+	}
+
+
+    dagoth_voryn_corprus_5 = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+        religion = sixth_house
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+#			is_indisposed = no #test first levels of corprus make you indisposed
+			is_adult = yes
+            trait = ash_zombie
+			NOR = {
+				has_character_flag = corprus_decision
+#				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+#				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+			}
+		}
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				ROOT = {
+					is_offmap_tag = dagoth_voryn
+				}
+				has_offmap_currency = { offmap = dagoth_voryn value = 2500 }
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+				NOT = { has_character_modifier = recently_improved_corprus }
+			}
+			ROOT = { is_offmap_tag = dagoth_voryn }
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				add_offmap_currency = {
+					offmap = dagoth_voryn
+					value = -2500
+				}
+			}
+			hidden_effect = {
+				FROM = {
+					#set_china_boon_cd_effect = yes
+					set_character_flag = corprus_decision
+					long_character_event = { id = ekdagoth.360 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.6 # slow down
+			}
+		}
+	}
+
+
+    dagoth_voryn_corprus_5 = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+        religion = sixth_house
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+#			is_indisposed = no #test first levels of corprus make you indisposed
+			is_adult = yes
+            trait = ash_ghoul
+			NOR = {
+				has_character_flag = corprus_decision
+#				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+#				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+			}
+		}
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				ROOT = {
+					is_offmap_tag = dagoth_voryn
+				}
+				has_offmap_currency = { offmap = dagoth_voryn value = 3000 }
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+				NOT = { has_character_modifier = recently_improved_corprus }
+			}
+			ROOT = { is_offmap_tag = dagoth_voryn }
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				add_offmap_currency = {
+					offmap = dagoth_voryn
+					value = -3000
+				}
+			}
+			hidden_effect = {
+				FROM = {
+					#set_china_boon_cd_effect = yes
+					set_character_flag = corprus_decision
+					long_character_event = { id = ekdagoth.360 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.4 # slow down
+			}
+		}
+	}
+
+
+    dagoth_voryn_corprus_6 = {
+#		only_playable = yes #needs_change perhaps unlock it for ai
+#       religion = sixth_house
+        only_rulers = yes #only someone influential should become an Ash Vampire
+		button_name = offmap_boons
+		ai_check_interval = 60
+
+		from_potential = {
+			has_dlc = "Jade Dragon"
+			mercenary = no
+			holy_order = no
+			is_landed = yes
+#			is_indisposed = no #test first levels of corprus make you indisposed
+			is_adult = yes
+            trait = ascended_sleeper
+			NOR = {
+				has_character_flag = corprus_decision
+#				has_character_flag = vampire_disease #test should be taken care of by AND condition above
+#				has_character_modifier = pureblood_vampire #Vital to prevent becoming Pure-Blooded repeatedly #test should be taken care of by AND condition above
+			}
+		}
+
+		potential = {
+			AND = {
+				is_offmap_tag = dagoth_voryn
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+		}
+
+		allow = {
+			show_only_failed_conditions = yes
+			FROM = {
+				show_scope_change = no
+				ROOT = {
+					is_offmap_tag = dagoth_voryn
+				}
+				has_offmap_currency = { offmap = dagoth_voryn value = 3500 }
+				prisoner = no
+				NOT = { trait = incapable }
+				is_inaccessible_trigger = no
+				NOT = { has_character_modifier = recently_improved_corprus }
+			}
+			ROOT = { is_offmap_tag = dagoth_voryn }
+			dagoth_voryn_boon_decisions_enabled_trigger = yes
+		}
+
+		effect = {
+			FROM = {
+				show_scope_change = no
+				sound_effect = china_grace_spend
+				add_offmap_currency = {
+					offmap = dagoth_voryn
+					value = -3500
+				}
+			}
+			hidden_effect = {
+				FROM = {
+					#set_china_boon_cd_effect = yes
+					set_character_flag = corprus_decision
+					long_character_event = { id = ekdagoth.360 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1 # slow down
+			}
+		}
+	}
+}

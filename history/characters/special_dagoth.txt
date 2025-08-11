@@ -1,0 +1,40 @@
+#Dagoth
+250003 = {
+	name = "Voryn"
+	female = no
+	dynasty = 160777
+	culture = "ashlander" #needs_change
+	religion = "sixth_house"
+	add_trait = dunmer
+	add_trait = house_dagoth
+	add_trait = mage_4
+	add_trait = savant_3
+	add_trait = nightblade_3
+	add_trait = genius
+	add_trait = zealous
+	add_trait = proud
+	add_trait = ambitious
+	add_trait = gregarious
+	
+#	father = 48219
+	
+	247.1.1 = { birth = yes }
+	303.1.1 = { add_trait = disabler immortal_age = 56 }
+	688.1.1 = {
+		add_trait = dagothur
+		effect = {
+			remove_trait = chimer
+			add_trait = dunmer
+			add_trait = elven_immortality
+			set_graphical_culture = dunmer
+			remove_trait = mage_4
+			add_trait = mage_5
+		}
+		culture = ashlander #needs_change
+		religion = sixth_house
+	}
+	4253.10.1 = {
+		remove_trait = dagothur
+	}
+	4253.11.15 = { death = yes }
+}

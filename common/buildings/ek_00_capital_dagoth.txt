@@ -1,0 +1,1083 @@
+castle = {
+	
+	### Red Mountain ###
+	
+	#base
+	#ca_dagothur
+	
+	ca_tower_dagoth_ur = {
+		desc = ca_tower_dagoth_ur_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 0 }
+		
+		gold_cost = 200 #This building will be built at start.
+		build_time = 720 #These 'costs' are effectively just repair costs if it gets destroyed in a raid.
+		
+		tax_income = 2.0
+		fort_level = 3.0
+		garrison_size = 0.5
+		
+		light_infantry = 250
+		archers = 150
+	}
+	
+	#Tax Income
+	
+	#Smugglers operation
+	ca_capital_dagoth_ur_smuggler_0 = {
+		desc = ca_capital_dagoth_ur_smuggler_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_TRADE_PRACTICES = 1 }
+		#upgrades_from = ca_capital_dagoth_ur_smuggler_0
+		
+		gold_cost = 400
+		build_time = 720
+		
+		tax_income = 1
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_smuggler_1 = {
+		desc = ca_capital_dagoth_ur_smuggler_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_TRADE_PRACTICES = 2 }
+		upgrades_from = ca_capital_dagoth_ur_smuggler_0
+		
+		gold_cost = 400
+		build_time = 720
+		
+		tax_income = 1
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Fort
+	
+	#Entrance Gate Restoration
+	ca_capital_dagoth_ur_gate_0 = {
+		desc = ca_capital_dagoth_ur_gate_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_FORTIFICATIONS_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_gate_0
+		
+		gold_cost = 400
+		build_time = 720
+		
+		fort_level = 1
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Open Space Defenses
+	ca_capital_dagoth_ur_open_space_0 = {
+		desc = ca_capital_dagoth_ur_open_space_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_FORTIFICATIONS_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_open_space_0_desc
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		fort_level = 1
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+
+	#Open Space Defenses - Difficult Terrain
+	ca_capital_dagoth_ur_open_space_1 = {
+		desc = ca_capital_dagoth_ur_open_space_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_FORTIFICATIONS_CONSTRUCTION = 0 }
+		upgrades_from = ca_capital_dagoth_ur_open_space_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		fort_level = 1
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Defensive Maze
+	ca_capital_dagoth_ur_maze_0 = {
+		desc = ca_capital_dagoth_ur_maze_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_FORTIFICATIONS_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_maze_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		fort_level = 0.5
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_maze_1 = {
+		desc = ca_capital_dagoth_ur_maze_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_FORTIFICATIONS_CONSTRUCTION = 1 }
+		upgrades_from = ca_capital_dagoth_ur_maze_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		fort_level = 1
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_maze_2 = {
+		desc = ca_capital_dagoth_ur_maze_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_FORTIFICATIONS_CONSTRUCTION = 2 }
+		upgrades_from = ca_capital_dagoth_ur_maze_1
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		fort_level = 1
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Garrison
+	
+	#Garrison
+	ca_capital_dagoth_ur_garrison_0 = {
+		desc = ca_capital_dagoth_ur_garrison_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 1 }
+		#upgrades_from = ca_capital_dagoth_ur_garrison_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		garrison_size = 0.25
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+
+	#Light/Heavy infantry
+	
+	#Ash Blight
+	ca_capital_dagoth_ur_blight_0 = {
+		desc = ca_capital_dagoth_ur_blight_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_RECRUITMENT = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_blight_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 100
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_blight_1 = {
+		desc = ca_capital_dagoth_ur_blight_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_RECRUITMENT = 1 }
+		upgrades_from = ca_capital_dagoth_ur_blight_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 100
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_blight_2 = {
+		desc = ca_capital_dagoth_ur_blight_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_RECRUITMENT = 2 }
+		upgrades_from = ca_capital_dagoth_ur_blight_1
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 100
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_blight_3 = {
+		desc = ca_capital_dagoth_ur_blight_3_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_RECRUITMENT = 3 }
+		upgrades_from = ca_capital_dagoth_ur_blight_2
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 100
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_blight_4 = {
+		desc = ca_capital_dagoth_ur_blight_4_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_RECRUITMENT = 4 }
+		upgrades_from = ca_capital_dagoth_ur_blight_3
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 100
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Weaponenchanter
+	ca_capital_dagoth_ur_weaponenchanter_0 = {
+		desc = ca_capital_dagoth_ur_weaponenchanter_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_weaponenchanter_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 50
+		heavy_infantry = 50
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_weaponenchanter_1 = {
+		desc = ca_capital_dagoth_ur_weaponenchanter_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 1 }
+		upgrades_from = ca_capital_dagoth_ur_weaponenchanter_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 50
+		heavy_infantry = 50
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_weaponenchanter_2 = {
+		desc = ca_capital_dagoth_ur_weaponenchanter_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 3 }
+		upgrades_from = ca_capital_dagoth_ur_weaponenchanter_1
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 50
+		heavy_infantry = 50
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_weaponenchanter_3 = {
+		desc = ca_capital_dagoth_ur_weaponenchanter_3_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 5 }
+		upgrades_from = ca_capital_dagoth_ur_weaponenchanter_2
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 50
+		heavy_infantry = 50
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Armorenchanter
+	ca_capital_dagoth_ur_armorenchanter_0 = {
+		desc = ca_capital_dagoth_ur_armorenchanter_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_armorenchanter_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		#light_infantry = 0
+		heavy_infantry = 100
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_armorenchanter_1 = {
+		desc = ca_capital_dagoth_ur_armorenchanter_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 1 }
+		upgrades_from = ca_capital_dagoth_ur_armorenchanter_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		#light_infantry = 0
+		heavy_infantry = 100
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_armorenchanter_2 = {
+		desc = ca_capital_dagoth_ur_armorenchanter_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 3 }
+		upgrades_from = ca_capital_dagoth_ur_armorenchanter_1
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		#light_infantry = 0
+		heavy_infantry = 100
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_armorenchanter_3 = {
+		desc = ca_capital_dagoth_ur_armorenchanter_3_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 5 }
+		upgrades_from = ca_capital_dagoth_ur_armorenchanter_2
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		#light_infantry = 0
+		heavy_infantry = 100
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Dream guidance
+	ca_capital_dagoth_ur_dream_0 = {
+		desc = ca_capital_dagoth_ur_dream_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_dream_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 100
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_dream_1 = {
+		desc = ca_capital_dagoth_ur_dream_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 1 }
+		upgrades_from = ca_capital_dagoth_ur_dream_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 75
+		heavy_infantry = 25
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_dream_2 = {
+		desc = ca_capital_dagoth_ur_dream_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 2 }
+		upgrades_from = ca_capital_dagoth_ur_dream_1
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 50
+		heavy_infantry = 50
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_dream_3 = {
+		desc = ca_capital_dagoth_ur_dream_3_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 3 }
+		upgrades_from = ca_capital_dagoth_ur_dream_2
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		light_infantry = 25
+		heavy_infantry = 75
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Elite sleepers
+	ca_capital_dagoth_ur_elite_sleepers_0 = {
+		desc = ca_capital_dagoth_ur_elite_sleepers_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 1 }
+		#upgrades_from = ca_capital_dagoth_ur_elite_sleepers_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		#light_infantry = 0
+		heavy_infantry = 50
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_elite_sleepers_1 = {
+		desc = ca_capital_dagoth_ur_elite_sleepers_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 3 }
+		upgrades_from = ca_capital_dagoth_ur_elite_sleepers_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		#light_infantry = 0
+		heavy_infantry = 100
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_elite_sleepers_2 = {
+		desc = ca_capital_dagoth_ur_elite_sleepers_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 5 }
+		upgrades_from = ca_capital_dagoth_ur_elite_sleepers_1
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		#light_infantry = 0
+		heavy_infantry = 100
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+
+	#sorcerers
+
+	#Meditation chambers
+	ca_capital_dagoth_ur_meditation_chambers_0 = {
+		desc = ca_capital_dagoth_ur_meditation_chambers_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_meditation_chambers_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		battlemages = 50
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_meditation_chambers_1 = {
+		desc = ca_capital_dagoth_ur_meditation_chambers_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 1 }
+		upgrades_from = ca_capital_dagoth_ur_meditation_chambers_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		battlemages = 100
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_meditation_chambers_2 = {
+		desc = ca_capital_dagoth_ur_meditation_chambers_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 2 }
+		upgrades_from = ca_capital_dagoth_ur_meditation_chambers_1
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		battlemages = 150
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_meditation_chambers_3 = {
+		desc = ca_capital_dagoth_ur_meditation_chambers_3_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 3 }
+		upgrades_from = ca_capital_dagoth_ur_meditation_chambers_2
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		battlemages = 200
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_meditation_chambers_4 = {
+		desc = ca_capital_dagoth_ur_meditation_chambers_4_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 4 }
+		upgrades_from = ca_capital_dagoth_ur_meditation_chambers_3
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		battlemages = 200
+		#heavy_infantry = 0
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	#Archers
+	
+	#Sleeper archers
+	ca_capital_dagoth_ur_archers_0 = {
+		desc = ca_capital_dagoth_ur_archers_0_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CASTLE_CONSTRUCTION = 0 }
+		#upgrades_from = ca_capital_dagoth_ur_archers_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		archers = 50
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_archers_1 = {
+		desc = ca_capital_dagoth_ur_archers_1_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CITY_CONSTRUCTION = 1 }
+		upgrades_from = ca_capital_dagoth_ur_archers_0
+		
+		gold_cost = 400
+		build_time = 1080
+		
+		archers = 100
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+	
+	ca_capital_dagoth_ur_archers_2 = {
+		desc = ca_capital_dagoth_ur_archers_2_desc
+		
+		potential = {
+        	AND = {
+        		FROMFROM = { title = b_dagothur }
+        	}
+        }
+        is_active_trigger = {
+        	OR = {
+        		FROM = { society_member_of = house_dagoth_council }
+        		FROM = { religion = sixth_house }
+        	}
+        }
+		trigger = { TECH_CITY_CONSTRUCTION = 3 }
+		upgrades_from = ca_capital_dagoth_ur_archers_1
+
+		gold_cost = 400
+		build_time = 1080
+		
+		archers = 150
+		
+		ai_creation_factor = 90
+		
+		extra_tech_building_start = 1.0
+	}
+}

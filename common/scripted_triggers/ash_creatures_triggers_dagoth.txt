@@ -1,0 +1,32 @@
+is_ash_creature = {
+	OR = {
+		trait = dagothur
+		trait = ash_vampire
+		trait = ascended_sleeper
+		trait = ash_ghoul
+		trait = ash_zombie
+		trait = ash_slave
+	}
+}
+
+is_advanced_ash_creature = {
+	OR = {
+		trait = dagothur
+		trait = ash_vampire
+		trait = ascended_sleeper
+		trait = ash_ghoul
+	}
+}
+
+is_corprus_creature = {
+	OR = {
+		trait = dagothur
+		trait = ash_vampire
+		trait = ascended_sleeper
+		trait = ash_ghoul
+		trait = ash_zombie
+		trait = ash_slave
+		trait = lame_corprus
+		trait = corprus_stalker
+	}
+}
