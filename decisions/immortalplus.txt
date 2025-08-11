@@ -1,3 +1,4 @@
+
 decisions = {
     get_immortal_martial = {
 	is_high_prio = yes
@@ -11,7 +12,7 @@ decisions = {
 	effect = {
 			prestige = -30000
 			add_trait=immortal
-			set_flag = immortal_no_cheats
+			set_flag = immortal_no_cheat
 			}	
 	ai_will_do = {
 	        factor = 1
