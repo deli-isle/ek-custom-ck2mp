@@ -203,7 +203,7 @@ narrative_event = {
 	}
 	
 	immediate = {
-		k_dagoth_religion = {
+		k_sixthhouse = {
 			holder_scope = { save_event_target_as = dagoth_dreamer }
 		}
 	}

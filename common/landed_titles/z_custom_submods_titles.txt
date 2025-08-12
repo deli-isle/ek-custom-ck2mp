@@ -17,7 +17,7 @@ e_heartwright_voryn = {
 	dignity = 1000
 }
 
-k_dagoth_religion = {
+k_sixthhouse = {
 	color={ 170 10 20 }
 	color2={ 255 255 255 }
 	capital = 342 # Red Mountain
@@ -57,4 +57,36 @@ k_vvardenfell = {
 			b_bthanchend  = {}
 		}
 	}
+}
+
+d_atmoranband = {
+	color =  { 180 180 180 }
+	color2 = { 255 255 255 }
+	allow = {
+		NOT = {
+			OR = {
+				culture_group = undead
+				trait = undead
+				d_nordicaxemen = {
+					holder_scope = {
+						OR = {
+							culture_group = undead
+							trait = undead
+						}
+					}
+				}
+			}
+		}
+	}
+	capital = 990
+    title = champion
+	title_female = champion
+	foa = champion
+	culture = atmoran
+	mercenary_type = medium_mercenary_composition
+	strength_growth_per_century = 0.75
+	landless = yes
+	primary = yes
+	independent = yes
+	mercenary = yes
 }

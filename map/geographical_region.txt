@@ -100,6 +100,16 @@ nirn_tamriel_thereach = {
 		d_reach d_bleakwind d_scarhammer d_volskygge d_sunderstone
 	}
 }
+
+nirn_tamriel_northern_skyrim = {
+	duchies = {
+		d_ironbind d_eastmarch d_winterhold d_hjaalmarch
+	}
+	counties = {
+		c_solitude c_ravenscar c_dragonbridge c_coldstone c_whiteflow
+	}
+}
+
 nirn_tamriel_eastern_skyrim = {
 	duchies = {
 		d_eastmarch d_morvunskar d_therift d_ansilvund d_korvanjund d_nilheim d_valtgard d_ironbind

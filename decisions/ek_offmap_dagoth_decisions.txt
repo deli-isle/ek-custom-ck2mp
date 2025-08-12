@@ -27,7 +27,7 @@ offmap_decisions = {
 		}
 
 		allow = {
-			k_dagoth_religion = {
+			k_sixthhouse = {
 				holder_scope = {
 					NOT = { war_with = FROM }
 				}
@@ -44,7 +44,7 @@ offmap_decisions = {
 		}
 	
 		effect = {
-			k_dagoth_religion = {
+			k_sixthhouse = {
 				holder_scope = {
 					transfer_scaled_wealth = {
 						to = THIS
@@ -807,7 +807,7 @@ offmap_decisions = {
 						limit = {
 							OR = {
 								dagoth_voryn = { has_policy = dagoth_warlike }
-								has_landed_title = k_dagoth_religion
+								has_landed_title = k_sixthhouse
 							}
 						}
 						has_offmap_currency = { offmap = dagoth_voryn value = 750 }
@@ -830,7 +830,7 @@ offmap_decisions = {
 				sound_effect = china_grace_spend
 				set_character_flag = dagoth_decision_pending
 				if = {
-					limit = { NOT = { has_landed_title = k_dagoth_religion } }
+					limit = { NOT = { has_landed_title = k_sixthhouse } }
 					if = {
 						limit = {
 							ROOT = {
@@ -861,7 +861,7 @@ offmap_decisions = {
 					}
 				}
 				if = {
-					limit = { has_landed_title = k_dagoth_religion }
+					limit = { has_landed_title = k_sixthhouse }
 					if = {
 						limit = {
 							ROOT = {
