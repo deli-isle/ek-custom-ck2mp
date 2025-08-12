@@ -1,0 +1,89 @@
+respects_paid_to_ysgramor = {
+	icon = 7 
+	monthly_character_prestige = 1.25
+	monthly_character_piety = 1.25
+} 
+ysgramor_rejected_you = {
+	icon = 25
+}
+atmoran_sacrifice_1 = {
+	icon = 79
+	land_morale = 0.05
+	siege_defence = 0.05
+	siege_speed = 0.05
+	global_movement_speed = 0.05
+	command_modifier = {
+		morale_offence = 0.05
+	}
+}
+atmoran_sacrifice_2 = {
+	icon = 79
+	land_morale = 0.10
+	siege_defence = 0.10
+	siege_speed = 0.10
+	global_movement_speed = 0.10
+	command_modifier = {
+		morale_offence = 0.10
+	}
+}
+atmoran_sacrifice_3 = {
+	icon = 79
+	land_morale = 0.15
+	siege_defence = 0.15
+	siege_speed = 0.15
+	global_movement_speed = 0.15
+	command_modifier = {
+		morale_offence = 0.15
+	}
+}
+atmoran_sacrifice_4 = {
+	icon = 79
+	land_morale = 0.20
+	siege_defence = 0.20
+	siege_speed = 0.20
+	global_movement_speed = 0.20
+	command_modifier = {
+		morale_offence = 0.20
+	}
+}
+
+atmoran_sacrifice_pet_1 = {
+	icon = 79
+	land_morale = 0.05
+	siege_defence = 0.05
+	siege_speed = 0.05
+	global_movement_speed = 0.05
+	command_modifier = {
+		morale_offence = 0.05
+	}
+}
+atmoran_sacrifice_pet_2 = {
+	icon = 79
+	land_morale = 0.10
+	siege_defence = 0.10
+	siege_speed = 0.10
+	global_movement_speed = 0.10
+	command_modifier = {
+		morale_offence = 0.10
+	}
+}
+atmoran_sacrifice_pet_3 = {
+	icon = 79
+	land_morale = 0.15
+	siege_defence = 0.15
+	siege_speed = 0.15
+	global_movement_speed = 0.15
+	command_modifier = {
+		morale_offence = 0.15
+	}
+}
+atmoran_sacrifice_pet_4 = {
+	icon = 79
+	land_morale = 0.20
+	siege_defence = 0.20
+	siege_speed = 0.20
+	global_movement_speed = 0.20
+	command_modifier = {
+		morale_offence = 0.20
+	}
+}

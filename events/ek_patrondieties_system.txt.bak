@@ -393,21 +393,21 @@ character_event = {
 	}
 	#ANIMISM
 	option = {
-		name = PatronFox
-		trigger = { religion = animism }
-		add_trait = p_fox
-		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
-	}
-	option = {
-		name = PatronBear
-		trigger = { religion = animism }
-		add_trait = p_bear
-		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
-	}
-	option = {
-		name = PatronWhale
+		name = kreligionanimismo1
 		trigger = { religion = animism }
 		add_trait = p_whale
+		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
+	}
+	option = {
+		name = kreligionanimismo2
+		trigger = { religion = animism }
+		add_trait = p_moth
+		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
+	}
+	option = {
+		name = kreligionanimismo3
+		trigger = { religion = animism }
+		add_trait = p_dragon
 		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
 	}
 	# CULT OF KTHULHUT

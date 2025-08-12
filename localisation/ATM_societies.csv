@@ -1,0 +1,92 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+bear_guild;The Bear's Craft;;;;;;;;;;;;;x
+bear_guild_desc;A loose association of warriors and raiders, the Bear's Craft was born in the turmoil that gripped Atmora after Skyrim cut her ties. Bound not by honour like the famous Companions, but by the Glory of Battle, this group spends as much time fighting amongst themselves as they do fighting the Draugr that walk their lands.;;;;;;;;;;;;;x
+owl_guild;The Owl's Lodge;;;;;;;;;;;;;x
+owl_guild_desc;The Skalds of the Owl's Lodge maintain the intricate oral histories of the Frozen Continent, weaving them into grand stories to regale and enrapture. It is considered a great honour for a wandering follower of the wise Owl to reside within your court.;;;;;;;;;;;;;x
+bear_guild_leader_desc;The leader amongst the Halls of the Bear, bloodied and scarred yet ever victorious.;;;;;;;;;;;;;x
+owl_guild_leader_desc;The Council of Skalds police the stories of their subordinates to ensure their histories ring true.;;;;;;;;;;;;;x
+bear_guild_rank_1_male;Cub;;;;;;;;;;;;;x
+bear_guild_rank_2_male;Blooded;;;;;;;;;;;;;x
+bear_guild_rank_3_male;Grizzled;;;;;;;;;;;;;x
+bear_guild_rank_4_male;Hero;;;;;;;;;;;;;x
+bear_guild_rank_5_male;The Bear's Chosen;;;;;;;;;;;;;x
+bear_guild_rank_1_female;Cub;;;;;;;;;;;;;x
+bear_guild_rank_2_female;Blooded;;;;;;;;;;;;;x
+bear_guild_rank_3_female;Grizzled;;;;;;;;;;;;;x
+bear_guild_rank_4_female;Heroine;;;;;;;;;;;;;x
+bear_guild_rank_5_female;The Bear's Chosen;;;;;;;;;;;;;x
+owl_guild_rank_1_male;Storyteller;;;;;;;;;;;;;x
+owl_guild_rank_2_male;Bard;;;;;;;;;;;;;x
+owl_guild_rank_3_male;Lorekeeper;;;;;;;;;;;;;x
+owl_guild_rank_4_male;Skald;;;;;;;;;;;;;x
+owl_guild_rank_1_female;Storyteller;;;;;;;;;;;;;x
+owl_guild_rank_2_female;Bard;;;;;;;;;;;;;x
+owl_guild_rank_3_female;Lorekeeper;;;;;;;;;;;;;x
+owl_guild_rank_4_female;Skald;;;;;;;;;;;;;x
+currency_name_bear_guild;Spoils;;;;;;;;;;;;;x
+currency_name_owl_guild;Lore;;;;;;;;;;;;;x
+atmoran_sacrifice_1;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_1_desc;This warrior has offered a prized specimen from [Root.GetHerHis] prior hunt to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice_2;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_2_desc;This warrior has offered a prized specimen from [Root.GetHerHis] prior hunt to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice_3;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_3_desc;This warrior has offered a prized specimen from [Root.GetHerHis] prior hunt to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice_4;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_4_desc;This warrior has offered a prized specimen from [Root.GetHerHis] prior hunt to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_1;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_desc;This warrior has offered a prized pet from [Root.GetHerHis] household to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_2;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_2_desc;This warrior has offered a prized pet from [Root.GetHerHis] household to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_3;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_3_desc;This warrior has offered a prized pet from [Root.GetHerHis] household to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_4;War Sacrifice;;;;;;;;;;;;;x
+atmoran_sacrifice_pet_4_desc;This warrior has offered a prized pet from [Root.GetHerHis] household to the gods, hoping to receive their divine favor in battle.;;;;;;;;;;;;;x
+atmoran_sacrifice;Sacrifice to the Gods;;;;;;;;;;;;;x
+atmoran_sacrifice_desc;Pledge a sacrifice to the Totemic Gods to gain their attention.;;;;;;;;;;;;;x
+ATMSocieties09Raiders;Being a member of the Bear's Kin means that I have access to some of the finest minds available on Atmora. With their help, I can receive an education in a variety of advanced specializations.;;;;;;;;;;;;;x
+ATMSocieties09Storytellers;Being a member of the Owl's Lodge means that I have access to some of the finest minds available on Atmora. With their help, I can receive an education in a variety of advanced specializations.;;;;;;;;;;;;;x
+ATMSocieties09Acrobat;I will learn the ways of the Acrobat.;;;;;;;;;;;;;x
+ATMSocieties09Assassin;I will learn the ways of the Assassin.;;;;;;;;;;;;;x
+ATMSocieties09Barbarian;I will learn the ways of the Barbarian.;;;;;;;;;;;;;x
+ATMSocieties09Bard;I will learn the ways of the Bard.;;;;;;;;;;;;;x
+ATMSocieties09Battlemage;I will learn the ways of the Battlemage.;;;;;;;;;;;;;x
+ATMSocieties09Crusader;I will learn the ways of the Crusader.;;;;;;;;;;;;;x
+ATMSocieties09Healer;I will learn the ways of the Healer.;;;;;;;;;;;;;x
+ATMSocieties09Knight;I will learn the ways of the Knight.;;;;;;;;;;;;;x
+ATMSocieties09Monk;I will learn the ways of the Monk.;;;;;;;;;;;;;x
+ATMSocieties09Nightblade;I will learn the ways of the Nightblade.;;;;;;;;;;;;;x
+ATMSocieties09Priest;I will learn the ways of the Priest.;;;;;;;;;;;;;x
+ATMSocieties09Rogue;I will learn the ways of the Rogue.;;;;;;;;;;;;;x
+ATMSocieties09Savant;I will learn the ways of the Savant.;;;;;;;;;;;;;x
+ATMSocieties09Scout;I will learn the ways of the Scout.;;;;;;;;;;;;;x
+ATMSocieties09Sorcerer;I will learn the ways of the Sorcerer.;;;;;;;;;;;;;x
+ATMSocieties09Spellsword;I will learn the ways of the Spellsword.;;;;;;;;;;;;;x
+ATMSocieties09Thief;I will learn the ways of the Thief.;;;;;;;;;;;;;x
+ATMSocieties09Trader;I will learn the ways of the Trader.;;;;;;;;;;;;;x
+ATMSocieties09Wayfarer;I will learn the ways of the Wayfarer.;;;;;;;;;;;;;x
+ATMSocieties09Witchhunter;I will learn the ways of the Witchhunter.;;;;;;;;;;;;;x
+ATMSocieties09Wrap;(More Options);;;;;;;;;;;;;x
+ATMSocieties09Decline;I will not focus on any specialization at this time.;;;;;;;;;;;;;x
+ATMSocieties09Completed;I have completed all of my specialization training.;;;;;;;;;;;;;x
+ATMSocieties03Acknowledge;Excellent.;;;;;;;;;;;;;x
+ATMSocietiesRaidersLetter;May the winds fill your sails, [Root.GetFirstName]!\n Here in the Bear's Kindred, we're about the fires of battle bringing warmth! Our lands may be dead, but we are not, and here you'll learn to keep it that way. Good luck, Cub, may the Dead stay so. \n\nSigned, [From.GetSocietyRank] [From.GetFirstName];;;;;;;;;;;;;x
+ATMSocietiesStorytellersLetter;Welcome [Root.GetFirstName]!\n You are now part of the Owl's Lodge, may you bring a moment of reprieve to those who would listen in these harsh lands. You will be one amongst of those honoured to preserve our history. May you speak true, always. \n\nSigned, [From.GetSocietyRank] [From.GetFirstName] ;;;;;;;;;;;;;x
+study_specialization_atmora;Study a Specialization;;;;;;;;;;;;;x
+study_specialization_atmora_desc;Consult with guild trainers and read through instructional tomes to unlock the secrets of up to two unique Specializations.;;;;;;;;;;;;;x
+power_sacrifice_tooltip;Sacrifice to the Gods.;;;;;;;;;;;;;x
+power_sacrifice_tooltip_power_desc;Enables sacrificing a small, or large, part of your next hunt in hopes of the Gods granting a blessing upon your raids, or wars.;;;;;;;;;;;;;x
+cancel_specialization_atmora;Cancel Specialization Training;;;;;;;;;;;;;x
+cancel_specialization_atmora_desc;You can cancel your Specialization training at any time. Doing so will erase any progress that you have made toward learning your Specialization. You will have to wait 12 months after enacting this decision before you can attempt to study a Specialization again.;;;;;;;;;;;;;x
+NUMBEROFSKALDS;There may only be four Skalds at a time;;;;;;;;;;;;;x
+Raider_Request_To_Rank_Up_Within_Society;Request to rank up;;;;;;;;;;;;;x
+Storyteller_Request_To_Rank_Up_Within_Society;Request to rank up;;;;;;;;;;;;;x
+ATM_request_to_rank_up_within_society_currency_tt;Has [Root.Society.GetCurrency] greater or equal to [Root.GetATMSocietyRankUpTooltip1]\n;A au moins [Root.GetSocietyRankUpTooltip1] en §Y[Root.Society.GetCurrency]§!\n;§Y[Root.Society.GetCurrency]§! größer als oder gleich [Root.GetSocietyRankUpTooltip1]\n;;Tiene una cantidad de §Y[Root.Society.GetCurrency]§! superior o equivalente a [Root.GetSocietyRankUpTooltip1].\n;;;;;;;;;x
+ATMSocieties16;Countless hours of hard work are paying off. I have gained a greater understanding of my field of study, and am all the better for it.;;;;;;;;;;;;;x
+ATMSocieties16Acknowledge;Excellent.;;;;;;;;;;;;;x
+join_the_bear_guild;Join the Bear's Craft;;;;;;;;;;;;;x
+join_the_bear_guild_desc;Order [Root.GetFirstName] to join the Bear's Craft. [Root.GetFirstName] will be granted the rank of Cub and can immediately take on Guild jobs and study Specializations if there are any available to [Root.GetHerHim].;;;;;;;;;;;;;x
+join_the_owl_guild;Join the Owl's Lodge.;;;;;;;;;;;;;x
+join_the_owl_guild_desc;Order [Root.GetFirstName] to join the Owl's Lodge. [Root.GetFirstName] will be granted the rank of Storyteller and can immediately take on Guild jobs and study Specializations if there are any available to [Root.GetHerHim].;;;;;;;;;;;;;x
+atm_request_grandmaster_retire;Request that Your Society Grandmaster Retire;;;;;;;;;;;;;x
+atm_request_grandmaster_retire_desc;Send an offer of gold to the leader of your Society, asking them to resign from their position, swear off joining most major guilds, and name you as their successor. If they accept, they will receive part of your gift as a lump sum, with the rest invested such that they receive a lifetime pension. They can later set this pension aside, voiding it and allowing them to join any society at a later time.;;;;;;;;;;;;;x
+Jylkurfyk_Fixed;Jylkurfyk, the grand shipyard of Atmora, must be repaired to brave the Sea of Ghosts;;;;;;;;;;;;;x

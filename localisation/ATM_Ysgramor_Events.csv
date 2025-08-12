@@ -1,0 +1,232 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+
+# Set Up #
+
+# Atmoran
+ATM.00101.title;The Island of Ice;;;;;;;;;x
+ATM.00101.desc;You descend from your beached boat, the icy water splashing as you vault down into it. A shudder runs over your skin at the icy carress of the winds, and at the haunting whines it brings, as you set foot onto the frost-laden island that holds the corpse of perhaps the greatest amongst your kind to ever live. The dirt crunches beneath your feet as you make your way up towards the barrow, eyes drawn to the twin Hawk heads carved forever into their places of sentry. With a bowed head, and a murmured prayer towards [GetYsgramorGod], you ascend the side of the barrow, stopping at the top of the great stone slabs that make up the staircase down.;;;;;;;;;x
+ATM.00101.optA;Pull your coat closer, and enter the tomb...;;;;;;;;;x
+ATM.00101.optB;Pull your coat closer, and enter the tomb...;;;;;;;;;x
+
+# Companions
+ATM.00102.title;The Island of Ice;;;;;;;;;x
+ATM.00102.desc;You descend from your beached boat, the icy water splashing as you vault down into it. A shudder runs over your skin at the icy carress of the winds, and at the haunting whines it brings, as you set foot onto the frost-laden island that holds the corpse of perhaps the greatest amongst your kind to ever live. The dirt crunches beneath your feet as you make your way up towards the barrow, eyes drawn to the twin Hawk heads carved forever into their places of sentry. With a bowed head, and a murmured prayer towards [GetYsgramorGod], you ascend the side of the barrow, stopping at the top of the great stone slabs that make up the staircase down.;;;;;;;;;x
+ATM.00102.optA;Pull your coat closer, and enter the tomb...;;;;;;;;;x
+ATM.00102.optB;Pull your coat closer, and enter the tomb...;;;;;;;;;x
+
+# Before Entering the Tomb #
+
+# Bloodline not claimed 
+ATM.00103.title;The Tomb of Ysgramor;;;;;;;;;x
+ATM.00103.desc;The descent is treacherous, the slabs slick with ice, and despite your tolerance for the cold you feel the chill seeping into your bones. A moment later though, you stand before the great doors that mark the resting place of the Companions and, with a deep breath, push through them to enter the tomb itself. A grand chamber meets you, dominated by a large statue of Ysgramor, which is in turn flanked by two sconces burning, seemingly eternally, with neither smoke nor smell. Several offerings lie before Ysgramor himself, of all kinds - pelts, weapons, gold, and food. Behind him stands a door made of ancient Nordic steel - totally flat faced, with no handle nor lock. The statue itself looks incomplete, the great Harbinger's pose implying he should be holding a weapon of some kind.;;;;;;;;;x
+ATM.00103.optA;Attempt to Enter.;;;;;;;;;x
+ATM.00103.optB;Place Wuuthrad, Ysgramor's axe, back into his hands.;;;;;;;;;x
+ATM.00103.optC;Pay your respects to Ysgramor and leave.;;;;;;;;;x
+
+# Bloodline already claimed
+ATM.00104.title;The Tomb of Ysgramor;;;;;;;;;x
+ATM.00104.desc;The descent is treacherous, the slabs slick with ice, and despite your tolerance for the cold you feel the chill seeping into your bones. A moment later though, you stand before the great doors that mark the resting place of the Companions and, with a deep breath, push through them to enter the tomb itself. A grand chamber meets you, dominated by a large statue of Ysgramor, which is in turn flanked by two sconces burning, seemingly eternally, with neither smoke nor smell. Several offerings lie before Ysgramor himself, of all kinds - pelts, weapons, gold, and food. Behind him stands a door made of ancient Nordic steel - totally flat faced, with no handle nor lock - and open to a dark corridor. There is a sense of forboding from within, as if warning that there was nothing left inside but death.;;;;;;;;;x
+ATM.00104.optA;Pay your respects to Ysgramor and leave.;;;;;;;;;x
+
+# Default
+ATM.00105.title;Attempt to Enter.;;;;;;;;;x
+ATM.00105.desc;You stride over to the door, and push as hard as you can. It doesn't budge, you feel as if you're pushing against a wall. No amount of magic is going to unstick it either. This door doesn't seem to be budging.;;;;;;;;;x
+ATM.00105.optA;Place Wuuthrad, Ysgramor's axe, back into his hands.;;;;;;;;;x
+ATM.00105.optB;Pay your respects to Ysgramor and leave.;;;;;;;;;x
+
+# Pay Respects 
+ATM.00106.title;To Respect a Hero;;;;;;;;;x
+ATM.00106.desc;You leave a few of your personal effects at Ysgramor's feet, paying respects as so many others have done before you, and take a moment to give a few words, too. A warmth fills you as you rise, and turn to leave, and for a moment you feel as if somehow, you've just been approved of.;;;;;;;;;x
+ATM.00106.optA;You quietly leave the tomb, satisfied;;;;;;;;;x
+
+# Entrance into the Tomb #
+
+# Has Wuuthrad 
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+ATM.001XX.optB;
+
+# Trial: The Companions
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+ATM.001XX.optB;
+ATM.001XX.optC;
+ATM.001XX.optD;
+
+# Trial: Atmoran Spiders
+
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+ATM.001XX.optB;
+ATM.001XX.optC;
+
+# Trial: Harbinger Spiders
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+ATM.001XX.optB;
+ATM.001XX.optC;
+
+# The Trial Complete #
+
+# Trial: The Companions Martial Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: The Companions Martial Failure 
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: The Companions Diplomacy Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: The Companions Diplomacy Failure 
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: The Companions Status Attempt Atmorans
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: The Companions Status Attempt Companions
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: The Companions Run Away
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Atmoran Spiders Martial Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Atmoran Spiders Martial Failure
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Atmoran Spiders Intrigue Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Atmoran Spiders Intrigue Failure
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Atmoran Spiders Run Away
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Harbinger Spiders Martial Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Harbinger Spiders Martial Failure
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Harbinger Spiders Intrigue Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Harbinger Spiders Intrigue Failure
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Harbinger Spiders Ran Away
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Hall of the Harbingers #
+
+# Trial: The Companions Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Atmoran Spiders Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Trial: Harbinger Spiders Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# The Hall of Ysgramor
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Ysgramor Accepts
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Ysgramor Rejects
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Leaving #
+
+# Chose to Leave
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Companions Failure
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Atmoran Spider Failure
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Harbinger Spider Failure
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Failure at the last Hurdle 
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Success
+ATM.001XX.title;
+ATM.001XX.desc;
+ATM.001XX.optA;
+
+# Paid Respects 
+ATM.00140.title;A Leader Touched;;;;;;;;;x
+ATM.00140.desc;You return to your ship, the warm pride in your chest from having knelt before the Great Hero keeping away the chill that had bothered you so. A nod of your head to the navigator prompts him to release a shout, and with the grind of wood on icy shores, the boat begins to move as the crew push it back into the seas, beginnning the journey home, your soul touched by the presence of so many heroes.;;;;;;;;;x
+ATM.00140.optA;A return to your throne, and your people.;;;;;;;;;x
+
+# Modifiers #
+
+respects_paid_to_ysgramor;Paid Respects to a Hero;;;;;;;;;x
+respects_paid_to_ysgramor_desc;[Root.GetFirstName] has travelled to the tomb of a great hero, and paid his respects.;;;;;;;;;x
