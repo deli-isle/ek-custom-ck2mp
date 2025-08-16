@@ -196,6 +196,7 @@ is_known_undead = {
 				is_known_vampire = yes
 				trait = briarheart
 				trait = undead
+				trait = dce_undead
 				trait = lich
 			}
 		}
@@ -270,7 +271,7 @@ is_immortal = {
 		hidden_tooltip = {
 			OR = {
 				is_undead = yes
-				
+				trait = dce_undead
 				trait = clone
 				trait = dremora
 				trait = hagraven

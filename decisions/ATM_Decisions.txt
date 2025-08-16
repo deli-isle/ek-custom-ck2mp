@@ -9,6 +9,7 @@ decisions = {
 		potential = {
 			is_human = yes
 			is_adult = yes
+			NOT = { has_global_flag = wuuthrad_trial_active }
 			AND = {
 				OR = {
 					culture = nord
@@ -23,7 +24,7 @@ decisions = {
 			NOR = {
 				has_global_flag = ysgramor_reborn
 				has_character_modifier = respects_paid_to_ysgramor
-				has_character_modifier = ysgramor_claim_failed
+				#has_character_modifier = ysgramor_claim_failed #not being used i think
 				has_character_flag = journey_to_ysgramors_tomb
 			}
 			primary_title = { higher_real_tier_than = COUNT }
@@ -35,10 +36,15 @@ decisions = {
 			custom_tooltip = {
 				text = Jylkurfyk_Fixed
 				any_realm_wonder = {
-					has_wonder_flag = jylkurfyk
+					has_wonder_flag = is_jylkurfyk
 					is_active = yes
 				}
 			}
+
+			custom_tooltip = {
+            	text = YSGRAMOR_REJECTED_RECENTLY
+            	NOT = { has_character_modifier = ysgramor_rejected_you }
+        	}
 		}
 		
 		effect = {
@@ -256,6 +262,8 @@ decisions = {
 		
 		potential = {
 			is_human = yes
+			NOT = { has_global_flag = wuuthrad_claimed }
+			NOT = { has_global_flag = wuuthrad_trial_active }
 			AND = {
 				OR = {
 					culture = nord
@@ -270,19 +278,49 @@ decisions = {
 		}
 		
 		allow = {
-			prestige = 1000
-			wealth = 100
-			any_realm_wonder = {
-				has_wonder_flag = jylkurfyk
-				is_active = yes
-			}
+			prestige = 750
+			wealth = 1000
+			NOT = { has_character_modifier = wuuthrad_search_cooldown }
+
+			custom_tooltip = {
+        		text = claim_wuuthrad_req_wonder
+        		any_realm_wonder = {
+            		has_wonder_flag = is_jylkurfyk
+            		is_active = yes
+        		}
+    		}
+
+			custom_tooltip = {
+            	text = claim_wuuthrad_rejected_recently
+            	NOT = { has_character_modifier = ysgramor_rejected_you }
+        	}
+
+			#custom_tooltip = {
+   				#text = "I am sorry chud, this content is not available yet."
+    			#has_global_flag = wuuthrad_ready
+			#}
 		}
 		
 		effect = {
-			wealth = -50
-			character_event = {
-				id = ATM.00301
+			wealth = -1000
+			prestige = -750
+
+			random_list = {
+				60 = {
+					add_artifact = weapon_axe_wuuthrad
+					set_global_flag = wuuthrad_claimed
+					character_event = { id = ATM.00302 } # success popup
+				}
+				40 = {
+					character_event = { id = ATM.00303 }  # failure popup
+					add_character_modifier = {
+						name = wuuthrad_search_cooldown
+						months = 60
+					}
+				}
 			}
+
+		# TODO: expand into a multi-step search/expedition chain in next update.
 		}
 		
 		revoke_allowed = {
@@ -299,8 +337,6 @@ decisions = {
 				factor = 10
 				trait = ambitious
 			}
-		}
-		
+		}	
 	}
-	
 }

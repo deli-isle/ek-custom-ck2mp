@@ -1,5 +1,25 @@
 namespace = ATM
 # 003
+character_event = { # Claim Wuuthrad - Success
+	id = ATM.00302
+	title = ATM.00302.title
+	desc  = ATM.00302.desc
+	picture = GFX_evt_ev_skaal_village
+	is_triggered_only = yes
+	hide_from = yes
+	hide_new = yes
+	option = { name = ATM.00302.optA } # OK
+}
 
+character_event = { # Claim Wuuthrad - Failure
+	id = ATM.00303
+	title = ATM.00303.title
+	desc  = ATM.00303.desc
+	picture = GFX_evt_ev_skaal_village
+	is_triggered_only = yes
+	hide_from = yes
+	hide_new = yes
+	option = { name = ATM.00303.optA } # Drat
+}
 
 # Atmorans #

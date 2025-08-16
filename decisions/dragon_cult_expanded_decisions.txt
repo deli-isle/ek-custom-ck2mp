@@ -1,0 +1,146 @@
+decisions = {
+	
+	d_dragon_cult_activate = { #Activate religious head
+		
+		is_high_prio = yes
+		
+		ai_check_interval = 12
+		
+		potential = {
+			age = 16
+			demesne_size = 1
+			has_submenu_open = no
+			NOT = { has_character_flag = society_open }
+			religion = dragon_cult
+			
+			OR = {
+				ai = no
+				AND = {
+					ai = yes
+					trait = dragonpriest
+				}
+			}
+			
+			NOT = { is_title_active = d_dragon_cult }
+			NOT = { has_global_flag = d_dragon_cult_activated }
+		}
+		
+		allow = {
+			war = no
+			OR = {
+				AND = {
+					tier = emperor
+					piety = 400
+				}
+				AND = {
+					tier = king
+					piety = 750
+				}
+			}
+			treasury = 300
+		}
+		
+		effect = {
+			set_global_flag = d_dragon_cult_activated
+			
+			if = {
+				limit = {
+					tier = emperor
+				}
+				piety = -400
+			}
+			if = {
+				limit = {
+					tier = king
+				}
+				piety = -750
+			}
+			treasury = -300
+			character_event = { id = dce_misc.009 }
+		}
+	}
+	
+	make_offering_dragon_cult_expanded = { # Dragon cult
+	
+		ai_check_interval = 96
+		
+		potential = {
+			age = 16
+			demesne_size = 1
+			NOT = { has_character_flag = made_offering_dragon_cult }
+			has_submenu_open = no
+			religion = dragon_cult
+		}
+		allow = {
+			war = no
+			treasury = 25
+		}
+		effect = {
+			set_character_flag = made_offering_dragon_cult
+			treasury = -25
+			random_list = {
+				5 = {
+					modifier = {
+						factor = 0
+						OR = {
+							NAND = {
+								trait = priest_3
+								OR = {
+									tier = king
+									tier = emperor
+								}
+								piety = 250
+							}
+							trait = dragonpriest
+							AND = {
+								is_undead = yes
+								NOR = {
+									trait = lich
+									trait = vampire
+								}
+							}
+						}
+					}
+					modifier = {
+						factor = 10
+						trait = dragonborn
+					}
+					modifier = {
+						factor = 1.5
+						OR = {
+							society_rank = { society = children_of_the_ancient_ways rank == 2 }
+							society_rank = { society = dovah_in_society rank == 2 }
+						}
+					}
+					modifier = {
+						factor = 2
+						OR = {
+							society_rank = { society = children_of_the_ancient_ways rank == 3 }
+							society_rank = { society = dovah_in_society rank == 3 }
+						}
+					}
+					modifier = {
+						factor = 2.5
+						OR = {
+							society_rank = { society = children_of_the_ancient_ways rank == 4 }
+							society_rank = { society = dovah_in_society rank == 4 }
+						}
+						NOT = { is_society_grandmaster = yes }
+					}
+					modifier = {
+						factor = 5
+						OR = {
+							society_member_of = children_of_the_ancient_ways
+							society_member_of = dovah_in_society
+						}
+						is_society_grandmaster = yes
+					}
+					character_event = { id = dce_offering.001 days = 8 random = 5 tooltip = DCOFFERINGFANTASTIC }
+				}
+				65 = { character_event = { id = dce_offering.002 days = 8 random = 5 tooltip = DCOFFERINGNORMAL } }
+				30 = { character_event = { id = dce_offering.003 days = 8 random = 5 tooltip = DCOFFERINGBAD } }
+			}
+		}
+	}
+
+}

@@ -1,0 +1,6 @@
+dovah_in_composition = {
+	levy_size = 6
+	dragon = 20
+	heavy_infantry = 500
+	archers = 300
+}

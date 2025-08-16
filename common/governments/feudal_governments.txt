@@ -23,6 +23,7 @@ feudal_governments = {
 			NAND = {
 				controls_religion = yes
 				NOT = { religion = pyandoneaic } #"Caliphate"
+				NOT = { religion = dragon_cult } #"Caliphate"
 			}
 			NOT = {
 				primary_title = {

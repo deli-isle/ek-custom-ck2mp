@@ -281,6 +281,8 @@ is_immortal = {
 				trait = the_ideal_masters
 				is_almsivi_god = yes
 				is_daedric_prince = yes
+				
+				is_corprus_creature = yes
 			}
 		}
 	}
@@ -733,6 +735,7 @@ is_disease_immune_except_lycan = {
 	OR = {
 		is_daedric_prince = yes
 		is_undead = yes
+		is_corprus_creature = yes
 		trait = hagraven
 		trait = soulless_clavicus
 		trait = sload
@@ -740,6 +743,7 @@ is_disease_immune_except_lycan = {
 		trait = almalexia
 		trait = sothasil
 		trait = vivec
+		trait = dagothur
 		trait = the_ideal_masters
 		is_dragon = yes
 	}

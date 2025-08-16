@@ -6,7 +6,6 @@ feudal_governments = {
 			CASTLE
 			FORT
 			HOSPITAL
-			TEMPLE
 			CITY
 		}
 		allowed_holdings_culture = { # Will not get the wrong government type penalty for tribes of the same culture
@@ -35,6 +34,7 @@ feudal_governments = {
 			}
 			NOT = { is_government_potential = roman_imperial_government }
 			NOT = { is_government_potential = order_government }
+			NOT = { is_government_potential = technocratic_feudal }
 			is_patrician = no
 			NAND = {
 				culture = orsimer

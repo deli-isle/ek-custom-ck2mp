@@ -1,0 +1,12 @@
+spriteTypes = {
+
+     spriteType = {
+          name = "GFX_evt_dragon_temple"
+          texturefile = "gfx\\event_pictures\\dragon_temple.tga"
+     }
+	 spriteType = {
+          name = "GFX_evt_dragon_avatar"
+          texturefile = "gfx\\event_pictures\\dragon_avatar.tga"
+     }
+	 
+}

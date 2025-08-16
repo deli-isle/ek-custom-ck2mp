@@ -4,6 +4,9 @@
 #Forsworn/Hagraven Cultists
 briarheart = {
 	diplomacy = -2
+	potential = {
+		religion = forsworn_heresy
+	}
 	martial = 3
 	learning = 2
 
@@ -34,6 +37,9 @@ briarheart = {
 }
 hagraven = {
 	diplomacy = -3
+	potential = {
+		religion = forsworn_heresy
+	}
 	martial = 1
 	intrigue = 1
 	learning = 5
@@ -173,10 +179,14 @@ weak_mane = {
 # Dragonpriest
 dragonpriest = {
 	random = no
+	customizer = no
 	
 	combat_rating = 10
 	stewardship = 2 #Were made to rule in the Dragon's stead
 	martial = 2
 	learning = 3
+	
+	same_religion_opinion = 25
+	
 	health = 1
 }

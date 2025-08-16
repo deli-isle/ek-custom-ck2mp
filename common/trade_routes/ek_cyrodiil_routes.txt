@@ -58,19 +58,15 @@ niben_river_route = {
 	path = {	# Haven Sea - Torval
 		1075 208
 	}
-	
 	path = {	# Topal Sea - Blackrose - Volatra - Dread Sea
 		1071 102 1065 119 117 1050 1051 1179 1176 1053
 	}
-
 	path = { # Dread Sea - Lividur
 		1053 1041 989
 	}
-
 	path = { # Dread Sea - Qul
 		1053 973
 	}
-
 }
 
 anvil_port_route = {

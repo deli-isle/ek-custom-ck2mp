@@ -892,7 +892,7 @@ lich = {
 		morale_offence = 0.05
 		morale_defence = 0.15
 	}
-	general_opinion = -10
+	general_opinion = -25
 	
 	counts_as_known_undead = 1
 	
@@ -976,11 +976,11 @@ thuum_1 = {
 	
 	health = 0.25
 	
-	command_modifier = {
-		damage = 0.1
-		morale_offence = 0.1
-		morale_defence = 0.1
-	}
+	#command_modifier = {
+	#	damage = 0.1
+	#	morale_offence = 0.1
+	#	morale_defence = 0.1
+	#}
 	customizer = no
 	random = no
 	
@@ -995,11 +995,11 @@ thuum_2 = {
 	
 	health = 0.50
 	
-	command_modifier = {
-		damage = 0.2
-		morale_offence = 0.2
-		morale_defence = 0.2
-	}
+	#command_modifier = {
+	#	damage = 0.2
+	#	morale_offence = 0.2
+	#	morale_defence = 0.2
+	#}
 	customizer = no
 	random = no
 	
@@ -1014,11 +1014,11 @@ thuum_3 = {
 	
 	health = 1.0
 	
-	command_modifier = {
-		damage = 0.3
-		morale_offence = 0.3
-		morale_defence = 0.3
-	}
+	#command_modifier = {
+	#	damage = 0.3
+	#	morale_offence = 0.3
+	#	morale_defence = 0.3
+	#}
 	customizer = no
 	random = no
 	
@@ -1263,6 +1263,8 @@ known_lycan = {
 	daedra_hircine_opinion = 150
 	daedra_namira_opinion = 10
 	pro_lycanthropy_trait_opinion = 100
+	forsworn_heresy_opinion = 100
+	sithis_opinion = 100
 	
 	random = no
 }
@@ -1282,6 +1284,8 @@ known_lycan_benevolent = {
 	
 	daedra_hircine_opinion = 5
 	pro_lycanthropy_trait_opinion = 25
+	forsworn_heresy_opinion = 25
+	sithis_opinion = 25
 	
 	random = no
 }
@@ -1334,6 +1338,8 @@ known_vampire_benevolent = {
 	tribunal_opinion = -10
 	daedra_meridia_opinion = -15
 	daedra_molag_opinion = -10
+	forsworn_heresy_opinion = 30
+	sithis_opinion = 30
 	
 	immortal = yes
 	

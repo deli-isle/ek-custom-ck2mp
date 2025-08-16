@@ -415,6 +415,7 @@ decisions = {
 				religion = nerevarine
 				religion = five_courts
 				religion = riddlethar
+				religion = dragon_cult
 			}
 		}
 		allow = {

@@ -1,0 +1,62 @@
+decisions = {
+	
+	dce_learn_shout = {
+		is_high_prio = yes
+		
+		is_in_society = yes
+		
+		potential = {
+			#ai = no
+			age = 16
+			prisoner = no
+			is_incapable = no
+			OR = {
+				has_character_flag = society_open
+				ai = yes
+			}
+			OR = {
+				trait = thuum_1
+				trait = thuum_2
+				trait = thuum_3
+			}
+			OR = {
+				society_member_of = greybeards_tamriel
+				society_member_of = children_of_the_ancient_ways
+				#society_member_of = dovah_in_society
+			}
+			NOT = { has_character_flag = dce_learning_shout }
+			NOT = { dce_learned_all_shouts = yes }
+		}
+		
+		allow = {}
+		
+		effect = {
+			set_character_flag = dce_learning_shout
+			character_event = { id = dce_shout.100 }
+		}
+	}
+	
+	dce_stop_learning_shout = {
+		potential = {
+			ai = no
+			has_character_flag = dce_learning_shout
+			has_character_flag = society_open
+		}
+		
+		allow = {}
+		
+		effect = {
+			hidden_tooltip = {
+				clr_character_flag = dce_learning_shout
+				clr_character_flag = dce_aura_whisper_learn
+				clr_character_flag = dce_battle_fury_learn
+				clr_character_flag = dce_become_ethereal_learn
+				clr_character_flag = dce_bend_will_learn
+				clr_character_flag = dce_dismay_learn
+				clr_character_flag = dce_unrelenting_force_learn
+				clr_character_flag = dce_whirlwind_sprint_learn
+			}
+		}
+	}
+	
+}

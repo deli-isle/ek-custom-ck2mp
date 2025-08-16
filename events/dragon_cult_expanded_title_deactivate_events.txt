@@ -1,0 +1,41 @@
+namespace = dce_title_deactivate
+
+character_event = { #DO NOT REMOVE
+	id = dce_title_deactivate.1
+	hide_window = yes
+	
+	ai = no
+	
+	trigger = {
+		NOT = { has_global_flag = dovah_in_deactivated }
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		activate_title = { title = d_dovah_in status = no }
+		set_global_flag = dovah_in_deactivated
+	}
+}
+
+character_event = { #DO NOT REMOVE
+	id = dce_title_deactivate.2
+	hide_window = yes
+	
+	ai = no
+	
+	trigger = {
+		NOT = { has_global_flag = dovah_pope_deactivated }
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		activate_title = { title = d_dragon_cult status = no }
+		set_global_flag = dovah_pope_deactivated
+	}
+}

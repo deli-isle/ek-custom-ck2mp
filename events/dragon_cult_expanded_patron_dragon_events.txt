@@ -1,0 +1,133 @@
+namespace = dce_patron_dragons
+
+character_event = { #Choose patron dragon god
+	id = dce_patron_dragons.100
+	desc = EVTDESC_dce_patron_dragons.100
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Alduin
+		name = EVTOPTA_dce_patron_dragons.100
+		trigger = { NOT = { trait = patron_alduin } }
+		add_trait = patron_alduin
+		piety = 50
+	}
+	
+	option = { #Durnehviir
+		name = EVTOPTB_dce_patron_dragons.100
+		trigger = { NOT = { trait = patron_durnehviir } }
+		add_trait = patron_durnehviir
+		piety = 50
+	}
+	
+	option = { #Kaalgrontiid
+		name = EVTOPTC_dce_patron_dragons.100
+		trigger = { NOT = { trait = patron_kaalgrontiid } }
+		add_trait = patron_kaalgrontiid
+		piety = 50
+	}
+	
+	option = { #More Oprions
+		name = EVTOPTD_dce_patron_dragons.100
+		hidden_tooltip = { character_event = { id = dce_patron_dragons.101 } }
+	}
+}
+
+character_event = { #More dragon god options
+	id = dce_patron_dragons.101
+	desc = EVTDESC_dce_patron_dragons.100
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Nahfahlaar
+		name = EVTOPTA_dce_patron_dragons.101
+		trigger = { NOT = { trait = patron_nahfahlaar } }
+		add_trait = patron_nahfahlaar 
+		piety = 50
+	}
+	
+	option = { #Numinex
+		name = EVTOPTB_dce_patron_dragons.101
+		trigger = { NOT = { trait = patron_numinex } }
+		add_trait = patron_numinex 
+		piety = 50
+	}
+	
+	option = { #Paarthurnax
+		name = EVTOPTC_dce_patron_dragons.101
+		trigger = { NOT = { trait = patron_paarthurnax } }
+		add_trait = patron_paarthurnax
+		piety = 50
+	}
+	
+	option = { #More Oprions
+		name = EVTOPTD_dce_patron_dragons.100
+		hidden_tooltip = { character_event = { id = dce_patron_dragons.100 } }
+	}
+}
+
+character_event = { #Gives the AI a patron Dragon God
+	id = dce_patron_dragons.102
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		ai = yes
+		age = 16
+		religion = dragon_cult
+		NOR = { 
+			dce_has_patron_dragon = yes
+			trait = cynical
+		}
+	}
+	
+	immediate = {
+		random_list = {
+			16 = {
+				add_trait = patron_alduin
+			}
+			16 = {
+				add_trait = patron_durnehviir
+			}
+			16 = {
+				add_trait = patron_kaalgrontiid
+			}
+			16 = {
+				add_trait = patron_nahfahlaar
+			}
+			16 = {
+				add_trait = patron_numinex
+			}
+			16 = {
+				add_trait = patron_paarthurnax
+			}
+		}
+	}
+}
+
+character_event = { #Becoming cynical removes patron
+	id = dce_patron_dragons.103
+	hide_window = yes
+	
+	trigger = {
+		dce_has_patron_dragon = yes
+		trait = cynical
+	}
+	
+	mean_time_to_happen = {
+		months = 1
+	}
+	
+	immediate = {
+		remove_trait = patron_alduin
+		remove_trait = patron_durnehviir
+		remove_trait = patron_kaalgrontiid
+		remove_trait = patron_nahfahlaar
+		remove_trait = patron_numinex
+		remove_trait = patron_paarthurnax
+		clr_character_flag = dce_patron_dragon_chosen
+	}
+}

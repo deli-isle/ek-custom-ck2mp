@@ -1,0 +1,53 @@
+decisions = {
+	
+	dragon_cult_expanded_choose_patron_dragon = {
+		
+		ai = no
+		
+		potential = {
+			age = 16
+			has_submenu_open = no
+			religion = dragon_cult
+			NOT = { has_character_flag = dce_patron_dragon_chosen }
+		}
+		
+		allow = { 
+			NOR = { 
+				dce_has_patron_dragon = yes
+				trait = cynical
+			} 
+		}
+		
+		effect = { 
+			hidden_tooltip = { set_character_flag = dce_patron_dragon_chosen }
+			character_event = { id = dce_patron_dragons.100 } 
+		}
+	}
+	
+	dragon_cult_expanded_change_patron_dragon = {
+		
+		ai = no
+		
+		potential = {
+			has_submenu_open = no
+			dce_has_patron_dragon = yes
+			NOT = { has_character_flag = dce_patron_dragon_changed }
+		}
+		
+		allow = {}
+		
+		effect = {
+			hidden_tooltip = {
+				remove_trait = patron_alduin
+				remove_trait = patron_durnehviir
+				remove_trait = patron_kaalgrontiid
+				remove_trait = patron_nahfahlaar
+				remove_trait = patron_numinex
+				remove_trait = patron_paarthurnax
+				set_character_flag = dce_patron_dragon_changed
+			}
+			character_event = { id = dce_patron_dragons.100 }
+		}
+	}
+	
+}

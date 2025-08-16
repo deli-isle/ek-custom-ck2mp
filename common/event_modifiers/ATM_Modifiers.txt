@@ -87,3 +87,9 @@ atmoran_sacrifice_pet_4 = {
 		morale_offence = 0.20
 	}
 }
+
+wuuthrad_search_cooldown = {
+	icon = 7
+	monthly_prestige = -0.05
+	desc = wuuthrad_search_cooldown_desc
+}

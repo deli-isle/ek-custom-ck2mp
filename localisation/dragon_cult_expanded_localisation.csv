@@ -1,0 +1,323 @@
+#CODE;ENGLISH;;;;;;;;;;;;;x
+
+##########
+#Decisions
+##########
+make_offering_dragon_cult_expanded;Make an Offering;;;;;;;;;;;;;x
+make_offering_dragon_cult_expanded_desc;Make an offering at the local shrine of the Dragon Gods.;;;;;;;;;;;;;x
+DCOFFERINGFANTASTIC;the Dragon Gods greatly appreciating your offering.;;;;;;;;;;;;;x
+DCOFFERINGNORMAL;the Dragon Gods being pleased by your offering.;;;;;;;;;;;;;x
+DCOFFERINGBAD;the Dragon Gods ignoring you.;;;;;;;;;;;;;x
+form_ancient_children;Form a Society dedicated to the Old Ways;;;;;;;;;;;;;x
+form_ancient_children_desc;Fund and organize the formation of a society dedicated to the worship and study of the Dragon Gods.;;;;;;;;;;;;;x
+ancient_children_cancel_specialization;Cancel specialization training;;;;;;;;;;;;;x
+
+dragon_cult_expanded_choose_patron_dragon;Choose a Patron Dragon;;;;;;;;;;;;;x
+dragon_cult_expanded_choose_patron_dragon_desc;Choose one of a few Dragon Gods as your patron.;;;;;;;;;;;;;x
+dragon_cult_expanded_change_patron_dragon;Change Patron Dragon;;;;;;;;;;;;;x
+dragon_cult_expanded_change_patron_dragon_desc;I can choose, once in my life, to change my patron Dragon God if i am unhappy with my current choice.;;;;;;;;;;;;;x
+
+dce_learn_shout;Learn Shout;;;;;;;;;;;;;x
+dce_learn_shout_desc;Train in the use of a shout.;;;;;;;;;;;;;x
+
+dce_stop_learning_shout;Stop learning shouts;;;;;;;;;;;;;x
+dce_stop_learning_shout_desc;Stop learning a shout.;;;;;;;;;;;;;x
+
+form_dovah_in;Form the Dovah In;;;;;;;;;;;;;x
+form_dovah_in_desc;You can fund the formation of the Dovah In Holy Order to help defend the faith in service of the Gods.;;;;;;;;;;;;;x
+form_dovah_in_tooltip;You form the Dovah In, a Holy Order with powerful draconic troops.;;;;;;;;;;;;;x
+
+d_dragon_cult_activate;Organize formal control of the Dragon Cult;;;;;;;;;;;;;x
+d_dragon_cult_activate_desc;Establish a religious head for the Dragon Cult.;;;;;;;;;;;;;x
+
+children_of_the_ancient_ways_hire_substitute_gm;Appoint a Substitute Lot Sonaak;;;;;;;;;;;;;x
+children_of_the_ancient_ways_hire_substitute_gm_desc;Appoint someone to take your place as Lot Sonaak so that you are not bound to the Ancient Children.;;;;;;;;;;;;;x
+children_of_the_ancient_ways_fire_substitute_gm;Relieve your Substitute of their command;;;;;;;;;;;;;x
+children_of_the_ancient_ways_fire_substitute_gm_desc;Return to your position as leader of the Ancient Children.;;;;;;;;;;;;;x
+
+convert_to_undead_realm_dragon_cult_expanded;Convert your government to a Dill Suleyksejun;;;;;;;;;;;;;x
+convert_to_undead_realm_dragon_cult_expanded_desc; ;;;;;;;;;;;;;x
+
+#######
+#Events
+#######
+EVTDESC_dce_offering.001;As I placed my offering upon the shrine, I feel an intense power flood my mind and the area around me...;;;;;;;;;;;;;x
+EVTOPTA_dce_offering.001;wha?;;;;;;;;;;;;;x
+EVTDESC_dce_offering.002;As I placed my offering upon the shrine, I felt the power of the Dragon Gods invade my mind.;;;;;;;;;;;;;x
+EVTOPTA_dce_offering.002;Excellent!;;;;;;;;;;;;;x
+EVTDESC_dce_offering.003;As I left the temple, my offering made, I felt no connection to the Dragon Gods.;;;;;;;;;;;;;x
+EVTOPTA_dce_offering.003;Oh well.;;;;;;;;;;;;;x
+EVTTITLE_dce_offering.004;The Offer;;;;;;;;;;;;;x
+EVTDESC_dce_offering.004;After a bright flash of light, i'm thrust backwards onto my backside as an avatar of a dragon god apears before me and my servants. It begins to speak with terrifying force: "I HAVE SEEN YOUR ACOMPLISHMENTS AND AM PLEASED BY YOUR LOYALTY AND FAITH. I OFFER YOU THIS GIFT, TO BE NAMED A HIGH PRIEST OF THE DOVAH. STAND BEFORE ME AND ACCEPT THE POWER TO RULE IN MY NAME!";;;;;;;;;;;;;x
+EVTOPTA_dce_offering.004;I...;;;;;;;;;;;;;x
+EVTTITLE_dce_offering.005;The Choice;;;;;;;;;;;;;x
+EVTOPTA_dce_offering.005;rise to my feet and accept the gift to rule in the name of the gods!;;;;;;;;;;;;;x
+EVTOPTB_dce_offering.005;refuse. I will rule in nobody's name but my own!;;;;;;;;;;;;;x
+
+EVTDESC_ancient_children.230;My continued training in my chosen specialization has finally borne fruit.;;;;;;;;;;;;;x
+EVTDESC_dovah_in_soci.230;My continued training in my chosen specialization has finally borne fruit.;;;;;;;;;;;;;x
+
+EVTDESC_dce_patron_dragons.100;I can choose one of a few Dragon Gods as my patron to dedicate my life to and focus my worship.;;;;;;;;;;;;;x
+EVTOPTA_dce_patron_dragons.100;Alduin, the self-proclaimed First-Born and aspect of Akatosh.;;;;;;;;;;;;;x
+EVTOPTB_dce_patron_dragons.100;Durnehviir, the undead master of alok-dilon.;;;;;;;;;;;;;x
+EVTOPTC_dce_patron_dragons.100;Kaalgrontiid, usurper of the moon.;;;;;;;;;;;;;x
+EVTOPTD_dce_patron_dragons.100;(More Options);;;;;;;;;;;;;x
+EVTOPTA_dce_patron_dragons.101;Nahfahlaar, ally of mortals.;;;;;;;;;;;;;x
+EVTOPTB_dce_patron_dragons.101;Numinex, the slain.;;;;;;;;;;;;;x
+EVTOPTC_dce_patron_dragons.101;Paarthurnax, master of the Way of the Voice.;;;;;;;;;;;;;x
+
+EVTDESC_dce_shout.100;Due to my proficiency with the Thu'um and my society membership, i can train in the use of one of several different shouts.;;;;;;;;;;;;;x
+EVTOPTA_dce_shout.100;Aura Whisper;;;;;;;;;;;;;x
+EVTOPTB_dce_shout.100;Battle Fury;;;;;;;;;;;;;x
+EVTOPTC_dce_shout.100;Become Ethereal;;;;;;;;;;;;;x
+EVTOPTA_dce_shout.101;Bend Will;;;;;;;;;;;;;x
+EVTOPTB_dce_shout.101;Dismay;;;;;;;;;;;;;x
+EVTOPTC_dce_shout.101;Unrelenting Force;;;;;;;;;;;;;x
+EVTOPTA_dce_shout.102;Whirlwind Sprint;;;;;;;;;;;;;x
+EVTOPTB_dce_shout.102;I don't want to learn a shout right now.;;;;;;;;;;;;;x
+
+dce_aura_whisper_tt;Bonus to arrest chance and murder plot power.;;;;;;;;;;;;;x
+dce_battle_fury_tt;Bonus to damage.;;;;;;;;;;;;;x
+dce_become_ethereal_tt;Bonus to defensive plot power and defense.;;;;;;;;;;;;;x
+dce_bend_will_tt;Bonus to general opinion and reduction to global revolt risk.;;;;;;;;;;;;;x
+dce_dismay_tt;Bonus to morale offense.;;;;;;;;;;;;;x
+dce_unrelenting_force_tt;Bonus to siege speed.;;;;;;;;;;;;;x
+dce_whirlwind_sprint_tt;Bonus to movement speed and retreat.;;;;;;;;;;;;;x
+
+EVTDESC_dce_shout.201;My proficiency in a shout has increased.;;;;;;;;;;;;;x
+EVTOPTA_dce_shout.201;Excellent.;;;;;;;;;;;;;x
+
+EVTDESC_dce_misc.009;Using your influence, you've decided its time to unify the followers of the Dragon Cult under a formal leader.;;;;;;;;;;;;;x
+EVTOPTA_dce_misc.009;"I" will be its leader!;;;;;;;;;;;;;x
+EVTOPTB_dce_misc.009;A worthy individual chosen by the Gods will be its leader.;;;;;;;;;;;;;x
+EVTOPTB_dce_misc.009_tt;The Dragon Gods appoint a Great Priest, the Lot Sonaak, to govern the faithful.;;;;;;;;;;;;;x
+
+EVTDESC_ancient_children.303;On the eve of your coronation as Lot Sonaak, you are informed that the Gods must formally name you a Dragonpriest in order for you to maintain your position.\nYou must also assume the control of the Children of the ancient ways.;;;;;;;;;;;;;x
+EVTOPTA_ancient_children.303;I accept the gift and will assume the position.;;;;;;;;;;;;;x
+EVTOPTB_ancient_children.303;I accept the gift but will hire a substitute to take my place leading the Children.;;;;;;;;;;;;;x
+EVTOPTC_ancient_children.303;Someone else can have the responsibility.;;;;;;;;;;;;;x
+
+
+##########
+#Societies
+##########
+dce_must_be_dragonpriest;Dragonpriest Must Be;;;;;;;;;;;;;x
+dce_society_holy_order_gm_tt;AI Only!\nThis society is not designed to support a non-ai as leader, it will cause bugs and awkward situations.\nUsurp the Grand Master's title at your own peril.;;;;;;;;;;;;;x
+dce_society_ancient_children_gm_tt;Dragonpriest Only!\nCharacters must be a Dragonpriest to maintain this rank.;;;;;;;;;;;;;x
+
+dce_learn_shout_power;Learn Shout;;;;;;;;;;;;;x
+dce_learn_shout_power_power_desc;Characters proficient in the Thu'um can train to learn shouts.;;;;;;;;;;;;;x
+
+dragon_cult_expanded_warrior_training;Warrior Training;;;;;;;;;;;;;x
+dragon_cult_expanded_warrior_training_power_desc;Characters with the Warrior education can train here, passively gaining experience.;;;;;;;;;;;;;x
+dragon_cult_expanded_agent_training;Agent Training;;;;;;;;;;;;;x
+dragon_cult_expanded_agent_training_power_desc;Characters with the Agent education can train here, passively gaining experience.;;;;;;;;;;;;;x
+dragon_cult_expanded_mage_training;Mage Training;;;;;;;;;;;;;x
+dragon_cult_expanded_mage_training_power_desc;Characters with the Mage education can train here, passively gaining experience.;;;;;;;;;;;;;x
+
+children_of_the_ancient_ways;Children of the Ancient Ways;;;;;;;;;;;;;x
+children_of_the_ancient_ways_desc;The followers of the old Dragon Cult traditions. They seek to learn from the teaching of ancient dragon priests and regain the power that was lost to time and treachery. The appointment of new dragon priests have given the children a new voice and vehicle for their ambition.;;;;;;;;;;;;;x
+children_of_the_ancient_ways_leader_desc;Lot Sonaak, the Great Dragonpriest. This person serves as the societal  and religious leader of the most faithful of the Dragon Cult.;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_1_male;Initiate;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_1_female;Initiate;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_2_male;Follower;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_2_female;Follower;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_3_male;Sonaak;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_3_female;Sonaak;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_4_male;Lot Sonaak;;;;;;;;;;;;;x
+children_of_the_ancient_ways_rank_4_female;Lot Sonaak;;;;;;;;;;;;;x
+currency_name_children_of_the_ancient_ways;Servitude;;;;;;;;;;;;;x
+
+request_to_rank_up_within_children_of_the_ancient_ways_society;Request a Promotion;;;;;;;;;;;;;x
+request_to_rank_up_within_children_of_the_ancient_ways_tt;Has §YServitude§! greater or equal to [Root.GetAncientChildrenRankUpTooltip];;;;;;;;;;;;;x
+
+GetAncientChildrenRankUpTooltip_Standard_Rank1;§Y[Root.Society.GetCurrency]§!;;;;;;;;;;;;;x
+GetAncientChildrenRankUpTooltip_Standard_Rank2;§Y[Root.Society.GetCurrency]§!;;;;;;;;;;;;;x
+GetAncientChildrenRankUpTooltip_Standard_Rank3;§Y[Root.Society.GetCurrency]§!;;;;;;;;;;;;;x
+
+dovah_in_society;Dovah In;;;;;;;;;;;;;x
+string_dovah_in_society;dovah_in_society;;;;;;;;;;;;;x
+dovah_in_society_desc;The most zealous of the dragon cultists, led by a powerful dragonpriest, that have dedicated themselvs to a life of war in order to spread the worship of the dovah. There is no other way, kneel, or die.;;;;;;;;;;;;;x
+dovah_in_society_leader_desc;Sahrot Thur, the Mighty Overlord and Dragonpriest of War. This person leads the Dovah In in their holy mission to spread the Dragon Cult faith to all corners of Nirn.;;;;;;;;;;;;;x
+dovah_in_society_rank_1_male;Recruit;;;;;;;;;;;;;x
+dovah_in_society_rank_1_female;Recruit;;;;;;;;;;;;;x
+dovah_in_society_rank_2_male;Kendov;;;;;;;;;;;;;x
+dovah_in_society_rank_2_female;Kendov;;;;;;;;;;;;;x
+dovah_in_society_rank_3_male;Konahrik;;;;;;;;;;;;;x
+dovah_in_society_rank_3_female;Konahrik;;;;;;;;;;;;;x
+dovah_in_society_rank_4_male;Sahrot Thur;;;;;;;;;;;;;x
+dovah_in_society_rank_4_female;Sahrot Thur;;;;;;;;;;;;;x
+currency_name_dovah_in_society;Servitude;;;;;;;;;;;;;x
+
+request_to_rank_up_within_dovah_in_society;Request a Promotion;;;;;;;;;;;;;x
+request_to_rank_up_within_dovah_in_society_tt;Has §YServitude§! greater or equal to [Root.GetDovahInRankUpTooltip];;;;;;;;;;;;;x
+
+GetDovahInRankUpTooltip_Standard_Rank1;§Y[Root.Society.GetCurrency]§!;;;;;;;;;;;;;x
+GetDovahInRankUpTooltip_Standard_Rank2;§Y[Root.Society.GetCurrency]§!;;;;;;;;;;;;;x
+GetDovahInRankUpTooltip_Standard_Rank3;§Y[Root.Society.GetCurrency]§!;;;;;;;;;;;;;x
+
+EVTDESC_ancient_children.102;So, you've decided to become a child of the ancient ways?;;;;;;;;;;;;;x
+EVTOPTA_ancient_children.102;Yes, this is my destiny;;;;;;;;;;;;;x
+EVTOPTB_ancient_children.102;On second thought...;;;;;;;;;;;;;x
+EVTDESC_ancient_children.122;Greetings [Root.GetSocietyRank] [Root.GetFirstName],\nYour rank up request within the children has been approved. \n\nSigned,\n[From.GetSocietyRank] [From.GetFirstName];;;;;;;;;;;;;x
+EVTOPTA_ancient_children.122;It is an honor.;;;;;;;;;;;;;x
+
+EVTDESC_dovah_in_soci.102;So, you've decided to become a Dovah In?;;;;;;;;;;;;;x
+EVTOPTA_dovah_in_soci.102;Yes, this is my destiny;;;;;;;;;;;;;x
+EVTOPTB_dovah_in_soci.102;On second thought...;;;;;;;;;;;;;x
+EVTDESC_dovah_in_soci.122;Greetings [Root.GetSocietyRank] [Root.GetFirstName],\nYour rank up request within the Dovah In has been approved. \n\nSigned,\n[From.GetSocietyRank] [From.GetFirstName];;;;;;;;;;;;;x
+EVTOPTA_dovah_in_soci.122;It is an honor.;;;;;;;;;;;;;x
+
+study_specialization_dovah_in_society;Study a Specialization;;;;;;;;;;;;;x
+study_specialization_dovah_in_society_desc;Use Dovah In resources to learn a specialization.;;;;;;;;;;;;;x
+study_specialization_dovah_in_society_power_desc;Members of a guild can study a specialization to further enhance their abilities.;;;;;;;;;;;;;x
+cancel_specialization_dovah_in_society;Cancel Specialization;;;;;;;;;;;;;x
+cancel_specialization_dovah_in_society_desc;Cancel your specialization training.;;;;;;;;;;;;;x
+
+study_specialization_children_of_the_ancient_ways;Study a Specialization;;;;;;;;;;;;;x
+study_specialization_children_of_the_ancient_ways_desc;Use Ancient Children resources to learn a specialization.;;;;;;;;;;;;;x
+study_specialization_children_of_the_ancient_ways_power_desc;Members of a guild can study a specialization to further enhance their abilities.;;;;;;;;;;;;;x
+cancel_specialization_children_of_the_ancient_ways;Cancel Specialization;;;;;;;;;;;;;x
+cancel_specialization_children_of_the_ancient_ways_desc;Cancel your specialization training.;;;;;;;;;;;;;x
+
+ancient_children_purchase_techpoints_decision;Cultural Advancements;;;;;;;;;;;;;x
+ancient_children_purchase_techpoints_decision_dec;Exchange Society Influence for Culture Technology Points;;;;;;;;;;;;;x
+ancient_children_purchase_techpoints_decision_power_desc;Rulers can exchange Society Influence for Culture Technology Points;;;;;;;;;;;;;x
+purchase_techpoints_decision_dovah_in_society;Military Advancements;;;;;;;;;;;;;x
+purchase_techpoints_decision_dovah_in_society_desc;Exchange Society Influence for Military Technology Points;;;;;;;;;;;;;x
+purchase_techpoints_decision_dovah_in_society_power_desc;Rulers can exchange Society Influence for Military Technology Points;;;;;;;;;;;;;x
+
+dovah_in_summon_dragon_1;Call: Dragon;;;;;;;;;;;;;x
+dovah_in_summon_dragon_1_desc;Hold a sacrifice to gain the support of a Dragon. Dragons are fearsome fighters and can lay waste to enemy armies when properly supported.;;;;;;;;;;;;;x
+dovah_in_summon_dragon_1_power_desc;Call upon the support of a Dragon.;;;;;;;;;;;;;x
+dovah_in_summon_dragon_2;Call: Blood Dragon;;;;;;;;;;;;;x
+dovah_in_summon_dragon_2_desc;Hold a sacrifice to gain the support of a Blood Dragon. Dragons are fearsome fighters and can lay waste to enemy armies when properly supported.;;;;;;;;;;;;;x
+dovah_in_summon_dragon_2_power_desc;Call upon the support of a Blood Dragon.;;;;;;;;;;;;;x
+dovah_in_summon_dragon_3;Call: Elder Dragon;;;;;;;;;;;;;x
+dovah_in_summon_dragon_3_desc;Hold a sacrifice to gain the support of an Elder Dragon. Dragons are fearsome fighters and can lay waste to enemy armies when properly supported.;;;;;;;;;;;;;x
+dovah_in_summon_dragon_3_power_desc;Call upon the support of an Elder Dragon.;;;;;;;;;;;;;x
+dovah_in_summon_dragon_4;Call: Revered Dragon;;;;;;;;;;;;;x
+dovah_in_summon_dragon_4_desc;Hold a sacrifice to gain the support of a Revered Dragon. Dragons are fearsome fighters and can lay waste to enemy armies when properly supported.;;;;;;;;;;;;;x
+dovah_in_summon_dragon_4_power_desc;Call upon the support of a Revered Dragon.;;;;;;;;;;;;;x
+
+ancient_children_request_grandmaster_retire;Request your Grandmaster retire;;;;;;;;;;;;;x
+ancient_children_request_grandmaster_retire_desc;Suggest an early retirement to the Lot Sonaak.;;;;;;;;;;;;;x
+ancient_children_request_grandmaster_retire_power_desc;Suggest an early retirement to the Lot Sonaak.;;;;;;;;;;;;;x
+
+dragon_cult_expanded_thuum_training;Voice of the Dragons;;;;;;;;;;;;;x
+#dragon_cult_expanded_thuum_training_power_desc;Characters can learn the §YThu'um§!, passively increasing their mastery of it.;;;;;;;;;;;;;x
+dragon_cult_expanded_thuum_training_power_desc;Characters can learn the Thu'um, passively increasing their mastery of it.;;;;;;;;;;;;;x
+
+EVTDESC_dovah_in_soci.200;Thanks to my affiliation with the Dovah In, I have access to skilled trainers and instructors. With their help, I can receive training in a variety of advanced specializations.;;;;;;;;;;;;;x
+EVTOPTA_dovah_in_soci.200;I will learn the way of the Rogue;;;;;;;;;;;;;x
+EVTOPTB_dovah_in_soci.200;I will learn the way of the Knight;;;;;;;;;;;;;x
+EVTOPTC_dovah_in_soci.200;I will learn the way of the Crusader;;;;;;;;;;;;;x
+EVTOPTA_dovah_in_soci.201;I will learn the way of the Barbarian;;;;;;;;;;;;;x
+EVTOPTB_dovah_in_soci.201;I will learn the way of the Spellsword;;;;;;;;;;;;;x
+EVTOPTC_dovah_in_soci.201;I will learn the way of the Priest;;;;;;;;;;;;;x
+EVTOPTA_dovah_in_soci.202;I will learn the way of the Battlemage;;;;;;;;;;;;;x
+EVTOPTB_dovah_in_soci.202;I will learn the way of the Scout;;;;;;;;;;;;;x
+EVTOPTC_dovah_in_soci.202;I will learn the way of the Assassin;;;;;;;;;;;;;x
+
+EVTDESC_ancient_children.200;Thanks to my affiliation with the Children of the Ancient Ways, I have access to skilled trainers and instructors. With their help, I can receive training in a variety of advanced specializations.;;;;;;;;;;;;;x
+EVTOPTA_ancient_children.200;I will learn the way of the Crusader;;;;;;;;;;;;;x
+EVTOPTB_ancient_children.200;I will learn the way of the Spellsword;;;;;;;;;;;;;x
+EVTOPTC_ancient_children.200;I will learn the way of the Priest;;;;;;;;;;;;;x
+EVTOPTA_ancient_children.201;I will learn the way of the Battlemage;;;;;;;;;;;;;x
+EVTOPTB_ancient_children.201;I will learn the way of the Sorcerer;;;;;;;;;;;;;x
+EVTOPTC_ancient_children.201;I will learn the way of the Monk;;;;;;;;;;;;;x
+EVTOPTA_ancient_children.202;I will learn the way of the Assassin;;;;;;;;;;;;;x
+EVTOPTB_ancient_children.202;I will learn the way of the Acrobat;;;;;;;;;;;;;x
+EVTOPTC_ancient_children.202;I will learn the way of the Thief;;;;;;;;;;;;;x
+EVTOPTA_ancient_children.203;I will learn the way of the Nightblade;;;;;;;;;;;;;x
+
+#######
+#Traits
+#######
+patron_alduin;Follower of Alduin;;;;;;;;;;;;;x
+patron_alduin_desc;Alduin, or the World-Eater as he is known to the residents of Skyrim, is an immensely powerful black Dragon. He is depicted as a malevolent force who destroys the world periodically, and the Nords believe that his reappearance heralds the end of time. He is the self-proclaimed First-Born of Akatosh and aspect of Akatosh. His name can be separated into "Al Du In", which means "Destroyer Devour Master" in the Dragon Language.;;;;;;;;;;;;;x
+patron_durnehviir;Follower of Durnehviir;;;;;;;;;;;;;x
+patron_durnehviir_desc;Durnehviir is an undead dragon whose name means "Curse Never Dying" in the Dragon Language. In the Merethic Era when dragons ruled Tamriel, Durnehviir took part in many battles against other dragons for control of the skies. Instead of fighting, he delved into "alok-dilon", or necromancy. Like many great necromancers, he contacted the Ideal Masters in an attempt to gain their favor. They granted him the power to summon armies of undead from the Soul Cairn, but in return he had to guard a vampire named Valerica who had been trapped in the Soul Cairn by the Ideal Masters. The Masters neglected to inform Durnehviir of Valerica's immortality, and essentially tricked him into eternal servitude. In time, his body became accustomed to the Soul Cairn, making it impossible for him to ever permanently return to Tamriel.;;;;;;;;;;;;;x
+patron_kaalgrontiid;Follower of Kaalgrontiid;;;;;;;;;;;;;x
+patron_kaalgrontiid_desc;Kaalgrontiid is believed by some to originate from Alduin's horde in Atmora and Skyrim, having been driven to split off from the bulk of his kin in the north in order to sate his own pride and ambition. This behavior is considered normal for dragons, who are naturally driven to seek mastery.;;;;;;;;;;;;;x
+patron_nahfahlaar;Follower of Nahfahlaar;;;;;;;;;;;;;x
+patron_nahfahlaar_desc;Nahfahlaar (also known as Nafaalilargus, which is sometimes spelled Nafalilargus or N'falilaargas) was a red dragon who often allied with mortals for his own protection. He acknowledged that dragons are bound by Fenjuntiid, the will of Akatosh, meaning that it is in a dragon's nature to pursue domination. However, he was willing to ally himself with select mortals in order to bide time and ensure his presence for events that may require his intervention. In more ancient times, he allied with the Dragonguard and Pride of Alkosh to defeat his archenemy, Laatvulon. He took a liking to Ja'darri, a member of the Pride, being remembered in the legends of the moon priests as the Red Beast. He would later go on to serve as the proud soldier of Tiber Septim, before eventually being killed at the hands of Cyrus.;;;;;;;;;;;;;x
+patron_numinex;Follower of Numinex;;;;;;;;;;;;;x
+patron_numinex_desc;Numinex was a fearsome dragon famous for his battle with Olaf One-Eye in the First Era, which occurred some time before 1E 420 when Olaf became High King and ended the War of Succession.;;;;;;;;;;;;;x
+patron_paarthurnax;Follower of Paarthurnax;;;;;;;;;;;;;x
+patron_paarthurnax_desc;Paarthurnax, a legendary dragon whose name means "Ambition Overlord Cruelty" in the Dragon Language, acted as the lieutenant of Alduin, his older brother, during the Dragon War, purportedly committing many atrocities in the process. Eventually, Paarthurnax rebelled against Alduin and taught mortals how to use the thu'um (Nords believe this was ordered by, or at least willed by, the goddess Kyne). When Alduin was defeated by being cast forward in time through use of an Elder Scroll, Paarthurnax used meditation to overcome his draconic instinct and lust for power. He retired to the peak of the Throat of the World, where he took up practice of the Way of the Voice, a philosophy discovered by Jurgen Windcaller. He served as the leader of the Greybeards, a monastic order also dedicated to the Way of the Voice. Paarthurnax evaded death because of the protection provided by the Greybeards, although he remained a high-priority target of the Blades. His younger dragon brothers refer to him as "the Old One".;;;;;;;;;;;;;x
+
+dce_aura_whisper_1;Shout: Aura Whisper - Laas;;;;;;;;;;;;;x
+dce_aura_whisper_2;Shout: Aura Whisper - Laas Yah;;;;;;;;;;;;;x
+dce_aura_whisper_3;Shout: Aura Whisper - Laas Yah Nir;;;;;;;;;;;;;x
+dce_aura_whisper_1_desc;Your Voice is not a Shout, but a whisper, revealing the life forces of any and all.;;;;;;;;;;;;;x
+dce_aura_whisper_2_desc;Your Voice is not a Shout, but a whisper, revealing the life forces of any and all.;;;;;;;;;;;;;x
+dce_aura_whisper_3_desc;Your Voice is not a Shout, but a whisper, revealing the life forces of any and all.;;;;;;;;;;;;;x
+dce_battle_fury_1;Shout: Battle Fury - Mid;;;;;;;;;;;;;x
+dce_battle_fury_2;Shout: Battle Fury - Mid Vur;;;;;;;;;;;;;x
+dce_battle_fury_3;Shout: Battle Fury - Mid Vur Shaan;;;;;;;;;;;;;x
+dce_battle_fury_1_desc;Your Thu'um enchants your nearby allies' weapons, allowing them to attack faster.;;;;;;;;;;;;;x
+dce_battle_fury_2_desc;Your Thu'um enchants your nearby allies' weapons, allowing them to attack faster.;;;;;;;;;;;;;x
+dce_battle_fury_3_desc;Your Thu'um enchants your nearby allies' weapons, allowing them to attack faster.;;;;;;;;;;;;;x
+dce_become_ethereal_1;Shout: Become Ethereal - Feim;;;;;;;;;;;;;x
+dce_become_ethereal_2;Shout: Become Ethereal - Feim Zii;;;;;;;;;;;;;x
+dce_become_ethereal_3;Shout: Become Ethereal - Feim Zii Gron;;;;;;;;;;;;;x
+dce_become_ethereal_1_desc;The Thu'um reaches out to the Void, changing your form to one that cannot harm, or be harmed.;;;;;;;;;;;;;x
+dce_become_ethereal_2_desc;The Thu'um reaches out to the Void, changing your form to one that cannot harm, or be harmed.;;;;;;;;;;;;;x
+dce_become_ethereal_3_desc;The Thu'um reaches out to the Void, changing your form to one that cannot harm, or be harmed.;;;;;;;;;;;;;x
+dce_bend_will_1;Shout: Bend Will - Gol;;;;;;;;;;;;;x
+dce_bend_will_2;Shout: Bend Will - Gol Hah;;;;;;;;;;;;;x
+dce_bend_will_3;Shout: Bend Will - Gol Hah Dov;;;;;;;;;;;;;x
+dce_bend_will_1_desc;Your voice bends the very stones to your will. As it gains power, animals, people, and even dragons must do your bidding.;;;;;;;;;;;;;x
+dce_bend_will_2_desc;Your voice bends the very stones to your will. As it gains power, animals, people, and even dragons must do your bidding.;;;;;;;;;;;;;x
+dce_bend_will_3_desc;Your voice bends the very stones to your will. As it gains power, animals, people, and even dragons must do your bidding.;;;;;;;;;;;;;x
+dce_dismay_1;Shout: Dismay - Faas;;;;;;;;;;;;;x
+dce_dismay_2;Shout: Dismay - Faas Ru;;;;;;;;;;;;;x
+dce_dismay_3;Shout: Dismay - Faas Ru Maar;;;;;;;;;;;;;x
+dce_dismay_1_desc;And the weak shall fear the Thu'um, and flee in terror.;;;;;;;;;;;;;x
+dce_dismay_2_desc;And the weak shall fear the Thu'um, and flee in terror.;;;;;;;;;;;;;x
+dce_dismay_3_desc;And the weak shall fear the Thu'um, and flee in terror.;;;;;;;;;;;;;x
+dce_unrelenting_force_1;Shout: Unrelenting Force - Fus;;;;;;;;;;;;;x
+dce_unrelenting_force_2;Shout: Unrelenting Force - Fus Roh;;;;;;;;;;;;;x
+dce_unrelenting_force_3;Shout: Unrelenting Force - Fus Roh Dah;;;;;;;;;;;;;x
+dce_unrelenting_force_1_desc;Your Voice is raw power, pushing aside anything - or anyone - who stands in your path.;;;;;;;;;;;;;x
+dce_unrelenting_force_2_desc;Your Voice is raw power, pushing aside anything - or anyone - who stands in your path.;;;;;;;;;;;;;x
+dce_unrelenting_force_3_desc;Your Voice is raw power, pushing aside anything - or anyone - who stands in your path.;;;;;;;;;;;;;x
+dce_whirlwind_sprint_1;Shout: Whirlwind Sprint - Wuld;;;;;;;;;;;;;x
+dce_whirlwind_sprint_2;Shout: Whirlwind Sprint - Wuld Nah;;;;;;;;;;;;;x
+dce_whirlwind_sprint_3;Shout: Whirlwind Sprint - Wuld Nah Kest;;;;;;;;;;;;;x
+dce_whirlwind_sprint_1_desc;The Thu'um rushes forward, carrying you in its wake with the speed of a tempest.;;;;;;;;;;;;;x
+dce_whirlwind_sprint_2_desc;The Thu'um rushes forward, carrying you in its wake with the speed of a tempest.;;;;;;;;;;;;;x
+dce_whirlwind_sprint_3_desc;The Thu'um rushes forward, carrying you in its wake with the speed of a tempest.;;;;;;;;;;;;;x
+
+dce_undead;Sentient Undead;;;;;;;;;;;;;x
+dce_undead_desc;This character, though undead, has retained their mind through the power of lichdom.;;;;;;;;;;;;;x
+
+##############
+#Landed Titles
+##############
+d_dovah_in;Dovah In;;;;;;;;;;;;;x
+d_dovah_in_adj;Dovah In;;;;;;;;;;;;;x
+sahrot_thur;Sahrot Thur;;;;;;;;;;;;;x
+
+d_dragon_cult;Dovah Shavot;;;;;;;;;;;;;x
+d_dragon_cult_adj;Dovah Shavot;;;;;;;;;;;;;x
+lot_sonaak;Lot Sonaak;;;;;;;;;;;;;x
+
+############
+#Governments
+############
+dce_undead_government;Dill Suleyksejun;;;;;;;;;;;;;x
+dce_undead_government_desc;A Dill Suleyksejun, or Undead Realm, is similar to feudalism but grants more authority to the immortal Dragonpriest who leads it.;;;;;;;;;;;;;x
+
+######
+#Other
+######
+emperor_dragon_cult;Lot Jun;;;;;;;;;;;;;x
+emperor_female_dragon_cult;Lot Jud;;;;;;;;;;;;;x
+king_dragon_cult;Jun;;;;;;;;;;;;;x
+king_female_dragon_cult;Jud;;;;;;;;;;;;;x
+duke_dragon_cult;Lot Drog;;;;;;;;;;;;;x
+duke_female_dragon_cult;Lot Vahdin;;;;;;;;;;;;;x
+count_dragon_cult;Drog;;;;;;;;;;;;;x
+count_female_dragon_cult;Vahdin;;;;;;;;;;;;;x

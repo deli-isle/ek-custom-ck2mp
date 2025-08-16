@@ -7,3 +7,26 @@ to_ysgramors_tomb_companions_desc;Set off on a journey to the Tomb of Ysgramor h
 YSGRAMOR_JOURNEY_COMPANIONS;You gather your men, and begin your journey.;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
 create_atmoran_band;Reform the Atmoran Bands;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
 create_atmoran_band_desc;Warbands wander the wastelands of Atmora, it is time to reorganise them and revive the Atmoran tradition of Sellswords;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+
+# Claiming the Wuuthrad Axe
+claim_wuuthrad;Claim Wuuthrad;;;;;;;;;x
+claim_wuuthrad_desc;Attempt to wrest the legendary axe Wuuthrad from myth and memory.;;;;;;;;;x
+decision_claim_wuuthrad_tooltip;Costs 1000 Gold and 1000 Prestige. 60% chance to obtain Wuuthrad.;;;;;;;;;x
+
+# Decision requirements (tooltips used in allow)
+claim_wuuthrad_req_wonder;Requires the Jylkurfyk wonder to be active in your realm.;;;;;;;;;x
+claim_wuuthrad_req_no_cooldown;You recently funded a search for Wuuthrad. Try again once the expedition concludes.;;;;;;;;;x
+
+# Success popup
+ATM.00302.title;Wuuthrad Claimed;;;;;;;;;x
+ATM.00302.desc;Your search bears fruit. In a hidden vault beneath Jylkurfyk, you uncover Wuuthrad itself. The axe hums with ancient power as your fingers close around its haft.;;;;;;;;;x
+ATM.00302.optA;The axe is mine.;;;;;;;;;x
+
+# Failure popup
+ATM.00303.title;Empty Shadows;;;;;;;;;x
+ATM.00303.desc;You scour every lead, but the vaults are barren and the guides' tales contradict one another. For now, Wuuthrad remains a legend out of reach.;;;;;;;;;x
+ATM.00303.optA;Another time, perhaps.;;;;;;;;;x
+
+# Failure finding the Axe
+wuuthrad_search_cooldown;Recently Searched for Wuuthrad;;;;;;;;;x
+wuuthrad_search_cooldown_desc;[Root.GetFirstName] has recently attempted to seek Wuuthrad. Their failure weighs heavily, and they must wait before trying again.;;;;;;;;;x

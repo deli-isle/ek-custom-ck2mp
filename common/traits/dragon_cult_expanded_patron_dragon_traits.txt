@@ -1,0 +1,137 @@
+patron_alduin = {
+	
+	opposites = {
+		#patron_alduin
+		patron_durnehviir
+		patron_kaalgrontiid
+		patron_nahfahlaar
+		patron_numinex
+		patron_paarthurnax
+	}
+	
+	random = no
+	religious = yes
+	customizer = no
+	
+	monthly_character_piety = 0.5
+	
+	same_opinion = 5
+	same_religion_opinion = 5
+	church_opinion = 10
+	opposite_opinion = -10
+}
+
+patron_durnehviir = {
+
+	opposites = {
+		patron_alduin
+		#patron_durnehviir
+		patron_kaalgrontiid
+		patron_nahfahlaar
+		patron_numinex
+		patron_paarthurnax
+	}
+
+	random = no
+	religious = yes
+	customizer = no
+	
+	monthly_character_piety = 0.5
+	
+	same_opinion = 5
+	same_religion_opinion = 5
+	church_opinion = 10
+	opposite_opinion = -10
+}
+
+patron_kaalgrontiid = {
+
+	opposites = {
+		patron_alduin
+		patron_durnehviir
+		#patron_kaalgrontiid
+		patron_nahfahlaar
+		patron_numinex
+		patron_paarthurnax
+	}
+
+	random = no
+	religious = yes
+	customizer = no
+	
+	monthly_character_piety = 0.5
+	
+	same_opinion = 5
+	same_religion_opinion = 5
+	church_opinion = 10
+	opposite_opinion = -10
+}
+
+patron_nahfahlaar = {
+
+	opposites = {
+		patron_alduin
+		patron_durnehviir
+		patron_kaalgrontiid
+		#patron_nahfahlaar
+		patron_numinex
+		patron_paarthurnax
+	}
+
+	random = no
+	religious = yes
+	customizer = no
+	
+	monthly_character_piety = 0.5
+	
+	same_opinion = 5
+	same_religion_opinion = 5
+	church_opinion = 10
+	opposite_opinion = -10
+}
+
+patron_numinex  = {
+
+	opposites = {
+		patron_alduin
+		patron_durnehviir
+		patron_kaalgrontiid
+		patron_nahfahlaar
+		#patron_numinex
+		patron_paarthurnax
+	}
+
+	random = no
+	religious = yes
+	customizer = no
+	
+	monthly_character_piety = 0.5
+	
+	same_opinion = 5
+	same_religion_opinion = 5
+	church_opinion = 10
+	opposite_opinion = -10
+}
+
+patron_paarthurnax  = {
+
+	opposites = {
+		patron_alduin
+		patron_durnehviir
+		patron_kaalgrontiid
+		patron_nahfahlaar
+		patron_numinex
+		#patron_paarthurnax
+	}
+
+	random = no
+	religious = yes
+	customizer = no
+	
+	monthly_character_piety = 0.5
+	
+	same_opinion = 5
+	same_religion_opinion = 5
+	church_opinion = 10
+	opposite_opinion = -10
+}

@@ -41,185 +41,201 @@ ATM.00106.optA;You quietly leave the tomb, satisfied;;;;;;;;;x
 
 # Entrance into the Tomb #
 
-# Has Wuuthrad 
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
-ATM.001XX.optB;
+# Has Wuuthrad, entering
+ATM.00107.title;The Statue Awaits;;;;;;;;;x
+ATM.00107.desc;With Wuuthrad in your hands, the great statue of Ysgramor seems almost to call to you. The axe hums faintly, resonating with the chamber itself. As you step forward, a heavy sense of destiny presses upon your shoulders — you alone may return the weapon to its rightful place.;;;;;;;;;x
+ATM.00107.optA;Raise Wuuthrad high and set it into the statue's hands.;;;;;;;;;x
+ATM.00107.optB;Clutch the axe tightly — perhaps you are not yet ready.;;;;;;;;;x
+
+#Trial: The Companions Test
+ATM.00108.title;The Companions' Test;;;;;;;;;x
+ATM.00108.desc;Spectral figures step forth from the walls — warriors clad in wolf pelts and ancient mail. Their leader speaks: "We are the Companions, bound to Ysgramor. Prove your strength, your courage, and your honour, if you would walk the path of heroes.";;;;;;;;;x
+ATM.00108.optA;By Right of Arms;;;;;;;;;x
+ATM.00108.optB;By Right of Deed;;;;;;;;;x
+ATM.00108.optC;By Right of Status;;;;;;;;;x
+ATM.00108.optD;Turn back — you are not ready.;;;;;;;;;x
+ATM.00108.Martial;A brutal test of arms and courage. Your Combat Rating will strongly influence success.;;;;;;;;;x
+ATM.00108.Diplomacy;A plea to honour and brotherhood. Your Diplomacy will strongly influence success.;;;;;;;;;x
+
+#Trial: The Atmoran Spiders
+ATM.00109.title;The Trial: Atmoran Spiders;;;;;;;;;x
+ATM.00109.desc;From the fissures of the tomb pour monstrous spiders, their eyes glinting like frozen gems. Webs shiver across the chamber as the brood encircles you, fangs clicking in the cold dark.;;;;;;;;;x
+ATM.00109.optA;Through Fire and War;;;;;;;;;x
+ATM.00109.optB;A Lesson in Shadows;;;;;;;;;x
+ATM.00109.optC;Run Away;;;;;;;;;x
+ATM.00109.Martial;A brutal test of arms and courage. Your Combat Rating will strongly influence success.;;;;;;;;;x
+ATM.00109.Intrigue;A trial of subtlety and guile. Your Intrigue will strongly influence success.;;;;;;;;;x
 
 # Trial: The Companions
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
-ATM.001XX.optB;
-ATM.001XX.optC;
-ATM.001XX.optD;
+ATM.00110.title;The Brood of Harbingers;;;;;;;;;x
+ATM.00110.desc;Deep within the tomb, monstrous spiders — larger than horses — descend from the ceiling. Their bodies drip with venom, their fangs glistening in the dim firelight. To best them is to face death itself.;;;;;;;;;x
+ATM.00110.optA;Through Fire and War;;;;;;;;;x
+ATM.00110.optB;A Lesson in Shadows;;;;;;;;;x
+ATM.00110.optC;Run Away;;;;;;;;;x
+ATM.00110.Martial;A desperate stand of steel and will. Your Combat Rating will strongly influence success.;;;;;;;;;x
+ATM.00110.Intrigue;Outwit the brood in the dark. Your Intrigue will strongly influence success.;;;;;;;;;x
 
 # Trial: Atmoran Spiders
-
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
-ATM.001XX.optB;
-ATM.001XX.optC;
-
-# Trial: Harbinger Spiders
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
-ATM.001XX.optB;
-ATM.001XX.optC;
+ATM.00120.title;The Web of Atmora;;;;;;;;;x
+ATM.00120.desc;From the shadows, enormous spiders skitter forth, their many eyes gleaming in the dim light. The air grows thick with webs and venomous hiss. This is a trial of patience and cunning, as much as steel.;;;;;;;;;x
+ATM.00120.optA;Fight them head-on with steel and fire.;;;;;;;;;x
+ATM.00120.optB;Creep carefully through the webs, unseen.;;;;;;;;;x
+ATM.00120.optC;Retreat before their numbers overwhelm you.;;;;;;;;;x
 
 # The Trial Complete #
 
 # Trial: The Companions Martial Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00111.title;Victory Over the Companions;;;;;;;;;x
+ATM.00111.desc;Your martial might proves greater than that of Ysgramor's spectral Companions. One by one they fade, bowing their heads in recognition of your strength.;;;;;;;;;x
+ATM.00111.optA;Stand tall in triumph.;;;;;;;;;x
 
 # Trial: The Companions Martial Failure 
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00112.title;Defeated by the Companions;;;;;;;;;x
+ATM.00112.desc;Blows rain down upon you until you collapse, beaten by the warriors of legend. Their fading laughter reminds you of your unworthiness.;;;;;;;;;x
+ATM.00112.optA;Fall back, humbled.;;;;;;;;;x
 
 # Trial: The Companions Diplomacy Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00113.title;Words That Soothe Legends;;;;;;;;;x
+ATM.00113.desc;Your voice carries weight even with the dead. The Companions lower their weapons and nod, moved by your words of unity and respect.;;;;;;;;;x
+ATM.00113.optA;Thank them for their understanding.;;;;;;;;;x
 
 # Trial: The Companions Diplomacy Failure 
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00114.title;Words Fall Short;;;;;;;;;x
+ATM.00114.desc;The spirits snarl at your attempts, unmoved by your pleas. In their eyes, only strength decides worth.;;;;;;;;;x
+ATM.00114.optA;Ready yourself once more.;;;;;;;;;x
 
 # Trial: The Companions Status Attempt Atmorans
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00115.title;Blood of Atmora;;;;;;;;;x
+ATM.00115.desc;You invoke your Atmoran heritage, and for a moment the warriors pause. They recognize kinship, and grant you passage with wary respect.;;;;;;;;;x
+ATM.00115.optA;Bow your head in thanks.;;;;;;;;;x
+ATM.00115.optB;Stand your ground and prove your worth.;;;;;;;;;x
 
 # Trial: The Companions Status Attempt Companions
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00116.title;Kin of the Shield-Brothers;;;;;;;;;x
+ATM.00116.desc;Claiming descent from the Companions, you are tested by their gaze. Slowly, the spectral warriors lower their weapons in solemn recognition.;;;;;;;;;x
+ATM.00116.optA;Step forward with pride.;;;;;;;;;x
+ATM.00116.optB;Stand your ground and prove your worth.;;;;;;;;;x
 
 # Trial: The Companions Run Away
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00117.title;Fleeing the Trial;;;;;;;;;x
+ATM.00117.desc;Fear grips you and you turn away from the legendary warriors. Their laughter echoes in the hall as you retreat.;;;;;;;;;x
+ATM.00117.optA;Better to live another day.;;;;;;;;;x
 
 # Trial: Atmoran Spiders Martial Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00118.title;The Spiders Crushed;;;;;;;;;x
+ATM.00118.desc;Steel cuts through chitin as the monstrous Atmoran spiders fall beneath your blows. Their screeches fade into silence.;;;;;;;;;x
+ATM.00118.optA;Wipe the ichor from your blade.;;;;;;;;;x
 
 # Trial: Atmoran Spiders Martial Failure
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00119.title;Entangled;;;;;;;;;x
+ATM.00119.desc;Webbing ensnares your limbs and venomous fangs strike deep. The spiders overwhelm you, leaving you gasping in the dark.;;;;;;;;;x
+ATM.00119.optA;Collapse into defeat.;;;;;;;;;x
 
 # Trial: Atmoran Spiders Intrigue Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00120.title;Outwitting the Spiders;;;;;;;;;x
+ATM.00120.desc;You slip past their webs and strike with precision, luring the beasts into their own traps until they tear one another apart.;;;;;;;;;x
+ATM.00120.optA;Smile at your cunning.;;;;;;;;;x
 
 # Trial: Atmoran Spiders Intrigue Failure
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00121.title;Caught in the Web;;;;;;;;;x
+ATM.00121.desc;Your tricks fail and sticky webs close in. The spiders descend, their fangs glistening with poison.;;;;;;;;;x
+ATM.00121.optA;Struggle in vain.;;;;;;;;;x
 
 # Trial: Atmoran Spiders Run Away
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00122.title;Retreat from the Web;;;;;;;;;x
+ATM.00122.desc;Panic drives you back, the skittering horde close behind. You burst free, heart pounding, shamed by your flight.;;;;;;;;;x
+ATM.00122.optA;Escape while you still can.;;;;;;;;;x
 
 # Trial: Harbinger Spiders Martial Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00123.title;Champion of the Hall;;;;;;;;;x
+ATM.00123.desc;The largest of the Harbinger Spiders collapses beneath your blows. The skittering ceases, and the chamber grows still once more.;;;;;;;;;x
+ATM.00123.optA;Stand victorious.;;;;;;;;;x
 
 # Trial: Harbinger Spiders Martial Failure
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00124.title;Crushed by the Harbingers;;;;;;;;;x
+ATM.00124.desc;The monstrous spiders overwhelm you, their legs battering you down into the cold stone floor.;;;;;;;;;x
+ATM.00124.optA;Your strength falters.;;;;;;;;;x
 
 # Trial: Harbinger Spiders Intrigue Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00125.title;Striking from the Shadows;;;;;;;;;x
+ATM.00125.desc;Using trickery and guile, you isolate and slay the brood one by one, until only silence fills the chamber.;;;;;;;;;x
+ATM.00125.optA;Breathe deep in relief.;;;;;;;;;x
 
 # Trial: Harbinger Spiders Intrigue Failure
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00126.title;Overrun by Skittering;;;;;;;;;x
+ATM.00126.desc;Your schemes falter, and the spiders pour over you in endless waves, their screeches drowning your cries.;;;;;;;;;x
+ATM.00126.optA;Collapse under the tide.;;;;;;;;;x
 
 # Trial: Harbinger Spiders Ran Away
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00127.title;Retreat into the Dark;;;;;;;;;x
+ATM.00127.desc;You break and run, abandoning the trial. Behind you, the shadows writhe with the laughter of chittering things.;;;;;;;;;x
+ATM.00127.optA;Live to fight another day.;;;;;;;;;x
 
 # Hall of the Harbingers #
 
 # Trial: The Companions Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00128.title;The Companions Acknowledged;;;;;;;;;x
+ATM.00128.desc;The shades of Ysgramor's warriors nod solemnly. They recognize your worth and dissolve into the air, leaving the path open.;;;;;;;;;x
+ATM.00128.optA;Step forward proudly.;;;;;;;;;x
 
 # Trial: Atmoran Spiders Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00129.title;The Webs Cleared;;;;;;;;;x
+ATM.00129.desc;The brood is slain, their bodies scattered across the hall. The air clears, and you press onward.;;;;;;;;;x
+ATM.00129.optA;Continue deeper into the tomb.;;;;;;;;;x
 
 # Trial: Harbinger Spiders Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00130.title;Silence of the Harbingers;;;;;;;;;x
+ATM.00130.desc;With the great spiders destroyed, the hall is eerily still. Only the way forward remains.;;;;;;;;;x
+ATM.00130.optA;Advance without fear.;;;;;;;;;x
 
 # The Hall of Ysgramor
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00131.title;The Hall of Ysgramor;;;;;;;;;x
+ATM.00131.desc;At last you stand before the Hall of Ysgramor himself, its doors carved with ancient runes of power. The weight of history presses upon you.;;;;;;;;;x
+ATM.00131.optA;Enter with reverence.;;;;;;;;;x
 
 # Ysgramor Accepts
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00132.title;Blessed by Ysgramor;;;;;;;;;x
+ATM.00132.desc;A spectral figure rises from the statue, placing a ghostly hand upon you. The Harbinger accepts you as worthy.;;;;;;;;;x
+ATM.00132.optA;Bow in gratitude.;;;;;;;;;x
+ATM.00132.Bloodline;The blood of Ysgramor's line flows in you. A sacred lineage is awakened.;;;;;;;;;x
 
 # Ysgramor Rejects
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00133.title;Rejected by Ysgramor;;;;;;;;;x
+ATM.00133.desc;The shade of Ysgramor glares coldly, and the hall shudders. You feel the Hero's scorn burn into your soul.;;;;;;;;;x
+ATM.00133.optA;Hang your head in shame.;;;;;;;;;x
 
 # Leaving #
 
 # Chose to Leave
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00134.title;Departure;;;;;;;;;x
+ATM.00134.desc;You turn away from the trials and make your way back to the surface. The tomb remains sealed to you.;;;;;;;;;x
+ATM.00134.optA;Leave in silence.;;;;;;;;;x
 
 # Companions Failure
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00135.title;Failure Before the Companions;;;;;;;;;x
+ATM.00135.desc;The spirits of Ysgramor's shield-brothers cast you aside, unworthy of their legacy.;;;;;;;;;x
+ATM.00135.optA;Depart in disgrace.;;;;;;;;;x
 
 # Atmoran Spider Failure
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00136.title;Defeated by the Brood;;;;;;;;;x
+ATM.00136.desc;Poison and webs leave you broken. The trial ends in bitter failure.;;;;;;;;;x
+ATM.00136.optA;Crawl away, barely alive.;;;;;;;;;x
 
 # Harbinger Spider Failure
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00137.title;Crushed by the Harbingers;;;;;;;;;x
+ATM.00137.desc;The monstrous spiders overwhelm you completely. Their screeches are the last sound you hear.;;;;;;;;;x
+ATM.00137.optA;Darkness consumes you.;;;;;;;;;x
 
 # Failure at the last Hurdle 
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00138.title;The Tomb Denies You;;;;;;;;;x
+ATM.00138.desc;You made it far, but Ysgramor's trials proved too great. The hall itself seems to close against you.;;;;;;;;;x
+ATM.00138.optA;Accept your fate.;;;;;;;;;x
 
 # Success
-ATM.001XX.title;
-ATM.001XX.desc;
-ATM.001XX.optA;
+ATM.00139.title;Triumph in the Tomb;;;;;;;;;x
+ATM.00139.desc;You have passed every trial, endured every danger, and earned the blessing of Ysgramor. Few mortals may claim the same.;;;;;;;;;x
+ATM.00139.optA;Accept your place among legends.;;;;;;;;;x
+ATM_00139.Artifacts;You are entrusted with Wuuthrad and Ysgramor's Shield. Legends will speak your name.;;;;;;;;;x
 
 # Paid Respects 
 ATM.00140.title;A Leader Touched;;;;;;;;;x
@@ -230,3 +246,7 @@ ATM.00140.optA;A return to your throne, and your people.;;;;;;;;;x
 
 respects_paid_to_ysgramor;Paid Respects to a Hero;;;;;;;;;x
 respects_paid_to_ysgramor_desc;[Root.GetFirstName] has travelled to the tomb of a great hero, and paid his respects.;;;;;;;;;x
+ysgramor_rejected_you;Scorned by Ysgramor;;;;;;;;;x
+ysgramor_rejected_you_desc;Ysgramor's spirit has judged [Root.GetFirstName] unworthy. The shame weighs heavily.;;;;;;;;;x
+YSGRAMOR_REJECTED_RECENTLY;Ysgramor has rejected you recently. You must wait until his scorn fades.;;;;;;;;;x
+claim_wuuthrad_rejected_recently;Ysgramor’s judgment weighs on you. You cannot attempt to claim Wuuthrad again yet.;;;;;;;;;x

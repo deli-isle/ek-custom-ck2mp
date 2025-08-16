@@ -1,0 +1,87 @@
+namespace = dce_offering
+
+character_event = { #Fantastic
+	id = dce_offering.001
+	desc = EVTDESC_dce_offering.001
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_dce_offering.001
+		#piety = 100
+		#clr_character_flag = made_offering_dragon_cult
+		hidden_tooltip = { long_character_event = { id = dce_offering.004 days = 1 } }
+	}
+}
+character_event = { #Good
+	id = dce_offering.002
+	desc = EVTDESC_dce_offering.002
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_dce_offering.002
+		piety = 30
+		clr_character_flag = made_offering_dragon_cult
+	}
+}
+character_event = { #Bad
+	id = dce_offering.003
+	desc = EVTDESC_dce_offering.003
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_dce_offering.003
+		piety = -10
+		clr_character_flag = made_offering_dragon_cult
+	}
+}
+long_character_event = { #The Offer
+	id = dce_offering.004
+	title = EVTTITLE_dce_offering.004
+	desc = EVTDESC_dce_offering.004
+	picture = GFX_evt_dragon_avatar
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_dce_offering.004
+		hidden_tooltip = { long_character_event = { id = dce_offering.005 days = 1 } }
+	}
+}
+long_character_event = { #The Choice
+	id = dce_offering.005
+	title = EVTTITLE_dce_offering.005
+	desc = EVTDESC_dce_offering.004
+	picture = GFX_evt_dragon_avatar
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_dce_offering.005
+		hidden_tooltip = {
+			remove_trait = immortal
+			remove_trait = lycan
+			remove_trait = known_lycan
+			remove_trait = known_lycan_benevolent
+			remove_trait = vampire
+			remove_trait = known_vampire
+			remove_trait = known_vampire_benevolent
+		}
+		add_trait = dragonpriest
+		add_trait = lich
+		hidden_tooltip = { set_character_flag = dragonborn_candidate }
+		piety = 100
+		clr_character_flag = made_offering_dragon_cult
+	}
+	
+	option = {
+		name = EVTOPTB_dce_offering.005
+		piety = -50
+		clr_character_flag = made_offering_dragon_cult
+	}
+}
