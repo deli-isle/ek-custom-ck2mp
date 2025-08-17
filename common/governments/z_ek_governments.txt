@@ -21,6 +21,7 @@ feudal_governments = {
 			NAND = {
 				controls_religion = yes
 				NOT = { religion = pyandoneaic } #"Caliphate"
+				NOT = { religion = dragon_cult } #"Caliphate"
 			}
 			is_patrician = no
 			NAND = {
@@ -206,7 +207,7 @@ feudal_governments = {
 		barons_need_dynasty = yes
 		uses_prestige_for_law_change = yes
 		can_build_city = no
-		can_build_tribal = no
+		can_build_tribal = yes
 		#can_build_hospitals = no
 		allow_looting = yes
 		ignores_de_jure_laws = yes

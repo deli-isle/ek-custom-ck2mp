@@ -1,0 +1,601 @@
+decisions = {
+	
+	form_dovah_in = { #Form the Dovah In Holy Order
+		is_high_prio = yes
+		ai_check_interval = 60
+		#only_playable = yes
+		
+		potential = {
+			is_title_active = d_dragon_cult
+			NOT = { is_title_active = d_dovah_in }
+			#any_demesne_title = { #Does not make the Holy Order a vassal anymore since the GM would be an overpowered immortal commander 
+			#	higher_tier_than = DUKE
+			#}
+			religion = dragon_cult
+			NOT = { has_character_flag = society_open }
+			has_submenu_open = no
+		}
+		
+		allow = {
+			war = no
+			piety = 800
+			wealth = 500
+			independent = yes
+		}
+		
+		effect = {
+			piety = -800
+			wealth = -500
+			
+			custom_tooltip = {
+				text = form_dovah_in_tooltip
+				
+				create_random_soldier = {
+					random_traits = yes
+					dynasty = random
+					culture = ROOT
+					religion = dragon_cult
+					age = 346
+				}
+				new_character = {
+					add_trait = dragonpriest
+					add_trait = lich
+					add_trait = priest_3
+					add_trait = crusader_3
+					add_trait = shrewd
+					add_trait = zealous
+					add_trait = diligent
+					add_trait = holy_warrior
+		
+					if = {
+						limit = {
+							NOT = {
+								trait = warrior_5
+							}
+						}
+						remove_trait = warrior_1
+						remove_trait = warrior_2
+						remove_trait = warrior_3
+						remove_trait = warrior_4
+						add_trait = warrior_5
+					}
+					grant_title_no_opinion = d_dovah_in
+					set_global_flag = dovah_in_society_formed
+					join_society = dovah_in_society
+					set_society_grandmaster = yes
+					hidden_tooltip = { set_character_flag = dragonborn_candidate }
+					
+					#set_defacto_liege = ROOT
+
+					#add_friend = ROOT
+				}
+			}
+		}
+	}
+}
+
+society_decisions = {
+	
+	request_to_rank_up_within_dovah_in_society = {
+		
+		hide_in_decisions_list = yes
+		
+		potential = {
+			hidden_tooltip = {
+				society_rank <= 2 #is not max rank
+				days_in_society > 365 #days requirement
+				is_in_society = yes #obviously
+				OR = { #Players can always rank up (if they have the power), AI won't if there is no room
+					ai = no
+					AND = {
+						ai = yes
+						society_can_rank_up = yes
+					}
+				}
+			}
+		}
+		
+		allow = {
+			#Rank requirements. IMPORTANT!!! If you change the requirements, the customizable loc keys "GetSocietyRankUpTooltip" 1, 2, 3, and 4 must be updated, as it displays these requirements.
+			custom_tooltip = { # Sufficient currency
+				text = request_to_rank_up_within_dovah_in_society_tt
+				OR = {
+					AND = {
+						society_rank == 1
+						society_currency >= 750
+					}
+					AND = {
+						society_rank == 2
+						society_currency >= 1000
+					}
+					AND = {
+						society_rank == 3
+						society_currency >= 2000
+					}
+				}
+			}
+
+			custom_tooltip = {
+				text = must_not_have_sent_request_already_tooltip 
+				NOT = { has_character_flag = has_sent_request_to_rank_up }
+			}
+
+			custom_tooltip = {
+				text = must_be_allowed_to_rank_up_tooltip 
+				days_at_current_society_rank >= 1095 #IMPORTANT! Update tooltip.
+			}
+
+			custom_tooltip = {
+				text = must_have_grandmaster_tooltip #You must have a grand master
+				any_society_member = {
+					is_society_grandmaster = yes
+					same_society_as = ROOT
+				}
+			}
+		}
+		
+		effect = {
+			#Rank up cost
+			if = {
+				limit = { society_rank == 1 }
+				change_society_currency = -750
+			}
+			if = {
+				limit = { society_rank == 2 }
+				change_society_currency = -1000
+			}
+			if = {
+				limit = { society_rank == 3 }
+				change_society_currency = -2000
+			}
+
+			#Perform rank up
+			hidden_tooltip = {
+				save_event_target_as = rank_up_target #mark the character as the one ranking up
+				set_character_flag = has_sent_request_to_rank_up
+				character_event = { id = dovah_in_soci.120 days = 20 random = 10 } # sends hidden delayed event to self, which then sends request to Leader of the society
+				
+			}
+		}
+
+		revoke_allowed = {
+			always = no
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	study_specialization_dovah_in_society = {
+		is_high_prio = yes #There's really no reason a person who could be studying a specialization shouldn't be studying a specialization.
+		ai_check_interval = 12
+		
+		potential = {
+			society_member_of = dovah_in_society
+			has_maxed_specializations = no
+			is_indisposed = no
+			block_general_event_trigger = no
+			OR = {
+				has_character_flag = society_open
+				ai = yes
+			}
+			NOT = { has_character_flag = soul_sold }
+			NOT = { has_character_flag = dovah_in_society_specialization_ongoing }
+			NOT = { has_character_modifier = denied_specialization_timer }
+			OR = {
+				is_undead = no
+				AND = {
+					is_undead = yes
+					trait = vampire
+				}
+				AND = {
+					is_undead = yes
+					trait = lich
+				}
+			}
+		}
+		effect = {
+			set_character_flag = dovah_in_society_specialization_ongoing
+			if = {
+				limit = { ai = no }
+				character_event = { id = dovah_in_soci.200 }
+			}
+			if = {
+				limit = { ai = yes }
+				character_event = { id = dovah_in_soci.210 }
+			}
+		}
+	}
+	
+	cancel_specialization_dovah_in_society = {
+		ai_check_interval = 6000
+		
+		potential = {
+			ai = no
+			society_member_of = dovah_in_society
+			has_character_flag = dovah_in_society_specialization_ongoing
+			is_indisposed = no
+			block_general_event_trigger = no
+			has_character_flag = society_open
+			NOT = { has_character_flag = soul_sold }
+			OR = {
+				is_undead = no
+				AND = {
+					is_undead = yes
+					trait = vampire
+				}
+				AND = {
+					is_undead = yes
+					trait = lich
+				}
+			}
+		}
+		effect = {
+			character_event = { id = dovah_in_soci.220 }
+		}
+
+	}
+	
+	purchase_techpoints_decision_dovah_in_society = {
+		only_playable = yes
+		ai_check_interval = 120
+		
+		potential = {
+			society_member_of = dovah_in_society
+			society_rank >= 2
+			is_indisposed = no
+			block_general_event_trigger = no
+			OR = {
+				has_character_flag = society_open
+				ai = yes
+			}
+			NOT = { has_character_flag = exchanging_influence_for_tech }
+		}
+		
+		allow = {
+			NOT = { has_character_modifier = society_advancements_purchased }
+			has_society_currency_major_trigger_scaling = yes
+		}
+		
+		effect = {
+			character_event = { id = dovah_in_soci.250 }
+			set_character_flag = exchanging_influence_for_tech
+			tooltip = {
+				detract_society_currency_major_effect_scaling = yes
+			}
+			custom_tooltip = { text = reimbursed_if_cancelled }
+		}
+
+		ai_will_do = {
+			factor = 1
+			
+			modifier = {
+				factor = 0.1
+			}
+			modifier = {
+				factor = 10
+				society_currency >= 3000
+			}
+		}
+	}
+	
+	dovah_in_summon_dragon_1 = {
+		is_high_prio = yes
+		is_in_society = yes
+		
+		potential = {
+			is_landed = yes
+			society_member_of = dovah_in_society
+			has_character_flag = society_open
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+					piety = 750
+				}
+				AND = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+					piety = 1500
+				}
+			}
+			prisoner = no
+		}
+		
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+				}
+				piety = -750
+			}
+			if = {
+				limit = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+				}
+				piety = -1500
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						troops = {
+							dragon = { 100 100 }
+						}
+						attrition = 0
+						maintenance_multiplier = 0.5
+						reinforces = yes
+						earmark = dragon_cult_dragon_0
+					}
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 0.5
+			
+			modifier = {
+				factor = 5
+				trait = zealous
+			}
+			modifier = {
+				factor = 5
+				trait = ambitious
+			}
+		}
+	}
+	
+	dovah_in_summon_dragon_2 = {
+		is_high_prio = yes
+		is_in_society = yes
+		
+		potential = {
+			is_landed = yes
+			society_member_of = dovah_in_society
+			society_rank >= 2
+			has_character_flag = society_open
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+					piety = 1500
+				}
+				AND = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+					piety = 3000
+				}
+			}
+			prisoner = no
+		}
+		
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+				}
+				piety = -1500
+			}
+			if = {
+				limit = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+				}
+				piety = -3000
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						troops = {
+							dragon = { 200 200 }
+						}
+						attrition = 0
+						maintenance_multiplier = 0.5
+						reinforces = yes
+						earmark = dragon_cult_dragon_1
+					}
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 0.5
+			
+			modifier = {
+				factor = 5
+				trait = zealous
+			}
+			modifier = {
+				factor = 5
+				trait = ambitious
+			}
+		}
+	}
+	
+	dovah_in_summon_dragon_3 = {
+		is_high_prio = yes
+		is_in_society = yes
+		
+		potential = {
+			is_landed = yes
+			society_member_of = dovah_in_society
+			society_rank >= 3
+			has_character_flag = society_open
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+					piety = 2500
+				}
+				AND = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+					piety = 5000
+				}
+			}
+			prisoner = no
+		}
+		
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+				}
+				piety = -2500
+			}
+			if = {
+				limit = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+				}
+				piety = -5000
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						troops = {
+							dragon = { 400 400 }
+						}
+						attrition = 0
+						maintenance_multiplier = 0.5
+						reinforces = yes
+						earmark = dragon_cult_dragon_2
+					}
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 0.5
+			
+			modifier = {
+				factor = 5
+				trait = zealous
+			}
+			modifier = {
+				factor = 5
+				trait = ambitious
+			}
+		}
+	}
+	
+	dovah_in_summon_dragon_4 = {
+		is_high_prio = yes
+		is_in_society = yes
+		
+		potential = {
+			is_landed = yes
+			society_member_of = dovah_in_society
+			is_society_grandmaster = yes
+			has_character_flag = society_open
+		}
+		
+		allow = {
+			OR = {
+				AND = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+					piety = 2500
+				}
+				AND = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+					piety = 5000
+				}
+			}
+			prisoner = no
+		}
+		
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = { trait = undead }
+						AND = {
+							trait = undead
+							trait = dragonpriest
+						}
+					}
+				}
+				piety = -2500
+			}
+			if = {
+				limit = {
+					trait = undead
+					NOT = { trait = dragonpriest }
+				}
+				piety = -5000
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						troops = {
+							dragon = { 800 800 }
+						}
+						attrition = 0
+						maintenance_multiplier = 0.5
+						reinforces = yes
+						earmark = dragon_cult_dragon_3
+					}
+				}
+			}
+		}
+	}
+	
+}

@@ -1,0 +1,49 @@
+EKDagoth15;To the [GetFromRootCompliment] [Root.GetFirstName],\n\nIt is with great appreciation that I accept your charitable donation to the Temple. I assure you that this act of kindness will not go unnoticed - or be forgotten.\n\nSigned, [From.GetBestName];;;;;;;;;;;;;x
+EKDagoth15Accept;Excellent.;;;;;;;;;x
+EKDagoth50;Excellent.;;;;;;;;;x
+EKDagoth50;At daybreak, guards enter my cell and shackle me, leading me to meditation chambers of [From.GetBestName]. [From.GetBestName] declares that I am to be tried for acts of betrayal against Sixth House. The trial is short, with various witnesses being called to testify at my supposed offenses. At the end, [From.GetFirstName] scowls at me and readies a weapon. "You, [Root.GetFirstName] are judged guilty of all charges, and are hereby sentenced to death! But, [From.Offmap.Ruler.GetTitle] informs me you may yet be useful in grand plan. You shall not die today, [Root.GetFirstName]! Remember that [From.Offmap.Ruler.GetTitle]'s mercy has spared you!" I am immediately released, and go back to my safe haven.;;;;;;;;;x
+EKDagoth50Accept;At least I'm still alive...;;;;;;;;;x
+EKDagoth52;In the morning, I preside over a trial for [From.GetBestName] who is accused of betraying the Sixth House. A number of witnesses appear, each testifying against [From.GetFirstName] in a very brief affair. At the end, [From.GetFirstName] is convicted and the appropriate penalty is nothing less than death. All is as shown in a dream sent to me by [FromFrom.Offmap.Ruler.GetTitle]. The betrayer may yet be a useful tool and as instructed by [FromFrom.Offmap.Ruler.GetTitle], I hereby release [From.GetFirstName].;;;;;;;;;x
+EKDagoth52Accept;Remember [FromFrom.Offmap.Ruler.GetTitle]'s mercy!;;;;;;;;;x
+EKDagoth305Title;[dagoth_peacemaker.GetTitle]'s Quest;;;;;;;;;x
+EKDagoth305;The disasters threatening my people have been eradicated seemingly overnight. It is confirmed that [dagoth_peacemaker.GetTitle] sent [dagoth_peacemaker.GetHerHim] servants, slaughtering all that stood against [dagoth_peacemaker.GetHerHim].;;;;;;;;;x
+EKDagoth305Accept;How fortuitous!;;;;;;;;;x
+EKDagoth310Title;Influencing Dreams!;;;;;;;;;x
+EKDagoth310;Soothing dreams are being sent on local population, lowering unrest.;;;;;;;;;x
+EKDagoth310Accept;Interesting...;;;;;;;;;x
+EKDagoth310Clearance;Dreams are being focused on local area...;;;;;;;;;x
+EKDagoth311Title;Influencing Dreams...;;;;;;;;;x
+EKDagoth311;Soothing dreams are being sent on local population, lowering unrest.;;;;;;;;;x
+EKDagoth311Accept;Interesting...;;;;;;;;;x
+EKDagoth311Clearance;Dreams are being focused on local area...;;;;;;;;;x
+EKDagoth325Title;Sixth House Army;;;;;;;;;x
+EKDagoth325;As the Sixth House faithful are threatened, [dagoth_forces.GetTitle] has rallied an army determined to drive the infidel outlanders away. Ash Creatures, Sleepers and creatures driven by Divne Disease, have all answered the call, mustering in [Root.Capital.GetName] and chomping at the bit to go to battle.;;;;;;;;;x
+EKDagoth325Accept;ALL CRIES ARE WAKING!;;;;;;;;;x
+EKDagoth340Title;Guiding Dream;;;;;;;;;x
+EKDagoth340;Deep in my sleep, [voryn_here.GetTitle] approaches me. "I see that your mind is lost, [Root.GetFirstName]. Follow my Light through their Shadows and Wake." As dawn arrives, by will of [voryn_here.GetTitle], you know yourself again.;;;;;;;;;x
+EKDagoth340Accept;I feel in control of my mind again!;;;;;;;;;x
+EKDagoth345Title;Blessed Dream;;;;;;;;;x
+EKDagoth345;Deep in my sleep, [voryn_here.GetTitle] approaches me. "Realize the dream of reality, [Root.GetFirstName]. Find your Way in its Maze." As dawn arrives, by will of [voryn_here.GetTitle], you have better control of reality.;;;;;;;;;x
+EKDagoth345Accept;The Chains are Shattered!;;;;;;;;;x
+EKDagoth350Title;Curing Dream;;;;;;;;;x
+EKDagoth350;Deep in my sleep, [voryn_here.GetTitle] approaches me. "I see that you are indeed ill, [Root.GetFirstName]. As other Chains will be Shattered, so shall be your illness." As dawn arrives, by will of [voryn_here.GetTitle], you are healthy again.;;;;;;;;;x
+EKDagoth350Accept;I feel incredible!;;;;;;;;;x
+EKDagoth360Title;Divine Disease;;;;;;;;;x
+EKDagoth360;As you meditate in front of an Ash Statue, [voryn_corprus.GetTitle] sends [voryn_corprus.GetHerHis] vision. Darkness and Light propagate through you, chaotic at first, but words and guidance from [voryn_corprus.GetTitle] help you find Oneness with yourself and connect with others afflicted by Divine Disease. You don't know how long it took, but when you're done, you've grown, became closer to [voryn_corprus.GetTitle]'s Divinity.;;;;;;;;;x
+EKDagoth360Corprus1;Did everything go as planned? I thought it would feel better...;;;;;;;;;x
+EKDagoth360Corprus2;Pain is overwhelming! Am I being tested?;;;;;;;;;x
+EKDagoth360Corprus3;Everything is wrong. This is not straight. We must put them right!;;;;;;;;;x
+EKDagoth360Corprus4;Where is this place? I'm so tired, LET ME SLEEP!;;;;;;;;;x
+EKDagoth360Corprus5;I Wake! I Remember!;;;;;;;;;x
+EKDagoth360Corprus6;The Chains are Shattered! The Scales Fall Away!;;;;;;;;;x
+EKDagoth360Corprus7;Finally, I share the divine, eternal power of Lorkhan's heart.;;;;;;;;;x
+CorprusDagoth10;Corprus is ravaging my body. It often takes just hours for parts of my skin to rot, for muscles to separate from my bones. My days and nights are filled with pain and visions.;;;;;;;;;x
+EVTOPTAcorprusdagoth.10;I need to stay strong, focus my mind.;;;;;;;;;x
+EVTOPTBcorprusdagoth.10;I won't survive with all this rot on me. Worst affected parts have to go!;;;;;;;;;x
+EVTOPTCcorprusdagoth.10;I can't fight this any longer...;;;;;;;;;x
+CorprusDagoth20;My body got used to the most violent effects of Corprus. It cost a lot from my body and soul and I still feel just barely better.;;;;;;;;;x
+EVTOPTAcorprusdagoth.20;I hope that the worst is behind me.;;;;;;;;;x
+CorprusDagoth30;In my usual nightmares, I see a robed figure, emanating warm light. As it approaches, the pain and fear of my condition lessen and lose grip over my mind, shadows that torment me every night disappear and walls become solid. When I focus my senses on the figure, it reminds me of a priest, although where his eyes should be, a trunk grows. He speaks "We see your struggle, [Root.GetFirstName]. Your will to survive in this maze of dreams makes you a worthy candidate to serve our Lord. I can guide and share with you the piece of His Divinity. If you wish to accept it.";;;;;;;;;x
+EVTOPTAcorprusdagoth.30;Please guide me towards Divinity.;;;;;;;;;x
+EVTOPTBcorprusdagoth.30;I feel abandoned by everything I believed in so far. Guide me.;;;;;;;;;x
+EVTOPTCcorprusdagoth.30;You're just another form of those nightmares! I will not fall for this deception!;;;;;;;;;x

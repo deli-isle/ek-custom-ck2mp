@@ -1089,6 +1089,14 @@ character_event = { # Alternate Start general maintenance
 					value = random
 				}
 			}
+			d_atmoranband = {
+				holder_scope = {
+					save_event_target_as = renaming_target
+				}
+				set_name="ALT_MERC_COMPANY"
+				adjective="ALT_MERC_COMPANY_ADJ"
+				set_random_coa_effect = yes
+			}
 			d_blackbowbandits = {
 				holder_scope = {
 					save_event_target_as = renaming_target

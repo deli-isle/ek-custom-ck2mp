@@ -1,0 +1,28 @@
+
+merc_atmoranband = {
+	color =  { 180 180 180 }
+	color2 = { 255 255 255 }
+	allow = {
+		AND = {
+			capital_scope = {
+				OR = {
+					region = nirn_atmora
+					region = nirn_roscrea
+					region = nirn_tamriel_morrowind
+					region = nirn_tamriel_skyrim
+					region = nirn_tamriel_highrock
+				}
+			}
+			is_human = yes
+			has_global_flag = atmoran_band_formed
+		}
+	}
+	capital = 990
+    title = merc_atmoranband
+	culture = atmoran
+	mercenary_type = medium_mercenary_composition
+	strength_growth_per_century = 0.75
+	landless = yes
+	primary = yes
+	mercenary = yes
+}

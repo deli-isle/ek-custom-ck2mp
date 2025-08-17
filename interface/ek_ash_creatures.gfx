@@ -1,0 +1,57 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_trait_ash_vampire"
+		texturefile = "gfx/traits/corprus_creature_7_dagoth.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	
+	spriteType = {
+		name = "GFX_trait_ascended_sleeper"
+		texturefile = "gfx/traits/corprus_creature_6_dagoth.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	
+	spriteType = {
+		name = "GFX_trait_ash_ghoul"
+		texturefile = "gfx/traits/corprus_creature_5_dagoth.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	
+	spriteType = {
+		name = "GFX_trait_ash_zombie"
+		texturefile = "gfx/traits/corprus_creature_4_dagoth.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	
+	spriteType = {
+		name = "GFX_trait_ash_slave"
+		texturefile = "gfx/traits/corprus_creature_3_dagoth.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	
+	spriteType = {
+		name = "GFX_trait_lame_corprus"
+		texturefile = "gfx/traits/corprus_creature_2_dagoth.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+	
+	spriteType = {
+		name = "GFX_trait_corprus_stalker"
+		texturefile = "gfx/traits/corprus_creature_1_dagoth.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx/FX/buttonstate.lua"
+	}
+}

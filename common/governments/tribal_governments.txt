@@ -38,6 +38,7 @@ tribal_governments = {
 				controls_religion = yes
 				NOT = { religion = pyandoneaic } #"Caliphate"
 				NOT = { religion = riddlethar } #"Caliphate"
+				NOT = { religion = dragon_cult } #"Caliphate"
 			}
 			is_patrician = no
 			mercenary = no
@@ -146,6 +147,7 @@ tribal_governments = {
 		
 		potential = {
 			trait = undead
+			NOT = { trait = dce_undead }
 			OR = {
 				independent = yes
 				liege = { government = undead_government }

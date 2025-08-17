@@ -1,0 +1,41 @@
+on_character_ask_to_join_society = { #When pressing the button to join a society
+	events = {
+		ancient_children.100 #Join society, send an event to the leader
+		dovah_in_soci.100 #Join society, send an event to the leader
+	}
+}
+
+on_five_year_pulse = {
+	events = {
+		ancient_children.110 #force AI characters join the society
+		dovah_in_soci.110 #force AI characters join the society
+	}
+}
+
+on_society_bi_yearly_pulse = {
+	events = {
+		ancient_children.230 #Specilization Rank Up
+		dovah_in_soci.230 #Specilization Rank Up
+		dce_shout.200 #Learning shouts
+		dce_misc.004 #Learn the Thu'um
+		dce_misc.006 #Education Rank-up
+	}
+}
+
+on_yearly_pulse = {
+	events = {
+		dce_patron_dragons.102 #Gives the AI a patron Dragon God
+	}
+}
+
+on_startup = {
+	events = {
+		dce_misc.002 #Dragon priest cleanup
+	}
+}
+
+on_death = {
+	events = {
+		dce_misc.011 #Fires the Substitute GM if the Religious leader dies
+	}
+}

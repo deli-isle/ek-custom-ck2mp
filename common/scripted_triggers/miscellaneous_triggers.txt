@@ -157,6 +157,9 @@ trade_route_post_trigger = {
 				province_id = 750 #Ratchata
 				province_id = 741 #Ang Het
 				province_id = 995 #Siman
+
+				province_id = 973 #Qul
+				province_id = 989 #Lividur
 			}
 		}
 	}

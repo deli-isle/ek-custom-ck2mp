@@ -780,3 +780,27 @@ character_event = {  #spawning son age 0
     	}
 	}
 }
+
+# ------ REMOVING FLAGS ------ #
+character_event = {
+    id = debugcommand.200
+    desc = "Give immortal_no_cheat"
+    is_triggered_only = yes
+
+    option = {
+        name = "Done"
+        set_character_flag = immortal_no_cheat
+    }
+}
+
+character_event = {
+    id = debugcommand.201
+    desc = "Remove immortal_no_cheats"
+    is_triggered_only = yes
+
+    option = {
+        name = "Done"
+        clr_character_flag = immortal_no_cheats
+		clr_character_flag = immortal_no_cheat
+    }
+}

@@ -1,0 +1,1498 @@
+namespace = ATM 
+# 001
+
+# Set Up #
+
+character_event = { # Atmoran #
+	id = ATM.00101
+	title = ATM.00101.title
+	desc = ATM.00101.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Bloodline Not Claimed #
+		name = ATM.00101.optA
+		trigger = {
+			NOT = {
+				has_global_flag = ysgramor_reborn
+			}
+		}
+		character_event = {
+			id = ATM.00103
+		}
+	}
+	
+	option = { # Bloodline Claimed #
+		name = ATM.00101.optB
+		trigger = {
+			has_global_flag = ysgramor_reborn
+		}
+		character_event = {
+			id = ATM.00104
+		}
+	}
+}
+
+character_event = { # Companions #
+	id = ATM.00102
+	title = ATM.00102.title
+	desc = ATM.00102.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Bloodline Not Claimed #
+		name = ATM.00102.optA
+		trigger = {
+			NOT = {
+				has_global_flag = ysgramor_reborn
+			}
+		}
+		character_event = {
+			id = ATM.00103
+		}
+	}
+	
+	option = { # Bloodline Claimed #
+		name = ATM.00102.optB
+		trigger = {
+			has_global_flag = ysgramor_reborn
+		}
+		character_event = {
+			id = ATM.00104
+		}
+	}
+}
+
+# Before entering the Tomb #
+
+character_event = { # Bloodline not claimed #
+	id = ATM.00103
+	title = ATM.00103.title
+	desc = ATM.00103.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Default #
+		name = ATM.00103.optA
+		trigger = {
+			ai = no
+		}
+		character_event = {
+			id = ATM.00105
+		}
+	}
+	
+	option = { # Has Wuuthrad #
+		name = ATM.00103.optB
+		trigger = {
+			has_artifact = weapon_axe_wuuthrad
+		}
+		character_event = {
+			id = ATM.00107
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	
+	option = { # Pay Respects #
+		name = ATM.00103.optC
+		character_event = {
+			id = ATM.00106
+		}
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 0
+				has_artifact = weapon_axe_wuuthrad
+			}
+		}
+	}
+}
+
+character_event = { # Bloodline already claimed #
+	id = ATM.00104
+	title = ATM.00104.title
+	desc = ATM.00104.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Pay Respects #
+		name = ATM.00104.optA
+		character_event = {
+			id = ATM.00106
+		}
+	}
+}
+
+character_event = { # Default #
+	id = ATM.00105
+	title = ATM.00105.title
+	desc = ATM.00105.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Has Wuuthrad #
+		name = ATM.00105.optA
+		trigger = {
+			has_artifact = weapon_axe_wuuthrad
+		}
+		character_event = {
+			id = ATM.00107
+		}
+	}
+	
+	option = { # Pay Respects #
+		name = ATM.00105.optB
+		character_event = {
+			id = ATM.00106
+		}
+	}
+}
+
+character_event = { # Pay Respects
+	id = ATM.00106
+	title = ATM.00106.title
+	desc = ATM.00106.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Pay Respects #
+		name = ATM.00106.optA
+		character_event = {
+			id = ATM.00140
+		}
+		remove_character_flag = journey_to_ysgramors_tomb
+		add_character_modifier = {
+			name = respects_paid_to_ysgramor
+			months = 120
+		}
+	}
+}
+
+# Entrance into the Tomb #
+
+character_event = { # Has Wuuthrad #
+	id = ATM.00107
+	title = ATM.00107.title
+	desc = ATM.00107.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	immediate = {
+        set_global_flag = wuuthrad_trial_active
+    }
+	
+	option = {
+		name = ATM.00107.optA
+		trigger = {
+			NOT = {
+				is_in_society = yes
+				society_member_of = companions_tamriel
+				is_society_grandmaster = yes
+			}
+		}
+		hidden_tooltip = { destroy_artifact = weapon_axe_wuuthrad }
+		random_list = {
+			50 = {
+				character_event = {
+					id = ATM.00108
+				}
+			}
+			50 = {
+				character_event = {
+					id = ATM.00109
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = ATM.00107.optB
+		trigger = {
+			is_in_society = yes
+			society_member_of = companions_tamriel
+			is_society_grandmaster = yes
+		}
+		hidden_tooltip = {
+			destroy_artifact = weapon_axe_wuuthrad
+		}
+		random_list = {
+			50 = {
+				character_event = {
+					id = ATM.00108
+				}
+			}
+			50 = {
+				character_event = {
+					id = ATM.00110
+				}
+			}
+		}
+	}
+}
+
+character_event = { # Trial: The Companions #
+	id = ATM.00108
+	title = ATM.00108.title
+	desc = ATM.00108.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # By Right of Arms #
+		name = ATM.00108.optA
+		custom_tooltip = {
+			text = ATM.00108.Martial
+			random_list = {
+				70 = { # Success
+					random = {
+						chance = 30
+						modifier = {
+							factor = 0.5
+							adv_is_excellent_combatant = yes
+						}
+						modifier = {
+							factor = 0.75
+							adv_is_superior_combatant = yes
+						}
+						modifier = {
+							factor = 1.25
+							adv_is_poor_combatant = yes
+						}
+						modifier = {
+							factor = 0.8
+							trait = lucky
+						}
+						adventure_wound_effect = yes
+					}
+					modifier = {
+						factor = 1.5
+						adv_is_excellent_combatant = yes
+					}
+					modifier = {
+						factor = 1.3
+						adv_is_superior_combatant = yes
+					}
+					modifier = {
+						factor = 1.1
+						adv_is_average_combatant = yes
+					}
+					modifier = {
+						factor = 0.5
+						adv_is_poor_combatant = yes
+					}
+					modifier = {
+						factor = 1.1
+						trait = lucky
+					}
+					character_event = {
+						id = ATM.00111
+					}
+				}
+				30 = { # Failure
+					modifier = {
+						factor = 1.5
+						always = yes
+					}
+					modifier = {
+						factor = 5
+						NOR = {
+							adventurer_has_non_normal_weapon = yes
+							is_mage = yes
+						}
+					}
+					character_event = {
+						id = ATM.00112
+					}
+				}
+			}
+		}
+	}
+	
+	option = { # By Right of Deed #
+		name = ATM.00108.optB
+		tooltip_info = diplomacy
+		custom_tooltip = {
+			text = ATM.00108.Diplomacy
+			random_list = {
+				70 = { # Success
+					modifier = {
+						factor = 1.5
+						adv_is_excellent_diplomat = yes
+					}
+					modifier = {
+						factor = 1.3
+						adv_is_superior_diplomat = yes
+					}
+					modifier = {
+						factor = 1.1
+						adv_is_average_diplomat = yes
+					}
+					modifier = {
+						factor = 0.8
+						adv_is_poor_diplomat = yes
+					}
+					modifier = {
+						factor = 1.1
+						trait = lucky
+					}
+					character_event = {
+						id = ATM.00113
+					}
+				}
+				30 = { # Failure
+					modifier = {
+						factor = 1.5
+						always = yes
+					}
+					character_event = {
+						id = ATM.00114
+					}
+				}
+			}
+		}	
+	}
+	
+	option = { # By Right of Status #
+		name = ATM.00108.optC
+		if = {
+			limit = {
+				is_in_society = yes
+				society_member_of = companions_tamriel
+				is_society_grandmaster = yes
+			}
+			character_event = {
+				id = ATM.00116
+			}
+		}
+		else = {
+			character_event = {
+				id = ATM.00115
+			}
+		}
+	}
+	
+	option = { # Run Away #
+		name = ATM.00108.optD
+		character_event = {
+			id = ATM.00117
+		}
+	}
+}
+
+character_event = { # Trial: Atmoran Spiders #
+	id = ATM.00109
+	title = ATM.00109.title
+	desc = ATM.00109.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Through Fire and War #
+		name = ATM.00109.optA
+		tooltip_info = combat_rating
+		custom_tooltip = {
+			text = ATM.00109.Martial
+			random_list = {
+				70 = { # Success
+					random = {
+						chance = 30
+						modifier = {
+							factor = 0.5
+							adv_is_excellent_combatant = yes
+						}
+						modifier = {
+							factor = 0.75
+							adv_is_superior_combatant = yes
+						}
+						modifier = {
+							factor = 1.25
+							adv_is_poor_combatant = yes
+						}
+						modifier = {
+							factor = 0.8
+							trait = lucky
+						}
+						adventure_wound_effect = yes
+					}
+					modifier = {
+						factor = 1.5
+						adv_is_excellent_combatant = yes
+					}
+					modifier = {
+						factor = 1.3
+						adv_is_superior_combatant = yes
+					}
+					modifier = {
+						factor = 1.1
+						adv_is_average_combatant = yes
+					}
+					modifier = {
+						factor = 0.5
+						adv_is_poor_combatant = yes
+					}
+					modifier = {
+						factor = 1.1
+						trait = lucky
+					}
+					character_event = {
+						id = ATM.00118
+					}
+				}
+				30 = { # Failure
+					character_event = {
+						id = ATM.00119
+					}
+				}
+			}
+		}
+		
+	}
+	
+	option = { # A Lesson in Shadows #
+		name = ATM.00109.optB
+		tooltip_info = intrigue
+		custom_tooltip = {
+			text = ATM.00109.Intrigue
+			random_list = {
+				70 = { # Success
+					modifier = {
+						factor = 1.5
+						adv_is_excellent_agent = yes
+					}
+					modifier = {
+						factor = 1.3
+						adv_is_superior_agent = yes
+					}
+					modifier = {
+						factor = 1.1
+						adv_is_average_agent = yes
+					}
+					modifier = {
+						factor = 0.8
+						adv_is_poor_agent = yes
+					}
+					modifier = {
+						factor = 1.1
+						trait = lucky
+					}
+					character_event = {
+						id = ATM.00120
+					}
+				}
+				30 = { # Failure
+					character_event = {
+						id = ATM.00121
+					}
+				}
+			}
+		}
+		
+	}
+	
+	option = { # Run Away #
+		name = ATM.00109.optC
+		character_event = {
+			id = ATM.00122
+		}
+	}
+}
+
+character_event = { # Trial: Harbinger Spiders #
+	id = ATM.00110
+	title = ATM.00110.title
+	desc = ATM.00110.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = { # Through Fire and War #
+		name = ATM.00110.optA
+		tooltip_info = combat_rating
+		custom_tooltip = {
+			text = ATM.00110.Martial
+			random_list = {
+				70 = { # Success
+					random = {
+						chance = 30
+						modifier = {
+							factor = 0.5
+							adv_is_excellent_combatant = yes
+						}
+						modifier = {
+							factor = 0.75
+							adv_is_superior_combatant = yes
+						}
+						modifier = {
+							factor = 1.25
+							adv_is_poor_combatant = yes
+						}
+						modifier = {
+							factor = 0.8
+							trait = lucky
+						}
+						adventure_wound_effect = yes
+					}
+					modifier = {
+						factor = 1.5
+						adv_is_excellent_combatant = yes
+					}
+					modifier = {
+						factor = 1.3
+						adv_is_superior_combatant = yes
+					}
+					modifier = {
+						factor = 1.1
+						adv_is_average_combatant = yes
+					}
+					modifier = {
+						factor = 0.5
+						adv_is_poor_combatant = yes
+					}
+					modifier = {
+						factor = 1.1
+						trait = lucky
+					}
+					character_event = {
+						id = ATM.00123
+					}
+				}
+				30 = { # Failure
+					character_event = {
+						id = ATM.00124
+					}
+				}
+			}
+		}
+		
+	}
+	
+	option = { # A Lesson in Shadows #
+		name = ATM.00110.optB
+		tooltip_info = intrigue
+		custom_tooltip = {
+			text = ATM.00110.Intrigue
+			random_list = {
+				70 = { # Success
+					modifier = {
+						factor = 1.5
+						adv_is_excellent_agent = yes
+					}
+					modifier = {
+						factor = 1.3
+						adv_is_superior_agent = yes
+					}
+					modifier = {
+						factor = 1.1
+						adv_is_average_agent = yes
+					}
+					modifier = {
+						factor = 0.8
+						adv_is_poor_agent = yes
+					}
+					modifier = {
+						factor = 1.1
+						trait = lucky
+					}
+					character_event = {
+						id = ATM.00125
+					}
+				}
+				30 = { # Failure
+					character_event = {
+						id = ATM.00126
+					}
+				}
+			}
+		}
+	}
+	
+	option = { # Run Away #
+		name = ATM.00110.optC
+		character_event = {
+			id = ATM.00127
+		}
+	}
+}
+
+# The Trial Complete #
+
+character_event = { # Trial: The Companions By Right of Arms Success #
+	id = ATM.00111
+	title = ATM.00111.title
+	desc = ATM.00111.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00111.optA
+		character_event = {
+			id = ATM.00128
+		}
+	}
+}
+
+character_event = { # Trial: The Companions By Right of Arms Failure #
+	id = ATM.00112
+	title = ATM.00112.title
+	desc = ATM.00112.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00112.optA
+		character_event = {
+			id = ATM.00135
+		}
+	}
+}
+
+character_event = { # Trial: The Companions By Right of Deed Success #
+	id = ATM.00113
+	title = ATM.00113.title
+	desc = ATM.00113.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00113.optA
+		character_event = {
+			id = ATM.00128
+		}
+	}
+}
+
+character_event = { # Trial: The Companions By Right of Deed Failure #
+	id = ATM.00114
+	title = ATM.00114.title
+	desc = ATM.00114.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00114.optA
+		character_event = {
+			id = ATM.00135
+		}
+	}
+}
+
+character_event = { # Trial: The Companions By Right of Status Atmoran #
+	id = ATM.00115
+	title = ATM.00115.title
+	desc = ATM.00115.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00115.optA
+		character_event = {
+			id = ATM.00117
+		}
+	}
+	
+	option = {
+		name = ATM.00115.optB
+		random_list = {
+			70 = { # Success
+				random = {
+					chance = 30
+					modifier = {
+						factor = 0.5
+						adv_is_excellent_combatant = yes
+					}
+					modifier = {
+						factor = 0.75
+						adv_is_superior_combatant = yes
+					}
+					modifier = {
+						factor = 1.25
+						adv_is_poor_combatant = yes
+					}
+					modifier = {
+						factor = 0.8
+						trait = lucky
+					}
+					adventure_wound_effect = yes
+				}
+				modifier = {
+					factor = 1.5
+					adv_is_excellent_combatant = yes
+				}
+				modifier = {
+					factor = 1.3
+					adv_is_superior_combatant = yes
+				}
+				modifier = {
+					factor = 1.1
+					adv_is_average_combatant = yes
+				}
+				modifier = {
+					factor = 0.5
+					adv_is_poor_combatant = yes
+				}
+				modifier = {
+					factor = 1.1
+					trait = lucky
+				}
+				character_event = {
+					id = ATM.00128
+				}
+			}
+			30 = { # Failure
+				random = {
+					chance = 60
+					modifier = {
+						factor = 0.5
+						adv_is_excellent_combatant = yes
+					}
+					modifier = {
+						factor = 0.75
+						adv_is_superior_combatant = yes
+					}
+					modifier = {
+						factor = 1.25
+						adv_is_poor_combatant = yes
+					}
+					modifier = {
+						factor = 0.8
+						trait = lucky
+					}
+					adventure_wound_effect = yes
+				}
+				modifier = {
+					factor = 3
+					always = yes
+				}
+				modifier = {
+					factor = 5
+					NOR = {
+						adventurer_has_non_normal_weapon = yes
+						is_mage = yes
+					}
+				}
+				character_event = {
+					id = ATM.00112
+				}
+			}
+		}
+	}
+}
+
+character_event = { # Trial: The Companions By Right of Status Companions #
+	id = ATM.00116
+	title = ATM.00116.title
+	desc = ATM.00116.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00116.optA
+		character_event = {
+			id = ATM.00117
+		}
+	}
+
+	option = {
+		name = ATM.00116.optB
+		random_list = {
+			70 = { # Success
+				random = {
+					chance = 30
+					modifier = {
+						factor = 0.5
+						adv_is_excellent_combatant = yes
+					}
+					modifier = {
+						factor = 0.75
+						adv_is_superior_combatant = yes
+					}
+					modifier = {
+						factor = 1.25
+						adv_is_poor_combatant = yes
+					}
+					modifier = {
+						factor = 0.8
+						trait = lucky
+					}
+					adventure_wound_effect = yes
+				}
+				modifier = {
+					factor = 1.5
+					adv_is_excellent_combatant = yes
+				}
+				modifier = {
+					factor = 1.3
+					adv_is_superior_combatant = yes
+				}
+				modifier = {
+					factor = 1.1
+					adv_is_average_combatant = yes
+				}
+				modifier = {
+					factor = 0.5
+					adv_is_poor_combatant = yes
+				}
+				modifier = {
+					factor = 1.1
+					trait = lucky
+				}
+				character_event = {
+					id = ATM.00128
+				}
+			}
+			30 = { # Failure
+				random = {
+					chance = 60
+					modifier = {
+						factor = 0.5
+						adv_is_excellent_combatant = yes
+					}
+					modifier = {
+						factor = 0.75
+						adv_is_superior_combatant = yes
+					}
+					modifier = {
+						factor = 1.25
+						adv_is_poor_combatant = yes
+					}
+					modifier = {
+						factor = 0.8
+						trait = lucky
+					}
+					adventure_wound_effect = yes
+				}
+				modifier = {
+					factor = 3
+					always = yes
+				}
+				modifier = {
+					factor = 5
+					NOR = {
+						adventurer_has_non_normal_weapon = yes
+						is_mage = yes
+					}
+				}
+				character_event = {
+					id = ATM.00112
+				}
+			}
+		}
+	}
+}
+
+character_event = { # Trial: The Companions Ran Away #
+	id = ATM.00117
+	title = ATM.00117.title
+	desc = ATM.00117.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00117.optA
+		character_event = {
+			id = ATM.00134
+		}
+	}
+}
+
+character_event = { # Trial: Atmoran Spiders Through Fire and War Success #
+	id = ATM.00118
+	title = ATM.00118.title
+	desc = ATM.00118.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00118.optA
+		character_event = {
+			id = ATM.00129
+		}
+	}
+}
+
+character_event = { # Trial: Atmoran Spiders Through Fire and War Failure #
+	id = ATM.00119
+	title = ATM.00119.title
+	desc = ATM.00119.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00119.optA
+		 random_list = {
+        	75 = { 
+				add_trait = severely_injured
+				character_event = { id = ATM.00136 }
+				}
+        	25 = { 
+				death = { death_reason = death_battle } 
+				clr_global_flag = wuuthrad_trial_active
+				clr_character_flag = journey_to_ysgramors_tomb
+			}
+		 }
+	}
+}
+
+character_event = { # Trial: Atmoran Spiders A Lesson in Shadows Success #
+	id = ATM.00120
+	title = ATM.00120.title
+	desc = ATM.00120.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00120.optA
+		character_event = {
+			id = ATM.00129
+		}
+	}
+}
+
+character_event = { # Trial: Atmoran Spiders A Lesson in Shadows Failure #
+	id = ATM.00121
+	title = ATM.00121.title
+	desc = ATM.00121.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+        name = ATM.00121.optA
+
+        random_list = {
+            75 = { 
+				add_trait = severely_injured
+				character_event = { id = ATM.00136 }
+			}
+        	25 = { 
+				death = { death_reason = death_mysterious } 
+				clr_global_flag = wuuthrad_trial_active
+				clr_character_flag = journey_to_ysgramors_tomb
+			}
+        }
+    }
+
+}
+
+character_event = { # Trial: Atmoran Spiders Run Away #
+	id = ATM.00122
+	title = ATM.00122.title
+	desc = ATM.00122.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00122.optA
+
+		random = {
+        	chance = 70
+        	add_trait = wounded
+		}
+
+		if = {
+        	limit = { has_artifact = weapon_axe_wuuthrad }
+        	random = {
+            	chance = 25
+            	hidden_tooltip = { destroy_artifact = weapon_axe_wuuthrad }
+        	}
+    	}
+		
+		character_event = {
+			id = ATM.00134
+		}
+	}
+}
+
+character_event = { # Trial: Harbinger Spiders Through Fire and War Success #
+	id = ATM.00123
+	title = ATM.00123.title
+	desc = ATM.00123.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00123.optA
+		character_event = {
+			id = ATM.00130
+		}
+	}
+}
+
+character_event = { # Trial: Harbinger Spiders Through Fire and War Failure #
+	id = ATM.00124
+	title = ATM.00124.title
+	desc = ATM.00124.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00124.optA
+
+    	random_list = {
+        	75 = { 
+				add_trait = severely_injured
+				character_event = {
+					id = ATM.00137
+					}
+				}
+        	25 = { 
+				death = { death_reason = death_battle } 
+				clr_global_flag = wuuthrad_trial_active
+				clr_character_flag = journey_to_ysgramors_tomb
+			}
+    	}
+	}
+}
+
+character_event = { # Trial: Harbinger Spiders A Lesson in Shadows Success #
+	id = ATM.00125
+	title = ATM.00125.title
+	desc = ATM.00125.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00125.optA
+		character_event = {
+			id = ATM.00130
+		}
+	}
+}
+
+character_event = { # Trial: Harbinger Spiders A Lesson in Shadows Failure #
+	id = ATM.00126
+	title = ATM.00126.title
+	desc = ATM.00126.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00126.optA
+		random_list = {
+         80 = {
+            add_trait = severely_injured
+            character_event = { id = ATM.00137 }
+			}
+        20 = { 
+				death = { death_reason = death_mysterious } 
+				clr_global_flag = wuuthrad_trial_active
+				clr_character_flag = journey_to_ysgramors_tomb
+			}
+		 }
+	}
+}
+
+character_event = { # Trial: Harbinger Spiders, Run Away #
+	id = ATM.00127
+	title = ATM.00127.title
+	desc = ATM.00127.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ATM.00127.optA
+    	random = { chance = 70 add_trait = wounded }
+		if = {
+			limit = { has_artifact = weapon_axe_wuuthrad }
+			random = { chance = 25 hidden_tooltip = { destroy_artifact = weapon_axe_wuuthrad } }
+		}
+		character_event = { id = ATM.00134 }
+	}
+}
+
+# Hall of the Harbingers #
+
+character_event = { # The Companions Succeeded #
+	id = ATM.00128
+	title = ATM.00128.title
+	desc = ATM.00128.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00128.optA
+		character_event = {
+			id = ATM.00131
+		}
+	}
+}
+
+character_event = { # The Atmoran Spiders Succeeded #
+	id = ATM.00129
+	title = ATM.00129.title
+	desc = ATM.00129.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00129.optA
+		character_event = {
+			id = ATM.00131
+		}
+	}
+}
+
+character_event = { # The Harbinger Spiders Succeeded #
+	id = ATM.00130
+	title = ATM.00130.title
+	desc = ATM.00130.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00130.optA
+		character_event = {
+			id = ATM.00131
+		}
+	}
+}
+
+character_event = { # The Hall of Ysgramor #
+	id = ATM.00131
+	title = ATM.00131.title
+	desc = ATM.00131.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00131.optA
+		hidden_tooltip = {
+			random_list = {
+				50 = {
+					character_event = {
+						id = ATM.00132
+					}
+				}
+				50 = {
+					character_event = {
+						id = ATM.00133
+					}
+				}
+			}
+		}
+	}
+}
+
+character_event = { # Ysgramor Accepts #
+	id = ATM.00132
+	title = ATM.00132.title
+	desc = ATM.00132.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00132.optA
+		c_210072 = { random_owned_bloodline = { ROOT = { add_to_bloodline = PREV } } }
+        hidden_tooltip = {
+            any_character = {
+                limit = {
+                    is_descendant_of = ROOT
+                }
+                c_210072 = { random_owned_bloodline = { ROOT = { add_to_bloodline = PREV } } }
+            }
+        }
+        custom_tooltip = {
+            text = ATM.00132.Bloodline
+            character_event = {
+                id = ATM.00139
+            }
+			prestige = 500
+        }
+	}
+}
+
+character_event = { # Ysgramor Rejects #
+	id = ATM.00133
+	title = ATM.00133.title
+	desc = ATM.00133.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00133.optA
+		character_event = {
+			id = ATM.00138
+		}
+		prestige = -5000
+	}
+}
+
+
+# Leaving #
+
+character_event = { # Chose to Leave #
+	id = ATM.00134
+	title = ATM.00134.title
+	desc = ATM.00134.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00134.optA
+		hidden_tooltip = { add_artifact = weapon_axe_wuuthrad }
+		clr_global_flag = wuuthrad_trial_active
+		clr_character_flag = journey_to_ysgramors_tomb
+		set_global_flag = wuuthrad_claimed
+	}
+}
+
+character_event = { # Companions Failure #
+	id = ATM.00135
+	title = ATM.00135.title
+	desc = ATM.00135.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00135.optA
+		hidden_tooltip = { add_artifact = weapon_axe_wuuthrad }
+		clr_global_flag = wuuthrad_trial_active
+		clr_character_flag = journey_to_ysgramors_tomb
+		set_global_flag = wuuthrad_claimed
+	}
+}
+
+character_event = { # Atmoran Spider Failure #
+	id = ATM.00136
+	title = ATM.00136.title
+	desc = ATM.00136.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00136.optA
+		hidden_tooltip = { add_artifact = weapon_axe_wuuthrad }
+		clr_global_flag = wuuthrad_trial_active
+		clr_character_flag = journey_to_ysgramors_tomb
+		set_global_flag = wuuthrad_claimed
+	}
+}
+
+character_event = { # Harbinger Spider Failure #
+	id = ATM.00137
+	title = ATM.00137.title
+	desc = ATM.00137.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00137.optA
+		hidden_tooltip = { add_artifact = weapon_axe_wuuthrad }
+		clr_global_flag = wuuthrad_trial_active
+		clr_character_flag = journey_to_ysgramors_tomb
+		set_global_flag = wuuthrad_claimed
+	}
+}
+
+character_event = { # Failure at the last Hurdle #
+	id = ATM.00138
+	title = ATM.00138.title
+	desc = ATM.00138.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00138.optA
+		add_character_modifier = {
+			name = ysgramor_rejected_you
+			months = 120
+		}
+		hidden_tooltip = { add_artifact = weapon_axe_wuuthrad }
+		clr_global_flag = wuuthrad_trial_active
+		clr_character_flag = journey_to_ysgramors_tomb
+		set_global_flag = wuuthrad_claimed
+	}
+}
+
+character_event = { # Success #
+	id = ATM.00139
+	title = ATM.00139.title
+	desc = ATM.00139.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00139.optA
+  		custom_tooltip = {
+    		text = ATM_00139.Artifacts
+    		add_artifact = weapon_axe_wuuthrad
+    		add_artifact = shield_ysgramor
+    		add_character_modifier = { name = respects_paid_to_ysgramor months = 60 }
+		}
+
+		clr_global_flag = wuuthrad_trial_active
+  		clr_character_flag = journey_to_ysgramors_tomb
+  		set_global_flag = wuuthrad_claimed
+  		set_global_flag = ysgramor_reborn
+	}
+}
+
+character_event = { # Paid Respects #
+	id = ATM.00140
+	title = ATM.00140.title
+	desc = ATM.00140.desc
+	 
+	picture = GFX_evt_ev_skaal_village
+	
+	hide_from = yes
+	hide_new = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = ATM.00140.optA
+	}
+}

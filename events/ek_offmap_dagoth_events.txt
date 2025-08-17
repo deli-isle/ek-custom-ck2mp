@@ -1,0 +1,1291 @@
+#Dagoth offmap events - REQUIRE JADE DRAGON#
+
+namespace = ekdagoth
+
+#Ping the character donating
+character_event = {
+	id = ekdagoth.10
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		religion_head = { character_event = { id = ekdagoth.11 } }
+	}
+}
+#Donating to Dagoth temple - Ping Dreamer
+character_event = {
+	id = ekdagoth.11
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		FROM = { letter_event = { id = ekdagoth.15 } }
+	}
+}
+letter_event = {
+	id = ekdagoth.15
+	desc = EKDagoth15
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	option = {
+		name = EKDagoth15Accept
+		piety = 25
+		if = {
+			limit = {
+				dagoth_voryn = {
+					NOT = { has_status = dagoth_0 }
+				}
+			}
+			add_offmap_currency = {
+				offmap = dagoth_voryn
+				value = 75
+			}
+		}
+	}
+}
+
+#Show Trial - fired on prisoner
+long_character_event = {
+	id = ekdagoth.50
+	desc = EKDagoth50
+	picture = GFX_evt_scandal
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	option = {
+		name = EKDagoth50Accept
+		opinion = {
+			modifier = opinion_show_trial_defendant
+			who = FROMFROM
+		}
+		clr_character_flag = dagoth_show_trial_defendant
+		prisoner = no
+		FROMFROM = {
+			long_character_event = { id = ekdagoth.52 }
+		}
+	}
+}
+long_character_event = {
+	id = ekdagoth.52
+	desc = EKDagoth52
+	picture = GFX_evt_scandal
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	option = {
+		name = EKDagoth52Accept
+		if = {
+			limit = {
+				FROMFROM = {
+					is_offmap_tag = dagoth_voryn
+				}
+			}
+			add_offmap_currency = {
+				offmap = dagoth_voryn
+				value = local_third_party_score
+			}
+		}
+	}
+}
+
+#Dagoth defeats negative province modifiers
+narrative_event = {
+	id = ekdagoth.305
+	title = EKDagoth305Title
+	desc = EKDagoth305
+	picture = GFX_evt_dagoth
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		if = {
+			limit = { FROM = { is_offmap_tag = dagoth_voryn } }
+			dagoth_voryn = {
+				offmap_ruler = {
+					save_event_target_as = dagoth_peacemaker
+				}
+			}
+		}
+	}
+	
+	portrait = event_target:dagoth_peacemaker
+	
+	option = {
+		name = EKDagoth305Accept
+		custom_tooltip = {
+			text = Dagoth305Clearance
+			hidden_tooltip = {
+				any_demesne_province = {
+					if = {
+						limit = { has_province_modifier = goblin_infestation }
+						remove_province_modifier = goblin_infestation
+					}
+					if = {
+						limit = { has_province_modifier = falmer_infestation }
+						remove_province_modifier = falmer_infestation
+					}
+					if = {
+						limit = { has_province_modifier = skeever_infestation }
+						remove_province_modifier = skeever_infestation
+					}
+					if = {
+						limit = { has_province_modifier = kwama_infestation }
+						remove_province_modifier = kwama_infestation
+					}
+					if = {
+						limit = { has_province_modifier = undead_infestation }
+						remove_province_modifier = undead_infestation
+					}
+					if = {
+						limit = { has_province_modifier = lycan_infestation }
+						remove_province_modifier = lycan_infestation
+					}
+					if = {
+						limit = { has_province_modifier = vampire_infestation }
+						remove_province_modifier = vampire_infestation
+					}
+					if = {
+						limit = { has_province_modifier = highway_robber_band }
+						remove_province_modifier = highway_robber_band
+					}
+					if = {
+						limit = { has_province_modifier = trolls }
+						remove_province_modifier = trolls
+					}
+					if = {
+						limit = { has_province_modifier = giants }
+						remove_province_modifier = giants
+					}
+				}
+				clr_character_flag = dagoth_decision_pending
+			}
+		}
+	}
+}
+
+narrative_event = {
+	id = ekdagoth.310
+	title = EKDagoth310Title
+	desc = EKDagoth310
+	picture = GFX_evt_battle
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		k_sixthhouse = {
+			holder_scope = { save_event_target_as = dagoth_dreamer }
+		}
+	}
+	
+	portrait = event_target:dagoth_dreamer
+	
+	option = {
+		name = EKDagoth310Accept
+		custom_tooltip = {
+			text = EKDagoth310Clearance
+			hidden_tooltip = {
+				any_demesne_province = {
+					add_province_modifier = { 
+						name = dagoth_dreams 
+						duration = 3650 
+					}
+				}
+				if = { #test not sure what it does
+					limit = {
+						any_realm_character = {
+							is_landed = yes
+							higher_tier_than = BARON
+							religion = sixth_house
+						}
+					}
+					any_realm_character = {
+						limit = {
+							is_landed = yes
+							higher_tier_than = BARON
+							religion = sixth_house
+						}
+						narrative_event = { id = ekdagoth.311 } #test shouldnt it be under next bracket
+					}
+				}
+				clr_character_flag = dagoth_decision_pending
+			}
+		}
+	}
+}
+narrative_event = {
+	id = ekdagoth.311
+	title = EKDagoth311Title
+	desc = EKDagoth311
+	picture = GFX_evt_battle
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	option = {
+		name = EKDagoth311Accept
+		custom_tooltip = {
+			text = EKDagoth311Clearance
+			hidden_tooltip = {
+				any_demesne_province = {
+					add_province_modifier = { 
+						name = dagoth_dreams 
+						duration = 3650 
+					}
+				}
+			}
+		}
+	}
+}
+
+narrative_event = {
+	id = ekdagoth.325
+	title = EKDagoth325Title
+	desc = EKDagoth325
+	picture = GFX_evt_battle
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		if = {
+			limit = { FROM = { is_offmap_tag = dagoth_voryn } }
+			dagoth_voryn = {
+				offmap_ruler = {
+					save_event_target_as = dagoth_forces
+				}
+			}
+		}
+	}
+	
+	portrait = event_target:dagoth_forces
+	
+	option = {
+		name = EKDagoth325Accept
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_10
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.25
+						match_min = 500
+						match_max = 2500
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.25
+						match_min = 500
+						match_max = 2500
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.25
+						match_min = 500
+						match_max = 2500
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_9
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.225
+						match_min = 475
+						match_max = 2375
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.225
+						match_min = 475
+						match_max = 2375
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.225
+						match_min = 475
+						match_max = 2375
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_8
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.2
+						match_min = 450
+						match_max = 2250
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.2
+						match_min = 450
+						match_max = 2250
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.2
+						match_min = 450
+						match_max = 2250
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_7
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.175
+						match_min = 425
+						match_max = 2125
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.175
+						match_min = 425
+						match_max = 2125
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.175
+						match_min = 425
+						match_max = 2125
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_6
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.15
+						match_min = 400
+						match_max = 2000
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.15
+						match_min = 400
+						match_max = 2000
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.15
+						match_min = 400
+						match_max = 2000
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_5
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.125
+						match_min = 375
+						match_max = 1875
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.125
+						match_min = 375
+						match_max = 1875
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.125
+						match_min = 375
+						match_max = 1875
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_4
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.1
+						match_min = 350
+						match_max = 1750
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.1
+						match_min = 350
+						match_max = 1750
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.1
+						match_min = 350
+						match_max = 1750
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_3
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.075
+						match_min = 325
+						match_max = 1625
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.075
+						match_min = 325
+						match_max = 1625
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.075
+						match_min = 325
+						match_max = 1625
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_2
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.05
+						match_min = 300
+						match_max = 1500
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.05
+						match_min = 300
+						match_max = 1500
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.05
+						match_min = 300
+						match_max = 1500
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}
+		if = {
+			limit = {
+				FROM = { is_offmap_tag = dagoth_voryn }
+				dagoth_voryn = {
+					has_status = dagoth_1
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.025
+						match_min = 250
+						match_max = 1250
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.025
+						match_min = 250
+						match_max = 1250
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+					spawn_unit = {
+						province = PREV
+						owner = ROOT
+						match_character = ROOT
+						troops = {
+							light_infantry = { 10 10 }
+							heavy_infantry = { 5 5 }
+							pikemen = { 5 5 }
+							archers = { 5 5 }
+							light_cavalry = { 3 3 }
+							knights = { 1 1 }
+							battlemages = { 3 3 }
+						}
+						match_mult = 0.025
+						match_min = 250
+						match_max = 1250
+						attrition = 1
+						disband_on_peace = yes
+						can_toggle_looting = no
+						earmark = dagoth_forces
+					}
+				}	
+			}
+		}	
+		clr_character_flag = dagoth_decision_pending
+	}
+}
+
+narrative_event = {
+	id = ekdagoth.340
+	title = EKDagoth340Title
+	desc = EKDagoth340
+	picture = GFX_trait_house_dagoth
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		dagoth_voryn = {
+			offmap_ruler = {
+				save_event_target_as = voryn_here
+			}
+		}
+	}
+	
+	portrait = event_target:voryn_here
+	
+	option = {
+		name = EKDagoth340Accept
+		if = { 
+			limit = { trait = depressed } 
+			remove_trait = depressed
+		}
+		if = { 
+			limit = { trait = stressed } 
+			remove_trait = stressed
+		}
+		if = { 
+			limit = { trait = lunatic } 
+			remove_trait = lunatic
+		}
+		if = { 
+			limit = { trait = possessed } 
+			remove_trait = possessed
+		}
+		clr_character_flag = dagoth_decision_pending
+	}
+}
+
+narrative_event = {
+	id = ekdagoth.345
+	title = EKDagoth345Title
+	desc = EKDagoth345
+	picture = GFX_trait_house_dagoth
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		dagoth_voryn = {
+			offmap_ruler = {
+				save_event_target_as = voryn_here
+			}
+		}
+	}
+	
+	portrait = event_target:voryn_here
+	
+	option = {
+		name = EKDagoth345Accept
+		add_character_modifier = { name = dagoth_voryn_blessing_modifier months = 120 }
+		clr_character_flag = dagoth_decision_pending
+	}
+}
+
+narrative_event = {
+	id = ekdagoth.350
+	title = EKDagoth350Title
+	desc = EKDagoth350
+	picture = GFX_trait_house_dagoth
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		dagoth_voryn = {
+			offmap_ruler = {
+				save_event_target_as = voryn_here
+			}
+		}
+	}
+	
+	portrait = event_target:voryn_here
+	
+	option = {
+		name = EKDagoth350Accept
+		custom_tooltip = {
+			text = EKDagoth350Tooltip
+			hidden_tooltip = {
+				remove_disease_trait_effect = yes
+				remove_treatment_modifiers_effect = yes
+				remove_disease_flags_effect = yes
+				clr_character_flag = dagoth_decision_pending
+			}
+		}
+	}
+}
+
+narrative_event = {
+	id = ekdagoth.360
+	title = EKDagoth360Title
+	desc = EKDagoth360
+	picture = GFX_evt_dagoth
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_dlc = "Jade Dragon"
+	}
+	
+	immediate = {
+		dagoth_voryn = {
+			offmap_ruler = {
+				save_event_target_as = voryn_corprus
+			}
+		}
+	}
+	
+	portrait = event_target:voryn_corprus
+	
+	option = {
+		name = EKDagoth360Corprus1
+		trigger = {
+			is_corprus_creature = no
+		}
+		add_trait = corprus_stalker
+		clr_character_flag = corprus_decision
+		hidden_tooltip = {
+            add_character_modifier = {
+                name = recently_improved_corprus
+                duration = 30 #1 month
+            }
+        }
+	}
+	
+	option = {
+		name = EKDagoth360Corprus2
+		trigger = {
+			trait = corprus_stalker
+		}
+		remove_trait = corprus_stalker
+		add_trait = lame_corprus
+		clr_character_flag = corprus_decision
+        hidden_tooltip = {
+            add_character_modifier = {
+                name = recently_improved_corprus
+                duration = 60 #2 months
+            }
+        }
+	}
+	
+	option = {
+		name = EKDagoth360Corprus3
+		trigger = {
+			trait = lame_corprus
+		}
+		remove_trait = lame_corprus
+		add_trait = ash_slave
+		clr_character_flag = corprus_decision
+		hidden_tooltip = {
+            add_character_modifier = {
+                name = recently_improved_corprus
+                duration = 365 #3 years
+            }
+        }
+	}
+	
+	option = {
+		name = EKDagoth360Corprus4
+		trigger = {
+			trait = ash_slave
+		}
+		remove_trait = ash_slave
+		add_trait = ash_zombie
+		clr_character_flag = corprus_decision
+		hidden_tooltip = {
+            add_character_modifier = {
+                name = recently_improved_corprus
+                duration = 1095 #5 years
+            }
+        }
+	}
+	
+	option = {
+		name = EKDagoth360Corprus5
+		trigger = {
+			trait = ash_zombie
+		}
+		remove_trait = ash_zombie
+		add_trait = ash_ghoul
+		clr_character_flag = corprus_decision
+		hidden_tooltip = {
+            add_character_modifier = {
+                name = recently_improved_corprus
+                duration = 3650 #10 years
+            }
+        }
+	}
+	
+	option = {
+		name = EKDagoth360Corprus6
+		trigger = {
+			trait = ash_ghoul
+		}
+		remove_trait = ash_ghoul
+		add_trait = ascended_sleeper
+		clr_character_flag = corprus_decision
+		hidden_tooltip = {
+            add_character_modifier = {
+                name = recently_improved_corprus
+                duration = 5475 #15 years
+            }
+        }
+	}
+	
+	option = {
+		name = EKDagoth360Corprus7
+		trigger = {
+			trait = ascended_sleeper
+		}
+		remove_trait = ascended_sleeper
+		add_trait = ash_vampire
+		clr_character_flag = corprus_decision
+	}
+	
+}

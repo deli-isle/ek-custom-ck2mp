@@ -1,0 +1,65 @@
+spriteTypes = {
+   # Raiders Guild #
+	
+	spriteType = {
+		name = "GFX_society_main_background_bear_guild"
+		texturefile = "gfx\\interface\\societies\\society_bg_bear_guild.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_atmoran_raiders_ranks"
+		texturefile = "gfx\\interface\\societies\\rank_icons_bear_guild.dds"
+		noOfFrames = 5
+	}
+	
+	spriteType = {
+		name = "GFX_atmoran_raiders_ranks_highlight"
+		texturefile = "gfx\\interface\\societies\\rank_icons_bear_guild_highlight.dds"
+		noOfFrames = 5
+	}
+	
+	spriteType = {
+		name = "GFX_atmoran_raiders_ranks_locked"
+		texturefile = "gfx\\interface\\societies\\rank_icons_bear_guild_locked.dds"
+		noOfFrames = 5
+	}
+	
+	spriteType = {
+		name = "GFX_society_influence_bear_guild"
+		texturefile = "gfx\\interface\\societies\\society_influence_bear_guild.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_society_portrait_ring_bear_guild"
+		texturefile = "gfx\\interface\\societies\\portrait_ring_bear_guild.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_society_portrait_ring_small_bear_guild"
+		texturefile = "gfx\\interface\\societies\\portrait_ring_small_bear_guild.dds"
+	}
+	
+	# Storytellers Guild #
+	
+	spriteType = {
+		name = "GFX_society_main_background_owl_guild"
+		texturefile = "gfx\\interface\\societies\\society_bg_owl_guild.dds"
+    }
+   
+	spriteType = {
+		name = "GFX_society_influence_owl_guild"
+		texturefile = "gfx\\interface\\societies\\society_influence_owl_guild.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_society_portrait_ring_owl_guild"
+		texturefile = "gfx\\interface\\societies\\portrait_ring_owl_guild.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_society_portrait_ring_small_owl_guild"
+		texturefile = "gfx\\interface\\societies\\portrait_ring_small_owl_guild.dds"
+	}
+	
+	
+}

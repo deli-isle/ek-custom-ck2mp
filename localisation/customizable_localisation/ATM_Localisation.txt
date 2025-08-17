@@ -1,0 +1,120 @@
+#AVIALABLE CUSTOM LOCALISATION KEYS
+#When adding new custom loc keys, add them to the appropriate category (or add a new one) and describe them. Name the strings "String_X" where x is its content.
+# To not display anything, you can use 'localisation_key = ""'
+# To have the first valid text be used, rather than a random valid text, use "use_first_valid = yes"
+
+defined_text = {
+	name = GetYsgramorGod
+	
+	text = {
+		localisation_key = "Kynareth"
+		trigger = {
+			OR = {
+				religion = eight_divines
+				religion = nine_divines
+			}
+			NOR = {
+				culture = nord
+				culture = skaal
+				culture = atmoran
+			}
+		}
+	}
+	text = {
+		localisation_key = "Kyne"
+		trigger = {
+			OR = {
+				religion = eight_divines
+				religion = nine_divines
+			}
+			OR = {
+				culture = nord
+				culture = skaal
+				culture = atmoran
+			}
+		}
+	}
+	text = {
+		localisation_key = "the Hawk"
+		trigger = {
+			religion = animism
+		}
+	}
+	text = {
+		localisation_key = "Alduin"
+		trigger = {
+			religion = dragon_cult
+		}
+	}
+}
+
+defined_text = {
+	name = GetATMSocietyRankUpTooltip1
+
+	text = {
+		trigger = {
+			OR = {
+				society_member_of = bear_guild
+				society_member_of = owl_guild
+			}
+			is_long_lived = no
+			society_rank == 1
+		}
+		localisation_key = GetSocietyRankUpTooltip1_Extra_Rank1_ShortLived
+	}
+	text = {
+		trigger = {
+			OR = {
+				society_member_of = bear_guild
+				society_member_of = owl_guild
+			}
+			is_long_lived = yes
+			society_rank == 1
+		}
+		localisation_key = GetSocietyRankUpTooltip1_Extra_Rank1_LongLived
+	}
+	text = {
+		trigger = {
+			OR = {
+				society_member_of = bear_guild
+				society_member_of = owl_guild
+			}
+			is_long_lived = no
+			society_rank == 2
+		}
+		localisation_key = GetSocietyRankUpTooltip1_Extra_Rank2_ShortLived
+	}
+	text = {
+		trigger = {
+			OR = {
+				society_member_of = bear_guild
+				society_member_of = owl_guild
+			}
+			is_long_lived = yes
+			society_rank == 2
+		}
+		localisation_key = GetSocietyRankUpTooltip1_Extra_Rank2_LongLived
+	}
+	text = {
+		trigger = {
+			OR = {
+				society_member_of = bear_guild
+				society_member_of = owl_guild
+			}
+			is_long_lived = no
+			society_rank == 3
+		}
+		localisation_key = GetSocietyRankUpTooltip1_Extra_Rank3_ShortLived
+	}
+	text = {
+		trigger = {
+			OR = {
+				society_member_of = bear_guild
+				society_member_of = owl_guild
+			}
+			is_long_lived = yes
+			society_rank == 3
+		}
+		localisation_key = GetSocietyRankUpTooltip1_Extra_Rank3_LongLived
+	}
+}

@@ -1,0 +1,31 @@
+#DAGOTH
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ayem_screen_button"
+		texturefile = "gfx\\interface\\offmap_screen\\ayem_screen_button.dds"
+	}
+	spriteType = {
+		name = "GFX_vehk_screen_button"
+		texturefile = "gfx\\interface\\offmap_screen\\vehk_screen_button.dds"
+	}
+	spriteType = {
+		name = "GFX_seht_screen_button"
+		texturefile = "gfx\\interface\\offmap_screen\\seht_screen_button.dds"
+	}
+	spriteType = {
+		name = "GFX_offmap_bg_tribunal"
+		texturefile = "gfx\\interface\\offmap_screen\\tribunal_background.dds"
+	}
+	spriteType = {
+		name = "GFX_offmap_top_embellishment_tribunal"
+		texturefile = "gfx\\interface\\offmap_screen\\tribunal_dragons.dds"
+	}
+	spriteType = {
+		name = "GFX_offmap_symbol_tribunal"
+		texturefile = "gfx\\interface\\offmap_screen\\tribunal_symbol_frame.dds"
+	}
+	spriteType = {
+		name = "GFX_offmap_bottom_embellishment_tribunal"
+		texturefile = "gfx\\interface\\offmap_screen\\tribunal_lionmonsterdragon.dds"
+	}
+}

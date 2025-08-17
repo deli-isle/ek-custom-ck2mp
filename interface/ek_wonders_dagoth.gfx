@@ -1,0 +1,17 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_wonder_strip_dagoth_large"
+		texturefile = "gfx\\interface\\wonder_interface\\wonder_strips\\wonder_stages_inner_sanctum_large.dds"
+		noOfFrames = 5
+	}
+	spriteType = {
+		name = "GFX_wonder_strip_dagoth_medium"
+		texturefile = "gfx\\interface\\wonder_interface\\wonder_strips\\wonder_stages_inner_sanctum_medium.dds"
+		noOfFrames = 5
+	}
+	spriteType = {
+		name = "GFX_wonder_strip_dagoth_small"
+		texturefile = "gfx\\interface\\wonder_interface\\wonder_strips\\wonder_stages_inner_sanctum_small.dds"
+		noOfFrames = 5
+	}
+}

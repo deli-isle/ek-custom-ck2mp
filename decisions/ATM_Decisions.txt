@@ -1,0 +1,342 @@
+decisions = {
+
+	#Ysgramor's Legacy #
+	
+	to_ysgramors_tomb = {
+		is_high_prio = yes
+		ai_check_interval = 24
+		
+		potential = {
+			is_human = yes
+			is_adult = yes
+			NOT = { has_global_flag = wuuthrad_trial_active }
+			AND = {
+				OR = {
+					culture = nord
+					culture = atmoran
+				}
+				OR = {
+					religion = dragon_cult
+					religion = animism
+				}
+			}
+			has_submenu_open = no
+			NOR = {
+				has_global_flag = ysgramor_reborn
+				has_character_modifier = respects_paid_to_ysgramor
+				#has_character_modifier = ysgramor_claim_failed #not being used i think
+				has_character_flag = journey_to_ysgramors_tomb
+			}
+			primary_title = { higher_real_tier_than = COUNT }
+		}
+	
+		allow = {
+			war = no
+			scaled_wealth = 2.5
+			custom_tooltip = {
+				text = Jylkurfyk_Fixed
+				any_realm_wonder = {
+					has_wonder_flag = is_jylkurfyk
+					is_active = yes
+				}
+			}
+
+			custom_tooltip = {
+            	text = YSGRAMOR_REJECTED_RECENTLY
+            	NOT = { has_character_modifier = ysgramor_rejected_you }
+        	}
+		}
+		
+		effect = {
+			custom_tooltip = {
+				text = YSGRAMOR_JOURNEY_BASE
+				set_character_flag = journey_to_ysgramors_tomb
+				character_event = {
+					id = ATM.00101
+				}
+				scaled_wealth = -2.5
+			}
+		}
+		
+		revoke_allowed = {
+			always = no
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	to_ysgramors_tomb_companions = {
+		is_high_prio = yes
+		ai_check_interval = 24
+		
+		potential = {
+			is_human = yes
+			AND = {
+				OR = {
+					culture = nord
+					culture = atmoran
+				}
+				OR = {
+					AND = {
+						is_in_society = yes
+						society_member_of = companions_tamriel
+						is_society_grandmaster = yes
+					}
+				}
+			}
+			NOR = {
+				has_global_flag = ysgramor_reborn
+				has_character_modifier = respects_paid_to_ysgramor
+				has_character_modifier = ysgramor_claim_failed
+				has_character_flag = journey_to_ysgramors_tomb
+			}
+		}
+	
+		allow = {
+			war = no
+			scaled_wealth = 2.5
+			is_in_society = yes
+			society_member_of = companions_tamriel
+			is_society_grandmaster = yes
+			has_society_currency_major_trigger = yes
+			NOT = {
+				OR = {
+					has_character_modifier = respects_paid_to_ysgramor
+					has_character_modifier = ysgramor_claim_failed
+					has_character_flag = journey_to_ysgramors_tomb
+				}
+			}
+		}
+		
+		effect = {
+			custom_tooltip = {
+				text = YSGRAMOR_JOURNEY_COMPANIONS
+				set_character_flag = journey_to_ysgramors_tomb
+				character_event = {
+					id = ATM.00102
+				}
+				detract_society_currency_major_effect = yes
+				scaled_wealth = -2.5
+			}
+		}
+		
+		revoke_allowed = {
+			always = no
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	
+	# The Atmoran Band #
+	
+	create_atmoran_band = {
+		is_high_prio = yes
+		ai_check_interval = 24
+		
+		potential = {
+			is_playable = yes
+			OR = {
+				independent = yes
+				tier = KING
+			}
+			prisoner = no
+			is_adult = yes
+			NOT = {
+				trait = incapable
+			}
+			OR = {
+				has_landed_title = k_atmora
+				AND = {
+					has_landed_title = e_nordic
+					culture = atmoran
+				}
+			}
+			NOT = {
+				has_global_flag = atmoran_band_formed
+			}
+		}
+		
+		allow = {
+			prestige = 1000
+			wealth = 300
+		}
+		
+		effect = {
+			set_global_flag = atmoran_band_formed
+			prestige = -1000
+			wealth = -300
+			activate_title = {
+				title = d_atmoranband
+				status = yes
+			}
+			hidden_tooltip = {
+				character_event = {
+					id = ATM.00101
+				}
+				create_character = {
+					random_traits = yes
+					religion = ROOT
+					culture = atmoran
+					dynasty = NONE
+					female = 50
+					age = 26
+					trait = warrior_4
+				}
+				new_character = {
+					set_character_flag = is_chosen_atmoran_band_leader
+					d_atmoranband = {
+						grant_title = PREV
+					}
+					set_defacto_liege = ROOT
+				}
+			}
+		}
+		
+		revoke_allowed = {
+			always = no
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	# Harbinger Wuuthrad #
+	
+	claim_wuuthrad_companions = {
+	
+		ai_check_interval = 36
+		
+		potential = {
+			society_member_of = companions_tamriel
+			society_rank = 5
+			is_indisposed = no
+			block_general_event_trigger = no
+			OR = {
+				has_character_flag = society_open
+				ai = yes
+			}
+			NOT = { has_global_flag = wuuthrad_active }
+			any_owned_bloodline = {
+				has_bloodline_flag = bloodline_companions
+			}
+		}
+		
+		allow = {
+			society_currency >= 2500
+		}
+		
+		effect = {
+			change_society_currency = -2500
+			add_artifact = weapon_axe_wuuthrad
+			set_global_flag = wuuthrad_active
+		}
+		
+		revoke_allowed = {
+			always = no
+		}
+		
+		ai_will_do = {
+			factor = 1
+			
+			modifier = {
+				factor = 0.1
+			}
+			modifier = {
+				factor = 10
+				society_currency >= 3000
+			}
+		}
+	}
+	
+	# Atmoran Wuuthrad #
+	
+	claim_wuuthrad = {
+		
+		ai_check_interval = 36
+		
+		potential = {
+			is_human = yes
+			NOT = { has_global_flag = wuuthrad_claimed }
+			NOT = { has_global_flag = wuuthrad_trial_active }
+			AND = {
+				OR = {
+					culture = nord
+					culture = atmoran
+				}
+				OR = {
+					religion = dragon_cult
+					religion = animism
+				}
+			}
+			primary_title = { higher_real_tier_than = DUKE }
+		}
+		
+		allow = {
+			prestige = 750
+			wealth = 1000
+			NOT = { has_character_modifier = wuuthrad_search_cooldown }
+
+			custom_tooltip = {
+        		text = claim_wuuthrad_req_wonder
+        		any_realm_wonder = {
+            		has_wonder_flag = is_jylkurfyk
+            		is_active = yes
+        		}
+    		}
+
+			custom_tooltip = {
+            	text = claim_wuuthrad_rejected_recently
+            	NOT = { has_character_modifier = ysgramor_rejected_you }
+        	}
+
+			#custom_tooltip = {
+   				#text = "I am sorry chud, this content is not available yet."
+    			#has_global_flag = wuuthrad_ready
+			#}
+		}
+		
+		effect = {
+			wealth = -1000
+			prestige = -750
+
+			random_list = {
+				60 = {
+					add_artifact = weapon_axe_wuuthrad
+					set_global_flag = wuuthrad_claimed
+					character_event = { id = ATM.00302 } # success popup
+				}
+				40 = {
+					character_event = { id = ATM.00303 }  # failure popup
+					add_character_modifier = {
+						name = wuuthrad_search_cooldown
+						months = 60
+					}
+				}
+			}
+
+		# TODO: expand into a multi-step search/expedition chain in next update.
+		}
+		
+		revoke_allowed = {
+			always = no
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1
+				always = yes
+			}
+			modifier = {
+				factor = 10
+				trait = ambitious
+			}
+		}	
+	}
+}

@@ -60,7 +60,7 @@ character_event = {
 				}
 				NOT = { has_global_flag = house_dagoth_extinct }
 			}
-			set_global_flag = house_dagoth_extinct
+			#set_global_flag = house_dagoth_extinct #needs_change restore once awake events are worked on. For now, exists always
 		}
 		if = {
 			limit = {

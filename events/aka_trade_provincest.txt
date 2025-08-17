@@ -116,7 +116,10 @@ character_event = {
 				595 = {add_province_modifier = { modifier = niben_river_route_poi duration = -1}}
 				528 = {add_province_modifier = { modifier = niben_river_route_poi duration = -1}}
 				222 = {add_province_modifier = { modifier = niben_river_route_inland_poi duration = -1}}
-				119 = {add_province_modifier = { modifier = niben_river_route_inland_poi duration = -1}}
+				119 = {add_province_modifier = { modifier = niben_river_route_poi duration = -1}}
+				1041 = {add_province_modifier = { modifier = niben_river_route_poi duration = -1}}
+				989 = {add_province_modifier = { modifier = niben_river_route_poi duration = -1}}
+				973 = {add_province_modifier = { modifier = niben_river_route_poi duration = -1}}
 			}
 		}
 	}

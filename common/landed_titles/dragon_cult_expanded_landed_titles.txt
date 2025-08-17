@@ -1,0 +1,62 @@
+################
+#Religious Heads
+################
+d_dragon_cult = {
+	color={ 0 0 0 }
+	color2={ 255 255 255 }
+	
+	capital = 68 #Felsaad
+	
+	religion = dragon_cult
+	controls_religion = dragon_cult
+	caliphate = yes
+	
+	primary = yes
+	landless = yes
+	
+	title = lot_sonaak
+	title_female = lot_sonaak
+	short_name = yes
+	
+	dignity = 100
+	dynasty_title_names = no
+	creation_requires_capital = no
+	
+	#allow = { trait = dragonpriest }
+}
+
+############
+#Holy Orders
+############
+d_dovah_in = {
+	color={ 0 0 0 }
+	color2={ 255 255 255 }
+	graphical_culture = holygfx
+	
+	capital = 68 # Felsaad
+	
+	holy_order = yes
+	religion = dragon_cult
+	
+	monthly_income = 5
+	mercenary_type = dovah_in_composition
+	strength_growth_per_century = 0.10
+	
+	landless = yes
+	primary = yes
+	
+	title = sahrot_thur
+	title_female = sahrot_thur
+	short_name = yes
+	
+	allow = {
+		religion = dragon_cult
+		OR = {
+			NOT = { trait = undead }
+			AND = {
+				trait = undead
+				trait = dragonpriest
+			}
+		}
+	}
+}

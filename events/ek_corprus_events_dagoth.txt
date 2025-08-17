@@ -1,0 +1,263 @@
+#Events for those afflicted by Corprus disease
+
+namespace = corprusdagoth
+
+#Getting sicker by corprus
+character_event = {
+	id = corprusdagoth.10
+	desc = CorprusDagoth10
+	picture = GFX_evt_illness
+	border = GFX_event_normal_frame_religion
+
+    capable_only = no
+
+    trigger = {
+        OR = {
+            trait = corprus_stalker
+            trait = lame_corprus
+        }
+    }
+
+    mean_time_to_happen = {
+        years = 1
+
+        #Positive
+        modifier = {
+            factor = 1.5
+            trait = lame_corprus #Body survived for so long that it has better fighting chance
+        }
+
+        modifier = {
+            factor = 2
+            trait = strong
+        }
+
+        modifier = {
+            factor = 2
+            trait = robust
+        }
+
+        modifier = {
+            factor = 1.25
+            trait = sturdy
+        }
+
+        modifier = {
+            factor = 2
+            trait = fortitude
+        }
+
+        modifier = {
+            factor = 1.5
+            trait = genius #Corprus is a disease of mind as much as body
+        }
+
+        modifier = {
+            factor = 1.25
+            trait = quick
+        }
+
+        modifier = {
+            factor = 1.25
+            trait = shrewd
+        }
+
+        #Negative
+        modifier = {
+            factor = 0.1
+            trait = infirm
+        }
+
+        modifier = {
+            factor = 0.5
+            trait = feeble
+        }
+
+        modifier = {
+            factor = 0.5
+            trait = weak
+        }
+
+        modifier = {
+            factor = 0.2
+            trait = inbred
+        }
+
+        modifier = {
+            factor = 0.75
+            trait = dull #Corprus is a disease of mind as much as body
+        }
+
+        modifier = {
+            factor = 0.75
+            trait = slow
+        }
+    }
+
+    option = { #Try to fight it longer
+        name = EVTOPTAcorprusdagoth.10
+        trigger = {
+          NOT = { has_character_modifier = struggling_with_corprus }
+        }
+        ai_chance = {
+          factor = 10
+        }
+        hidden_tooltip = {
+            add_character_modifier = {
+                name = struggling_with_corprus
+                duration = 365 #1 year
+                hidden = yes
+            }
+        }
+    }
+    option = { #Cut off affected flesh
+        name = EVTOPTBcorprusdagoth.10
+        trigger = {
+          NOT = { trait = maimed }
+        }
+        ai_chance = {
+          factor = 1
+          modifier = {
+            factor = 0
+            trait = craven
+          }
+        }
+        add_trait = maimed
+    }
+    option = { #Die
+        name = EVTOPTCcorprusdagoth.10
+        ai_chance = {
+          factor = 0.5
+        }
+        death = { death_reason = death_trait }
+    }
+}
+
+#Evolving naturally to lame corprus
+character_event = {
+	id = corprusdagoth.20
+	desc = CorprusDagoth20
+	picture = GFX_evt_corpus
+	border = GFX_event_normal_frame_religion
+
+    capable_only = no
+
+    trigger = {
+        trait = corprus_stalker
+    }
+
+    mean_time_to_happen = {
+        years = 2
+    }
+
+    option = {
+        name = EVTOPTAcorprusdagoth.20
+        remove_trait = corprus_stalker
+        add_trait = lame_corprus
+    }
+}
+
+#Be induced into Ash Slave by a Sixth House priest
+character_event = {
+	id = corprusdagoth.30
+	desc = CorprusDagoth30
+	picture = GFX_evt_dagoth
+	border = GFX_event_normal_frame_religion
+
+    capable_only = no
+
+    trigger = {
+        trait = lame_corprus
+    }
+
+    mean_time_to_happen = {
+        years = 2
+
+        #Positive
+        modifier = {
+            factor = 0.5
+            trait = genius #Sixth House looks for potential for the occult
+        }
+
+        modifier = {
+            factor = 0.8
+            trait = quick
+        }
+
+        modifier = {
+            factor = 0.8
+            trait = shrewd
+        }
+
+        modifier = {
+            factor = 0.5
+            religion = sixth_house
+        }
+
+        #Negative
+        modifier = {
+            factor = 2
+            trait = dull
+        }
+
+        modifier = {
+            factor = 2
+            trait = slow
+        }
+    }
+
+    option = { #Accept as Sixth House follower
+        name = EVTOPTAcorprusdagoth.30
+        trigger = {
+          religion = sixth_house
+        }
+        ai_chance = {
+          factor = 95
+
+          modifier = {
+            factor = 2
+            trait = zealous
+          }
+        }
+        set_character_flag = corprus_decision
+        long_character_event = { id = ekdagoth.360 }
+    }
+    option = { #Accept religion and transformation
+        name = EVTOPTBcorprusdagoth.30
+        trigger = {
+          NOT = { religion = sixth_house }
+        }
+        ai_chance = {
+          factor = 20
+
+          modifier = {
+            factor = 0
+            trait = zealous
+          }
+
+          modifier = {
+            factor = 1.5
+            trait = cynical
+          }
+
+          modifier = {
+            factor = 1.5
+            trait = craven
+          }
+
+          modifier = {
+            factor = 1.5
+            trait = trusting
+          }
+        }
+        religion = sixth_house
+        set_character_flag = corprus_decision
+        long_character_event = { id = ekdagoth.360 }
+    }
+    option = { #Refuse
+        name = EVTOPTCcorprusdagoth.30
+        ai_chance = {
+          factor = 5
+        }
+    }
+}

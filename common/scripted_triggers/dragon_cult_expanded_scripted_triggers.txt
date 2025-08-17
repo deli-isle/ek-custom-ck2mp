@@ -1,0 +1,23 @@
+dce_has_patron_dragon = {
+	OR = {
+		trait = patron_alduin
+		trait = patron_durnehviir
+		trait = patron_kaalgrontiid
+		trait = patron_nahfahlaar
+		trait = patron_numinex
+		trait = patron_paarthurnax
+	}
+}
+
+dce_learned_all_shouts = {
+	calc_true_if = {
+		amount = 7
+		trait = dce_aura_whisper_3
+		trait = dce_battle_fury_3
+		trait = dce_become_ethereal_3
+		trait = dce_bend_will_3
+		trait = dce_dismay_3
+		trait = dce_unrelenting_force_3
+		trait = dce_whirlwind_sprint_3
+	}
+}

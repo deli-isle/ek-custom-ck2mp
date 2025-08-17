@@ -1,0 +1,22 @@
+clear_atm_specialization_flags = {
+	clr_character_flag = bear_guild_assassin
+	clr_character_flag = bear_guild_barbarian
+	clr_character_flag = bear_guild_battlemage
+	clr_character_flag = bear_guild_crusader
+	clr_character_flag = bear_guild_knight
+	clr_character_flag = bear_guild_monk
+	clr_character_flag = bear_guild_rogue
+	clr_character_flag = bear_guild_scout
+	clr_character_flag = bear_guild_spellsword
+	clr_character_flag = bear_guild_wayfarer
+	clr_character_flag = atmoran_storytellers_guild_acrobat
+	clr_character_flag = atmoran_storytellers_guild_assassin
+	clr_character_flag = atmoran_storytellers_guild_bard
+	clr_character_flag = atmoran_storytellers_guild_knight
+	clr_character_flag = atmoran_storytellers_guild_priest
+	clr_character_flag = atmoran_storytellers_guild_rogue
+	clr_character_flag = atmoran_storytellers_guild_savant
+	clr_character_flag = atmoran_storytellers_guild_thief
+	clr_character_flag = atmoran_storytellers_guild_trader
+	clr_character_flag = atmoran_storytellers_guild_wayfarer
+}

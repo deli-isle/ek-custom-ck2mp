@@ -9,7 +9,10 @@ character_event = {
 
 	
 	trigger = {
-		trait = undead
+		OR = {
+			trait = undead
+			trait = dce_undead
+		}
 		OR = {
 			trait = syphilitic
 			trait = leper

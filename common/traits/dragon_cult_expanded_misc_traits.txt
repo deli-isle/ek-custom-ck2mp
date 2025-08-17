@@ -1,0 +1,51 @@
+#dce_temp_grandmaster = {
+#	customizer = no
+#	random = no
+#	hidden = yes
+#}
+
+dce_undead = {	
+	general_opinion = -100
+	immortal = yes
+	martial = 1
+	learning = 1
+	diplomacy = -1
+	health = 10
+	fertility = -10
+	
+	counts_as_known_undead = 1
+	
+	daedra_molag_opinion = 80
+	daedra_namira_opinion = 80
+	dragon_cult_opinion = 80
+	ideal_masters_opinion = 80
+	king_of_worms_cult_opinion = 80
+	sithis_opinion = 80
+	winter_wind_opinion = 80
+	old_gods_opinion = 80
+	forsworn_heresy_opinion = 80
+	
+	cannot_marry = yes
+	cannot_inherit = yes
+	
+	command_modifier = {
+		morale_defence = 1 # Undead Armies should in theory be immune to morale damage
+		morale_offence = 0.25 # They should do a more morale damage than normal
+		speed = -0.5 # Hordes of shambling undead are slow, if Romero taught us anything
+		retreat = -1 # They also don't retreat
+	}
+	
+	customizer = no
+	male_insult = INSULT_SHUFFLING_CORPSE
+	female_insult = INSULT_SHAMBLING_HUSK
+	male_insult_adj = INSULT_ROTTING
+	female_insult_adj = INSULT_DESSICATED
+	male_compliment = COMPL_REVENANT
+	female_compliment = COMPL_BREATHLESS_ONE
+	male_compliment_adj = COMPL_DREADED
+	female_compliment_adj = COMPL_DAUNTING
+	
+	is_visible = { 
+		NOT = { has_character_flag = racial_traits_off }
+	}
+}

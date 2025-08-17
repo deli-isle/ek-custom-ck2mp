@@ -1,0 +1,24 @@
+# County Title
+title = c_redmountain
+
+# Settlements
+max_settlements = 6
+
+b_dagothur = castle
+b_endusal = castle
+b_odrosal = castle
+b_tureynulal = castle
+b_vemynal = castle
+
+# Misc
+culture = ashlander
+religion = sixth_house
+terrain = mountain
+
+# History
+
+700.1.1 = {
+	b_dagothur = ca_tower_dagoth_ur
+	build_wonder = wonder_inner_sanctum
+	set_wonder_stage = 1
+}

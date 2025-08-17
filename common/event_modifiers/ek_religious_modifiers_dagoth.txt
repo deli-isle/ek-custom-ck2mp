@@ -1,0 +1,16 @@
+dagoth_recent_donation = {
+	is_visible = {
+		character = FROM
+	}
+	icon = 81
+}
+dagoth_dreams = {
+	local_revolt_risk = -0.025
+	icon = 11
+}
+dagoth_voryn_blessing_modifier = {
+	health_penalty = 1
+	combat_rating = 10
+	
+	icon = 81
+}

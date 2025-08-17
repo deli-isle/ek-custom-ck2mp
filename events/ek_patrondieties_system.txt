@@ -393,21 +393,21 @@ character_event = {
 	}
 	#ANIMISM
 	option = {
-		name = kreligionanimismo1
+		name = PatronFox
+		trigger = { religion = animism }
+		add_trait = p_fox
+		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
+	}
+	option = {
+		name = PatronBear
+		trigger = { religion = animism }
+		add_trait = p_bear
+		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
+	}
+	option = {
+		name = PatronWhale
 		trigger = { religion = animism }
 		add_trait = p_whale
-		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
-	}
-	option = {
-		name = kreligionanimismo2
-		trigger = { religion = animism }
-		add_trait = p_moth
-		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
-	}
-	option = {
-		name = kreligionanimismo3
-		trigger = { religion = animism }
-		add_trait = p_dragon
 		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
 	}
 	# CULT OF KTHULHUT
@@ -761,21 +761,21 @@ character_event = {
 	}
 	#ANIMISM
 	option = {
-		name = kreligionanimismo4
-		trigger = { religion = animism }
-		add_trait = p_wolf
-		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
-	}
-	option = {
-		name = kreligionanimismo5
+		name = PatronHawk
 		trigger = { religion = animism }
 		add_trait = p_eagle
 		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
 	}
 	option = {
-		name = kreligionanimismo6
+		name = PatronWolf
 		trigger = { religion = animism }
-		add_trait = p_bear
+		add_trait = p_wolf
+		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
+	}
+	option = {
+		name = PatronMoth
+		trigger = { religion = animism }
+		add_trait = p_moth
 		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
 	}
 	#NEXT PAGE
@@ -1042,21 +1042,21 @@ character_event = {
 	}
 	# Animism
 	option = {
-		name = kreligionanimismo7
-		trigger = { religion = animism }
-		add_trait = p_fox
-		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
-	}
-	option = {
-		name = kreligionanimismo8
+		name = PatronSnake
 		trigger = { religion = animism }
 		add_trait = p_snake
 		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
 	}
 	option = {
-		name = kreligionanimismo9
+		name = PatronOwl
 		trigger = { religion = animism }
 		add_trait = p_owl
+		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
+	}
+	option = {
+		name = PatronDragon
+		trigger = { religion = animism }
+		add_trait = p_dragon
 		hidden_tooltip = { character_event = { id = ekpatrons.10 } }
 	}
 	#BACK TO FIRST PAGE

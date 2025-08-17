@@ -1,0 +1,508 @@
+namespace = ATM
+# 002
+
+# AI Raiders # 
+
+character_event = { #Initial Event
+	id = ATM.00201
+	hide_window = yes
+	
+	min_age = 16
+	max_age = 50
+	only_men = yes
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+	
+		has_dlc = "Horse Lords"
+		
+		NOT = {
+			has_game_rule = {
+				name = adventurers
+				value = none
+			}
+		}
+		
+		is_ruler = no
+		culture = atmoran
+		
+		AND = {
+			trait = ambitious
+			martial = 15
+			diplomacy = 12
+			health = 4
+			NOR = {
+				trait = craven
+				trait = content
+				any_child = {
+					OR = {
+						is_heir = yes
+						is_landed = yes
+					}
+				}
+			}
+			is_heir = no
+		}
+		
+		NOT = {
+			any_heir_title = {
+				always = yes
+			}
+		}
+		
+		NOT = {
+			any_claim = {
+				has_holder = yes
+				holder_scope = {
+					independent = yes
+					OR = {
+						is_merchant_republic = no
+						NOT = {
+							capital_holding = {
+								de_jure_liege_or_above = PREVPREV
+							}
+						}
+					}
+				}
+				OR = {
+					tier = KING
+					holder_scope = { tier = PREV }
+				}
+			}
+		}
+		
+		OR = {
+			father_even_if_dead = {
+				OR = {
+					primary_title = { higher_tier_than = BARON }
+					father_even_if_dead = {
+						primary_title = { higher_tier_than = BARON }
+					}
+					mother_even_if_dead = {
+						primary_title = { higher_tier_than = BARON }
+					}
+				}
+			}
+			mother_even_if_dead = {
+				OR = {
+					primary_title = { higher_tier_than = BARON }
+					father_even_if_dead = {
+						primary_title = { higher_tier_than = BARON }
+					}
+					mother_even_if_dead = {
+						primary_title = { higher_tier_than = BARON }
+					}
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		years = 30
+		modifier = {
+			factor = 0.5
+			trait = ambitious
+		}
+		modifier = {
+			factor = 0.75
+			AND = {
+				culture = atmoran
+				religion = animism
+				is_heir = no
+				OR = {
+					any_sibling = {
+						primary_title = { higher_tier_than = BARON }
+					}
+					father = {
+						primary_title = { higher_tier_than = BARON }
+					}
+					mother = {
+						primary_title = { higher_tier_than = BARON }
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0.75
+			trait = brave
+		}
+		modifier = {
+			factor = 0.75
+			trait = proud
+		}
+		modifier = {
+			factor = 3.0
+			trait = slothful
+		}
+		modifier = {
+			factor = 3.0
+			trait = kind
+		}
+		modifier = {
+			factor = 50
+			has_game_rule = {
+				name = adventurers
+				value = rare
+			}
+		}
+	}
+
+	immediate = {
+		end_inaccessibility_effect = yes
+		add_trait = adventurer
+		random_list = {
+			1 = {
+				liege = {
+					capital_scope = {
+						save_event_target_as = target_province
+					}
+				}
+			}
+			3 = {
+				143 = {
+					save_event_target_as = target_province
+				}
+			}
+			3 = {
+				165 = {
+					save_event_target_as = target_province
+				}
+			}
+			3 = {
+				132 = {
+					save_event_target_as = target_province
+				}
+			}
+		}
+		liege = {
+			primary_title = {
+				holder_scope = {
+					save_event_target_as = previous_liege
+				}
+			}
+			capital_scope = {
+				ROOT = {
+					set_defacto_liege = ROOT
+					create_title = {
+						tier = DUKE
+						landless = yes
+						adventurer = yes
+						culture = ROOT
+						name = "CLAIMANT_ADVENTURE"
+						holder = ROOT
+						base_title = this
+					}
+					set_character_flag = raiding_adventurer
+					change_variable = {
+						which = global_raiding_adventurer_spawn_by_courtier_MTTH
+						value = 1
+					}
+					character_event = {
+						id = ATM.00202
+					}
+					create_random_soldier = {
+						random_traits = yes
+						dynasty = none
+						religion = ROOT
+						culture = ROOT
+						female = RANDOM
+						age = 25
+					}
+					create_random_soldier = {
+						random_traits = yes
+						dynasty = none
+						religion = ROOT
+						culture = ROOT
+						female = RANDOM
+						age = 25
+					}
+					spawn_fleet = {
+						province = closest
+						owner = ROOT
+						disband_on_peace = yes
+						troops = {
+							galleys = { 40 40 }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+character_event = { # Troops event
+	id = ATM.00202
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		random_list = {
+			30 = { #3
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+			}
+			30 = { #6
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+			}
+			30 = { #9
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 12 }
+				}
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 14 }
+				}
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+			}
+			30 = { #12
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 15 }
+				}
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 20 }
+				}
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+				character_event = { id = ATM.00203 }
+			}
+		}
+	}
+}
+
+character_event = { # Spawning
+	id = ATM.00203
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		random_list = {
+			30 = { #250
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 2 }
+				}
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 4 }
+				}
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 6 }
+				}
+				modifier = {
+					factor = 0.7
+					martial = 15
+				}
+				modifier = {
+					factor = 0.7
+					martial = 18
+				}
+				modifier = {
+					factor = 0.7
+					martial = 21
+				}
+				modifier = {
+					factor = 0.7
+					martial = 24
+				}
+				spawn_unit = {
+					province = event_target:target_province
+					home = event_target:target_province
+					owner = ROOT
+					attrition = 0
+					reinforces = yes
+					is_looter = yes
+					can_toggle_looting = no
+					cannot_inherit = yes
+					merge = yes
+					troops = {
+						archers = { 70 70 }
+						light_infantry = { 170 170 }
+						heavy_infantry = { 10 10 }
+					}
+				}
+			}
+			30 = { #380
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 4 }
+				}
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 6 }
+				}
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 8 }
+				}
+				modifier = {
+					factor = 0.7
+					martial = 17
+				}
+				modifier = {
+					factor = 0.7
+					martial = 20
+				}
+				modifier = {
+					factor = 0.7
+					martial = 23
+				}
+				modifier = {
+					factor = 0.7
+					martial = 26
+				}
+				spawn_unit = {
+					province = event_target:target_province
+					home = event_target:target_province
+					owner = ROOT
+					attrition = 0
+					reinforces = yes
+					is_looter = yes
+					can_toggle_looting = no
+					cannot_inherit = yes
+					merge = yes
+					troops = {
+						archers = { 90 90 }
+						light_infantry = { 215 215 }
+						heavy_infantry = { 15 15 }
+					}
+				}
+			}
+			30 = { #420
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 9 }
+				}
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 12 }
+				}
+				modifier = {
+					factor = 1.3
+					NOT = { martial = 15 }
+				}
+				modifier = {
+					factor = 0.7
+					martial = 20
+				}
+				modifier = {
+					factor = 0.7
+					martial = 24
+				}
+				spawn_unit = {
+					province = event_target:target_province
+					home = event_target:target_province
+					owner = ROOT
+					attrition = 0
+					reinforces = yes
+					is_looter = yes
+					can_toggle_looting = no
+					cannot_inherit = yes
+					merge = yes
+					troops = {
+						archers = { 100 100 }
+						light_infantry = { 225 225 }
+						heavy_infantry = { 15 15 }
+					}
+				}
+			}
+			30 = { #490
+				modifier = {
+					factor = 1.3
+					martial = 24
+				}
+				modifier = {
+					factor = 1.3
+					martial = 28
+				}
+				modifier = {
+					factor = 0.5
+					NOT = { martial = 10 }
+				}
+				modifier = {
+					factor = 0.5
+					NOT = { martial = 15 }
+				}
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 20 }
+				}
+				spawn_unit = {
+					province = event_target:target_province
+					home = event_target:target_province
+					owner = ROOT
+					attrition = 0
+					reinforces = yes
+					is_looter = yes
+					can_toggle_looting = no
+					cannot_inherit = yes
+					merge = yes
+					troops = {
+						archers = { 140 140 }
+						light_infantry = { 330 330 }
+						heavy_infantry = { 20 20 }
+					}
+				}
+			}
+			30 = { #570
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 14 }
+				}
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 20 }
+				}
+				modifier = {
+					factor = 0.7
+					NOT = { martial = 26 }
+				}
+				spawn_unit = {
+					province = event_target:target_province
+					home = event_target:target_province
+					owner = ROOT
+					attrition = 0
+					reinforces = yes
+					is_looter = yes
+					can_toggle_looting = no
+					cannot_inherit = yes
+					merge = yes
+					troops = {
+						archers = { 170 170 }
+						light_infantry = { 360 360 }
+						heavy_infantry = { 40 40 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Raiding Events #

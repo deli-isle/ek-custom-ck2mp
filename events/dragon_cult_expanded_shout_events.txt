@@ -1,0 +1,596 @@
+namespace = dce_shout
+
+character_event = { #Thu'um users learn shouts
+	id = dce_shout.100
+	desc = EVTDESC_dce_shout.100
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Aura Whisper
+		name = EVTOPTA_dce_shout.100
+		trigger = {
+			NOT = { trait = dce_aura_whisper_3 }
+		}
+		custom_tooltip = { text = dce_aura_whisper_tt }
+		set_character_flag = dce_aura_whisper_learn
+	}
+	
+	option = { #Battle Fury
+		name = EVTOPTB_dce_shout.100
+		trigger = {
+			NOT = { trait = dce_battle_fury_3 }
+		}
+		custom_tooltip = { text = dce_battle_fury_tt }
+		set_character_flag = dce_battle_fury_learn
+	}
+	
+	option = { #Become Ethereal
+		name = EVTOPTC_dce_shout.100
+		trigger = {
+			NOT = { trait = dce_become_ethereal_3 }
+		}
+		custom_tooltip = { text = dce_become_ethereal_tt }
+		set_character_flag = dce_become_ethereal_learn
+	}
+	
+	option = { #More Options
+		name = EVTOPTD_dce_patron_dragons.100
+		hidden_tooltip = { character_event = { id = dce_shout.101 } }
+	}
+}
+
+character_event = { #Thu'um users learn shouts - More Options
+	id = dce_shout.101
+	desc = EVTDESC_dce_shout.100
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Bend Will
+		name = EVTOPTA_dce_shout.101
+		trigger = {
+			NOT = { trait = dce_bend_will_3 }
+		}
+		custom_tooltip = { text = dce_bend_will_tt }
+		set_character_flag = dce_bend_will_learn
+	}
+	
+	option = { #Dismay
+		name = EVTOPTB_dce_shout.101
+		trigger = {
+			NOT = { trait = dce_dismay_3 }
+		}
+		custom_tooltip = { text = dce_dismay_tt }
+		set_character_flag = dce_dismay_learn
+	}
+	
+	option = { #Unrelenting Force
+		name = EVTOPTC_dce_shout.101
+		trigger = {
+			NOT = { trait = dce_unrelenting_force_3 }
+		}
+		custom_tooltip = { text = dce_unrelenting_force_tt }
+		set_character_flag = dce_unrelenting_force_learn
+	}
+	
+	option = { #More Options
+		name = EVTOPTD_dce_patron_dragons.100
+		hidden_tooltip = { character_event = { id = dce_shout.102 } }
+	}
+}
+
+character_event = { #Thu'um users learn shouts - More Options
+	id = dce_shout.102
+	desc = EVTDESC_dce_shout.100
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Whirlwind Sprint
+		name = EVTOPTA_dce_shout.102
+		trigger = {
+			NOT = { trait = dce_whirlwind_sprint_3 }
+		}
+		custom_tooltip = { text = dce_whirlwind_sprint_tt }
+		set_character_flag = dce_whirlwind_sprint_learn
+	}
+	
+	option = { #More Options
+		name = EVTOPTD_dce_patron_dragons.100
+		hidden_tooltip = { character_event = { id = dce_shout.100 } }
+	}
+	
+	option = { #Nevermind
+		name = EVTOPTB_dce_shout.102
+		clr_character_flag = dce_learning_shout
+	}
+}
+
+character_event = { #Learning shouts
+	id = dce_shout.200
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	is_in_society = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		OR = {
+			society_member_of = greybeards_tamriel
+			society_member_of = children_of_the_ancient_ways
+			#society_member_of = dovah_in_society
+		}
+		NOT = { is_inaccessible_trigger = yes }
+		NOT = { trait = mute }
+		has_character_flag = dce_learning_shout
+	}
+	
+	immediate = {
+		random = {
+			chance = 10
+			
+			modifier = {
+				factor = 0.5
+				is_landed = no
+			}
+			modifier = {
+				factor = 0.15 #Mer and other such beings take longer to learn
+				OR = {
+					is_long_lived = yes
+					AND = {
+						is_long_lived = yes
+						NOT = {
+							religion = dragon_cult
+							trait = lich
+							trait = dragonpriest
+							society_member_of = children_of_the_ancient_ways
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 2.5
+				trait = dragonpriest
+				religion = dragon_cult
+				society_member_of = children_of_the_ancient_ways
+			}
+			modifier = {
+				factor = 2.5 # Stacks with below
+				trait = dragonborn
+			}
+			modifier = {
+				factor = 2
+				is_dragonblood = yes
+			}
+			modifier = {
+				factor = 1.25
+				society_rank = 2
+			}
+			modifier = {
+				factor = 1.75
+				society_rank = 3
+			}
+			modifier = {
+				factor = 2.25
+				society_rank = 4
+			}
+			#The more you learn, the longer it takes
+			modifier = {
+				factor = 0.75
+				OR = {
+					AND = {
+						trait = dce_aura_whisper_1
+						has_character_flag = dce_aura_whisper_learn
+					}
+					AND = {
+						trait = dce_battle_fury_1
+						has_character_flag = dce_battle_fury_learn
+					}
+					AND = {
+						trait = dce_become_ethereal_1
+						has_character_flag = dce_become_ethereal_learn
+					}
+					AND = {
+						trait = dce_bend_will_1
+						has_character_flag = dce_bend_will_learn
+					}
+					AND = {
+						trait = dce_dismay_1
+						has_character_flag = dce_dismay_learn
+					}
+					AND = {
+						trait = dce_unrelenting_force_1
+						has_character_flag = dce_unrelenting_force_learn
+					}
+					AND = {
+						trait = dce_whirlwind_sprint_1
+						has_character_flag = dce_whirlwind_sprint_learn
+					}
+				}
+			}
+			modifier = {
+				factor = 0.33
+				OR = {
+					AND = {
+						trait = dce_aura_whisper_2
+						has_character_flag = dce_aura_whisper_learn
+					}
+					AND = {
+						trait = dce_battle_fury_2
+						has_character_flag = dce_battle_fury_learn
+					}
+					AND = {
+						trait = dce_become_ethereal_2
+						has_character_flag = dce_become_ethereal_learn
+					}
+					AND = {
+						trait = dce_bend_will_2
+						has_character_flag = dce_bend_will_learn
+					}
+					AND = {
+						trait = dce_dismay_2
+						has_character_flag = dce_dismay_learn
+					}
+					AND = {
+						trait = dce_unrelenting_force_2
+						has_character_flag = dce_unrelenting_force_learn
+					}
+					AND = {
+						trait = dce_whirlwind_sprint_2
+						has_character_flag = dce_whirlwind_sprint_learn
+					}
+				}
+			}
+			modifier = {
+				factor = 0.75
+				trait = thuum_2
+			}
+			modifier = {
+				factor = 0.33
+				trait = thuum_1
+			}
+			#Trait bonuses
+			works_hard_be_smart_score_value = yes
+			#Trait maluses
+			lazy_stupid_score_value = yes
+			#Scaling with society influence
+			guild_influence_modifier = yes
+			
+			character_event = { id = dce_shout.201 days = 10 }
+		}
+	}
+}
+
+character_event = {
+	id = dce_shout.201
+	desc = EVTDESC_dce_shout.201
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_dce_shout.201
+		trigger = {
+			OR = {
+				NOR = {
+					trait = dce_aura_whisper_1
+					trait = dce_aura_whisper_2
+				}
+				trait = dce_aura_whisper_1
+				trait = dce_aura_whisper_2
+			}
+			has_character_flag = dce_aura_whisper_learn
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = dce_aura_whisper_1
+					trait = dce_aura_whisper_2
+					
+				}
+			}
+			add_trait = dce_aura_whisper_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_aura_whisper_1
+			}
+			hidden_tooltip = { remove_trait = dce_aura_whisper_1 }
+			add_trait = dce_aura_whisper_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_aura_whisper_2
+			}
+			hidden_tooltip = { 
+				remove_trait = dce_aura_whisper_2
+				clr_character_flag = dce_aura_whisper_learn
+				clr_character_flag = dce_learning_shout
+			}
+			add_trait = dce_aura_whisper_3
+			break = yes
+		}
+	}
+	
+	option = {
+		name = EVTOPTA_dce_shout.201
+		trigger = {
+			OR = {
+				NOR = {
+					trait = dce_battle_fury_1
+					trait = dce_battle_fury_2
+				}
+				trait = dce_battle_fury_1
+				trait = dce_battle_fury_2
+			}
+			has_character_flag = dce_battle_fury_learn
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = dce_battle_fury_1
+					trait = dce_battle_fury_2
+					
+				}
+			}
+			add_trait = dce_battle_fury_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_battle_fury_1
+			}
+			hidden_tooltip = { remove_trait = dce_battle_fury_1 }
+			add_trait = dce_battle_fury_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_battle_fury_2
+			}
+			hidden_tooltip = { 
+				remove_trait = dce_battle_fury_2
+				clr_character_flag = dce_battle_fury_learn
+				clr_character_flag = dce_learning_shout
+			}
+			add_trait = dce_battle_fury_3
+			break = yes
+		}
+	}
+	
+	option = {
+		name = EVTOPTA_dce_shout.201
+		trigger = {
+			OR = {
+				NOR = {
+					trait = dce_become_ethereal_1
+					trait = dce_become_ethereal_2
+				}
+				trait = dce_become_ethereal_1
+				trait = dce_become_ethereal_2
+			}
+			has_character_flag = dce_become_ethereal_learn
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = dce_become_ethereal_1
+					trait = dce_become_ethereal_2
+					
+				}
+			}
+			add_trait = dce_become_ethereal_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_become_ethereal_1
+			}
+			hidden_tooltip = { remove_trait = dce_become_ethereal_1 }
+			add_trait = dce_become_ethereal_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_become_ethereal_2
+			}
+			hidden_tooltip = { 
+				remove_trait = dce_become_ethereal_2
+				clr_character_flag = dce_become_ethereal_learn
+				clr_character_flag = dce_learning_shout
+			}
+			add_trait = dce_become_ethereal_3
+			break = yes
+		}
+	}
+	
+	option = {
+		name = EVTOPTA_dce_shout.201
+		trigger = {
+			OR = {
+				NOR = {
+					trait = dce_bend_will_1
+					trait = dce_bend_will_2
+				}
+				trait = dce_bend_will_1
+				trait = dce_bend_will_2
+			}
+			has_character_flag = dce_bend_will_learn
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = dce_bend_will_1
+					trait = dce_bend_will_2
+					
+				}
+			}
+			add_trait = dce_bend_will_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_bend_will_1
+			}
+			hidden_tooltip = { remove_trait = dce_bend_will_1 }
+			add_trait = dce_bend_will_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_bend_will_2
+			}
+			hidden_tooltip = { 
+				remove_trait = dce_bend_will_2
+				clr_character_flag = dce_bend_will_learn
+				clr_character_flag = dce_learning_shout
+			}
+			add_trait = dce_bend_will_3
+			break = yes
+		}
+	}
+	
+	option = {
+		name = EVTOPTA_dce_shout.201
+		trigger = {
+			OR = {
+				NOR = {
+					trait = dce_dismay_1
+					trait = dce_dismay_2
+				}
+				trait = dce_dismay_1
+				trait = dce_dismay_2
+			}
+			has_character_flag = dce_dismay_learn
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = dce_dismay_1
+					trait = dce_dismay_2
+					
+				}
+			}
+			add_trait = dce_dismay_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_dismay_1
+			}
+			hidden_tooltip = { remove_trait = dce_dismay_1 }
+			add_trait = dce_dismay_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_dismay_2
+			}
+			hidden_tooltip = { 
+				remove_trait = dce_dismay_2
+				clr_character_flag = dce_dismay_learn
+				clr_character_flag = dce_learning_shout
+			}
+			add_trait = dce_dismay_3
+			break = yes
+		}
+	}
+	
+	option = {
+		name = EVTOPTA_dce_shout.201
+		trigger = {
+			OR = {
+				NOR = {
+					trait = dce_unrelenting_force_1
+					trait = dce_unrelenting_force_2
+				}
+				trait = dce_unrelenting_force_1
+				trait = dce_unrelenting_force_2
+			}
+			has_character_flag = dce_unrelenting_force_learn
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = dce_unrelenting_force_1
+					trait = dce_unrelenting_force_2
+					
+				}
+			}
+			add_trait = dce_unrelenting_force_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_unrelenting_force_1
+			}
+			hidden_tooltip = { remove_trait = dce_unrelenting_force_1 }
+			add_trait = dce_unrelenting_force_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_unrelenting_force_2
+			}
+			hidden_tooltip = { 
+				remove_trait = dce_unrelenting_force_2
+				clr_character_flag = dce_unrelenting_force_learn
+				clr_character_flag = dce_learning_shout
+			}
+			add_trait = dce_unrelenting_force_3
+			break = yes
+		}
+	}
+	
+	option = {
+		name = EVTOPTA_dce_shout.201
+		trigger = {
+			OR = {
+				NOR = {
+					trait = dce_whirlwind_sprint_1
+					trait = dce_whirlwind_sprint_2
+				}
+				trait = dce_whirlwind_sprint_1
+				trait = dce_whirlwind_sprint_2
+			}
+			has_character_flag = dce_whirlwind_sprint_learn
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = dce_whirlwind_sprint_1
+					trait = dce_whirlwind_sprint_2
+					
+				}
+			}
+			add_trait = dce_whirlwind_sprint_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_whirlwind_sprint_1
+			}
+			hidden_tooltip = { remove_trait = dce_whirlwind_sprint_1 }
+			add_trait = dce_whirlwind_sprint_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = dce_whirlwind_sprint_2
+			}
+			hidden_tooltip = { 
+				remove_trait = dce_whirlwind_sprint_2
+				clr_character_flag = dce_whirlwind_sprint_learn
+				clr_character_flag = dce_learning_shout
+			}
+			add_trait = dce_whirlwind_sprint_3
+			break = yes
+		}
+	}
+}

@@ -1,0 +1,4217 @@
+namespace = ATMSocieties
+
+character_event = {
+    id = ATMSocieties.01
+	hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+		OR = {
+			FROM = { leader = { society_member_of = bear_guild } }
+			FROM = { leader = { society_member_of = owl_guild } }
+		}
+    }
+    immediate = {
+		FROM = { leader = { character_event = { id = ATMSocieties.02 } } }
+    }
+}
+
+character_event = {
+    id = ATMSocieties.02
+	hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+    	FROM = { letter_event = { id = ATMSocieties.03 } }
+    }
+}
+
+letter_event = {
+    id = ATMSocieties.03
+	is_triggered_only = yes
+    desc = { #Raiders
+		text = ATMSocietiesRaidersLetter
+		trigger = {
+			has_character_flag = bear_guild_acceptance
+		}
+	}
+	desc = { #Storytellers
+		text = ATMSocietiesStorytellersLetter
+		trigger = {
+			has_character_flag = owl_guild_acceptance
+		}
+	}
+	immediate = {
+		set_character_flag = society_join_block
+		if = {
+			limit = {
+				FROMFROMFROM = { leader = { society_member_of = bear_guild } }
+			}
+			set_character_flag = bear_guild_acceptance
+		}
+		if = {
+			limit = {
+				FROMFROMFROM = { leader = { society_member_of = owl_guild } }
+			}
+			set_character_flag = owl_guild_acceptance
+		}
+	}
+
+	option = {
+		name = ATMSocieties03Acknowledge
+		if = {
+			limit = { has_character_flag = bear_guild_acceptance }
+			join_society = bear_guild
+		}
+		if = {
+			limit = { has_character_flag = owl_guild_acceptance }
+			join_society = owl_guild
+		}
+		if = {
+			limit = { is_in_society = yes }
+			clr_character_flag = society_join_block
+			clr_character_flag = bear_guild_acceptance
+			clr_character_flag = owl_guild_acceptance
+		}
+	}
+}
+
+letter_event = {
+    id = ATMSocieties.04
+	desc = ATMSocieties04
+
+	is_triggered_only = yes
+
+	option = {
+		name = ATMSocieties04Accept
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 5
+				trait = greedy
+			}
+			modifier = {
+				factor = 2.5
+				trait = humble
+			}
+			modifier = {
+				factor = 2.5
+				trait = slothful
+			}
+			modifier = {
+				factor = 2.5
+				trait = trusting
+			}
+			modifier = {
+				factor = 2.5
+				trait = reckless
+			}
+			modifier = {
+				factor = 5
+				is_ruler = yes
+				NOT = { wealth = 25 }
+			}
+			modifier = {
+				factor = 5
+				NOT = { tier = count }
+			}
+			modifier = {
+				factor = 2.5
+				is_long_lived = yes
+			}
+		}
+		wealth = 500
+		FROM = { letter_event = { id = ATMSocieties.05 days = 3 } }
+   }
+   option = {
+		name = ATMSocieties04Decline
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				trait = stubborn
+			}
+			modifier = {
+				factor = 2.5
+				trait = proud
+			}
+			modifier = {
+				factor = 2.5
+				trait = diligent
+			}
+			modifier = {
+				factor = 2.5
+				trait = paranoid
+			}
+			modifier = {
+				factor = 2.5
+				trait = patient
+			}
+			modifier = {
+				factor = 2.5
+				trait = envious
+			}
+			modifier = {
+				factor = 2.5
+				trait = ambitious
+			}
+			modifier = {
+				factor = 5
+				is_ruler = yes
+				wealth = 100
+			}
+			modifier = {
+				factor = 2.5
+				tier = duke
+			}
+			modifier = {
+				factor = 5
+				tier = king
+			}
+			modifier = {
+				factor = 10
+				tier = emperor
+			}
+			modifier = {
+				factor = 2.5
+				is_long_lived = no
+			}
+		}
+		add_character_modifier = {
+			name = denied_retirement_timer
+			days = 1095
+		}
+		FROM = { letter_event = { id = ATMSocieties.06 days = 3 } }
+   }
+}
+
+letter_event = {
+	id = ATMSocieties.05
+	desc = ATMSocieties05
+
+	is_triggered_only = yes
+
+	option = {
+		name = ATMSocieties05Accept
+		set_society_grandmaster = yes
+		clr_character_flag = requesting_society_retirement
+		FROM = {
+			leave_society = yes
+			add_character_modifier = {
+				name = ek_society_pension
+				days = -1
+			}
+		}
+	}
+}
+
+letter_event = {
+	id = ATMSocieties.06
+	desc = ATMSocieties06
+
+	is_triggered_only = yes
+
+	option = {
+		name = ATMSocieties06Rejection
+		wealth = 700
+		clr_character_flag = requesting_society_retirement
+	}
+}
+
+character_event = {
+	id = ATMSocieties.07
+	hide_window = yes
+
+	only_rulers = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				ai = yes
+				is_adult = yes
+				prisoner = no
+				is_inaccessible_trigger = no
+				is_in_society = no
+				controls_religion = no
+				NOT = { trait = incapable }
+				block_general_event_trigger = no
+			}
+			character_event = { id = ATMSocieties.07 }
+		}
+		any_courtier = {
+			limit = {
+				ai = yes
+				is_adult = yes
+				prisoner = no
+				is_inaccessible_trigger = no
+				is_in_society = no
+				controls_religion = no
+				NOT = { trait = incapable }
+				block_general_event_trigger = no
+			}
+			character_event = { id = ATMSocieties.07 }
+		}
+	}
+}
+
+character_event = {
+	id = ATMSocieties.08
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		random_list = {
+			95 = {
+			}
+			5 = {
+				modifier = {
+					factor = 2
+					higher_tier_than = BARON
+				}
+				random_list = {
+					700 = {
+					}
+					100 = {
+						trigger = {
+							can_join_society = bear_guild
+						}
+						modifier = {
+							factor = 4
+							OR = {
+								is_warrior = yes
+								AND = {
+									has_acceptable_fighters_specialisation = yes
+									martial = 15
+								}
+								AND = {
+									combat_rating = 100
+									martial = 30
+								}
+								AND = {
+									OR = {
+										is_mage = yes
+										is_agent = yes
+									}
+									martial = 25
+								}
+								trait = dragonborn
+							}
+						}
+						join_society = bear_guild
+						random_list = {
+							75 = {
+								modifier = {
+									factor = 0
+									society_influence >= 30
+								}
+								add_mission_succeed_influence_effect = yes
+							}
+							25 = {
+							}
+						}
+						if = {
+							limit = {
+								NOT = {
+									society = {
+										any_society_member = {
+											is_society_grandmaster = yes
+										}
+									}
+								}
+							}
+							set_society_grandmaster = yes
+						}
+					}
+					100 = {
+						trigger = {
+							can_join_society = owl_guild
+						}
+						modifier = {
+							factor = 4
+							OR = {
+								AND = {
+									is_landed = yes
+									OR = {
+										diplomacy = 14
+										is_diplomat = yes
+									}
+								}
+								AND = {
+									diplomacy = 18
+									is_diplomat = yes
+								}
+							}
+						}
+						join_society = owl_guild
+						random_list = {
+							75 = {
+								modifier = {
+									factor = 0
+									society_influence >= 30
+								}
+								add_mission_succeed_influence_effect = yes
+							}
+							25 = {
+							}
+						}
+						if = {
+							limit = {
+								NOT = {
+									society = {
+										any_society_member = {
+											is_society_grandmaster = yes
+										}
+									}
+								}
+							}
+							set_society_grandmaster = yes
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+character_event = {
+	id = ATMSocieties.09
+	picture = GFX_evt_comet
+	desc = {
+		text = ATMSocieties09Raiders
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = bear_guild
+		}
+	}
+
+	desc = {
+		text = ATMSocieties09Storytellers
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = owl_guild
+		}
+	}
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_in_society = yes
+		NOT = { has_character_modifier = denied_specialization_timer }
+		NOT = {
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = healer_3
+				trait = knight_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+		OR = { 
+			society_member_of = bear_guild
+			society_member_of = owl_guild
+		}
+	}
+	
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	# Raiders Options #
+	
+	option = { 
+		name = ATMSocieties09Assassin
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = assassin_1
+				trait = assassin_2
+				NOR = {
+					trait = assassin_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = assassin_study_tooltip }
+		set_character_flag = bear_guild_assassin
+	}
+	
+	option = {
+		name = ATMSocieties09Barbarian
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = barbarian_1
+				trait = barbarian_2
+				NOR = {
+					trait = barbarian_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = barbarian_study_tooltip }
+		set_character_flag = bear_guild_barbarian
+	}
+	
+	option = { 
+		name = ATMSocieties09Battlemage
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = battlemage_1
+				trait = battlemage_2
+				NOR = {
+					trait = battlemage_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = battlemage_study_tooltip }
+		set_character_flag = bear_guild_battlemage
+	}
+	
+	# Storytellers Options #
+	
+	option = {
+		name = ATMSocieties09Acrobat
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = acrobat_1
+				trait = acrobat_2
+				NOR = {
+					trait = acrobat_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = acrobat_study_tooltip }
+		set_character_flag = owl_guild_acrobat
+	}
+	
+	option = {
+		name = ATMSocieties09Assassin
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = assassin_1
+				trait = assassin_2
+				NOR = {
+					trait = assassin_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = assassin_study_tooltip }
+		set_character_flag = owl_guild_assassin
+	}
+	
+	option = {
+		name = ATMSocieties09Bard
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = bard_1
+				trait = bard_2
+				NOR = {
+					trait = bard_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = bard_study_tooltip }
+		set_character_flag = owl_guild_bard
+	}
+
+	# More Options #
+	
+	option = {
+		name = ATMSocieties09Wrap
+		character_event = { id = ATMSocieties.10 }
+	}
+
+	# Done with Specialisation #
+	
+	option = {
+		name = ATMSocieties09Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+}
+
+character_event = {
+	id = ATMSocieties.10
+	picture = GFX_evt_comet
+	is_triggered_only = yes
+	
+	desc = {
+		text = ATMSocieties09Raiders
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = bear_guild
+		}
+	}
+
+	desc = {
+		text = ATMSocieties09Storytellers
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = owl_guild
+		}
+	}
+	
+	# Raiders Options #
+	
+	option = {
+		name = ATMSocieties09Crusader
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = crusader_1
+				trait = crusader_2
+				NOR = {
+					trait = crusader_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = crusader_study_tooltip }
+		set_character_flag = bear_guild_crusader
+	}
+	
+	option = { 
+		name = ATMSocieties09Knight
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = knight_1
+				trait = knight_2
+				NOR = {
+					trait = knight_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = knight_study_tooltip }
+		set_character_flag = bear_guild_knight
+	}
+	
+	option = { 
+		name = ATMSocieties09Monk
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = monk_1
+				trait = monk_2
+				NOR = {
+					trait = monk_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = monk_study_tooltip }
+		set_character_flag = bear_guild_monk
+	}
+	
+	# Storytellers Options #
+	
+	option = {
+		name = ATMSocieties09Knight
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = knight_1
+				trait = knight_2
+				NOR = {
+					trait = knight_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = knight_study_tooltip }
+		set_character_flag = owl_guild_knight
+	}
+	
+	option = { 
+		name = ATMSocieties09Priest
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = priest_1
+				trait = priest_2
+				NOR = {
+					trait = priest_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = priest_study_tooltip }
+		set_character_flag = owl_guild_priest
+	}
+	
+	option = {
+		name = ATMSocieties09Rogue
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = rogue_1
+				trait = rogue_2
+				NOR = {
+					trait = rogue_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = rogue_study_tooltip }
+		set_character_flag = owl_guild_rogue
+	}
+	
+	# More Options #
+	
+	option = {
+		name = ATMSocieties09Wrap
+		character_event = { id = ATMSocieties.11 }
+	}
+	
+	# Done with Specialisation #
+	
+	option = {
+		name = ATMSocieties09Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+}
+
+character_event = {
+	id = ATMSocieties.11
+	picture = GFX_evt_comet
+	is_triggered_only = yes
+	
+	desc = {
+		text = ATMSocieties09Raiders
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = bear_guild
+		}
+	}
+
+	desc = {
+		text = ATMSocieties09Storytellers
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = owl_guild
+		}
+	}
+	
+	# Raiders Options #
+	
+	option = { 
+		name = ATMSocieties09Rogue
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = rogue_1
+				trait = rogue_2
+				NOR = {
+					trait = rogue_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = rogue_study_tooltip }
+		set_character_flag = bear_guild_rogue
+	}
+	
+	option = { 
+		name = ATMSocieties09Scout
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = scout_1
+				trait = scout_2
+				NOR = {
+					trait = scout_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = scout_study_tooltip }
+		set_character_flag = bear_guild_scout
+	}
+	
+	option = { 
+		name = ATMSocieties09Spellsword
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = spellsword_1
+				trait = spellsword_2
+				NOR = {
+					trait = spellsword_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = spellsword_study_tooltip }
+		set_character_flag = bear_guild_spellsword
+	}
+	
+	# Storytellers Options #
+	
+	option = { 
+		name = ATMSocieties09Savant
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = savant_1
+				trait = savant_2
+				NOR = {
+					trait = savant_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = savant_study_tooltip }
+		set_character_flag = owl_guild_savant
+	}
+	
+	option = {
+		name = ATMSocieties09Thief
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = thief_1
+				trait = thief_2
+				NOR = {
+					trait = thief_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = thief_study_tooltip }
+		set_character_flag = owl_guild_thief
+	}
+	
+	option = {
+		name = ATMSocieties09Trader
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = trader_1
+				trait = trader_2
+				NOR = {
+					trait = trader_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = trader_study_tooltip }
+		set_character_flag = owl_guild_trader
+	}
+	
+	# More Options #
+	
+	option = {
+		name = ATMSocieties09Wrap
+		character_event = { id = ATMSocieties.12 }
+	}
+	
+	# Done with Specialisation #
+	
+	option = {
+		name = ATMSocieties09Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+}
+
+character_event = {
+	id = ATMSocieties.12
+	picture = GFX_evt_comet
+	is_triggered_only = yes
+	
+	desc = {
+		text = ATMSocieties09Raiders
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = bear_guild
+		}
+	}
+
+	desc = {
+		text = ATMSocieties09Storytellers
+		picture = GFX_evt_library
+		trigger = {
+			society_member_of = owl_guild
+		}
+	}
+	
+	# Raiders Options #
+	
+	option = { 
+		name = ATMSocieties09Wayfarer
+		trigger = {
+			society_member_of = bear_guild
+			OR = {
+				trait = wayfarer_1
+				trait = wayfarer_2
+				NOR = {
+					trait = wayfarer_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = wayfarer_study_tooltip }
+		set_character_flag = bear_guild_wayfarer
+	}
+	
+	# Storytellers Options #
+	
+	option = { 
+		name = ATMSocieties09Wayfarer
+		trigger = {
+			society_member_of = owl_guild
+			OR = {
+				trait = wayfarer_1
+				trait = wayfarer_2
+				NOR = {
+					trait = wayfarer_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = wayfarer_study_tooltip }
+		set_character_flag = owl_guild_wayfarer
+	}
+	
+	# More Options #
+	
+	option = {
+		name = ATMSocieties09Wrap
+		character_event = { id = ATMSocieties.09 }
+	}
+	
+	# Done with Specialisation #
+	
+	option = {
+		name = ATMSocieties09Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+	# Not right now #
+
+	option = {
+		name = ATMSocieties09Decline
+		trigger = {
+		}
+		clr_character_flag = guild_specialization_ongoing
+		add_character_modifier = {
+			name = denied_specialization_timer
+			months = 12
+			hidden = yes
+		}
+	}
+	
+}
+
+character_event = {
+	id = ATMSocieties.13
+	hide_window = yes
+	is_triggered_only = yes
+	
+	ai = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		is_in_society = yes
+		OR = {
+			society_member_of = bear_guild
+			society_member_of = owl_guild
+		}
+		NOT = {
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+	immediate = {
+		if = {
+			limit = { 
+				society_member_of = bear_guild
+			}
+			random_list = {
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = assassin_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = assassin_1
+									trait = assassin_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_assassin
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = barbarian_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = barbarian_1
+									trait = barbarian_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_barbarian
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = battlemage_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = battlemage_1
+									trait = battlemage_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_battlemage
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = crusader_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = crusader_1
+									trait = crusader_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_crusader
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = knight_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = knight_1
+									trait = knight_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_knight
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = monk_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = monk_1
+									trait = monk_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_monk
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = rogue_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = rogue_1
+									trait = rogue_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_rogue
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = scout_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = scout_1
+									trait = scout_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_scout
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = spellsword_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = spellsword_1
+									trait = spellsword_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_spellsword
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = wayfarer_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = wayfarer_1
+									trait = wayfarer_2
+								}
+							}
+						}
+					}
+					set_character_flag = bear_guild_wayfarer
+				}
+			}
+		}
+		if = {
+			limit = { 
+				society_member_of = owl_guild
+			}
+			random_list = {
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = acrobat_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = acrobat_1
+									trait = acrobat_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_acrobat
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = assassin_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = assassin_1
+									trait = assassin_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_assassin
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = bard_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = bard_1
+									trait = bard_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_bard
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = knight_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = knight_1
+									trait = knight_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_knight
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = priest_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = priest_1
+									trait = priest_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_priest
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = rogue_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = rogue_1
+									trait = rogue_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_rogue
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = savant_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = savant_1
+									trait = savant_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_savant
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = thief_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = thief_1
+									trait = thief_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_thief
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = trader_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = trader_1
+									trait = trader_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_trader
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							trait = wayfarer_3
+							AND = {
+								has_two_specializations = yes
+								NOR = {
+									trait = wayfarer_1
+									trait = wayfarer_2
+								}
+							}
+						}
+					}
+					set_character_flag = owl_guild_wayfarer
+				}
+			}
+		}
+		if = {
+			limit = {
+				calc_true_if = {
+					amount = 2
+					trait = acrobat_3
+					trait = assassin_3
+					trait = barbarian_3
+					trait = bard_3
+					trait = battlemage_3
+					trait = crusader_3
+					trait = knight_3
+					trait = healer_3
+					trait = monk_3
+					trait = nightblade_3
+					trait = priest_3
+					trait = rogue_3
+					trait = savant_3
+					trait = scout_3
+					trait = sorcerer_3
+					trait = spellsword_3
+					trait = thief_3
+					trait = trader_3
+					trait = wayfarer_3
+					trait = witchhunter_3
+				}
+			}
+			clr_character_flag = guild_specialization_ongoing
+			clear_atm_specialization_flags = yes
+		}
+	}
+}
+
+character_event = {
+	id = ATMSocieties.14
+	hide_window = yes
+	is_triggered_only = yes
+
+	immedaite = {
+		add_character_modifier = {
+			name = denied_specialization_timer
+			months = 12
+			hidden = yes
+		}
+		clr_character_flag = guild_specialization_ongoing
+		clear_atm_specialization_flags = yes
+	}
+}
+
+character_event = {
+	id = ATMSocieties.15
+	desc = ATMSocieties15
+	picture = GFX_evt_library
+	
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	is_triggered_only = yes
+	
+	option = { 
+		name = ATMSocieties15AcrobatA
+		trigger = {
+			has_character_flag = owl_guild_acrobat
+			NOR = {
+				trait = acrobat_2
+				trait = acrobat_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = acrobat_1
+					trait = acrobat_2
+					trait = acrobat_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = acrobat_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = acrobat_1
+			}
+			remove_trait = acrobat_1
+			add_trait = acrobat_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15AcrobatB
+		trigger = {
+			has_character_flag = owl_guild_acrobat
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = acrobat_1
+					trait = acrobat_2
+					trait = acrobat_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = acrobat_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = acrobat_1
+			}
+			remove_trait = acrobat_1
+			add_trait = acrobat_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = acrobat_2
+			}
+			remove_trait = acrobat_2
+			add_trait = acrobat_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15AssassinA
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_assassin
+				has_character_flag = owl_guild_assassin
+			}
+			NOR = {
+				trait = assassin_2
+				trait = assassin_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = assassin_1
+					trait = assassin_2
+					trait = assassin_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = assassin_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = assassin_1
+			}
+			remove_trait = assassin_1
+			add_trait = assassin_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15AssassinB
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_assassin
+				has_character_flag = owl_guild_assassin
+			}
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = assassin_1
+					trait = assassin_2
+					trait = assassin_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = assassin_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = assassin_1
+			}
+			remove_trait = assassin_1
+			add_trait = assassin_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = assassin_2
+			}
+			remove_trait = assassin_2
+			add_trait = assassin_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = {
+		name = ATMSocieties15BarbarianA
+		trigger = {
+			has_character_flag = bear_guild_barbarian
+			NOR = {
+				trait = barbarian_2
+				trait = barbarian_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = barbarian_1
+					trait = barbarian_2
+					trait = barbarian_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = barbarian_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = barbarian_1
+			}
+			remove_trait = barbarian_1
+			add_trait = barbarian_2
+			break = yes
+		}
+	}
+	option = {
+		name = ATMSocieties15BarbarianB
+		trigger = {
+			has_character_flag = bear_guild_barbarian
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = barbarian_1
+					trait = barbarian_2
+					trait = barbarian_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = barbarian_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = barbarian_1
+			}
+			remove_trait = barbarian_1
+			add_trait = barbarian_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = barbarian_2
+			}
+			remove_trait = barbarian_2
+			add_trait = barbarian_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = {
+		name = ATMSocieties15BardA
+		trigger = {
+			has_character_flag = owl_guild_bard
+			NOR = {
+				trait = bard_2
+				trait = bard_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = bard_1
+					trait = bard_2
+					trait = bard_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = bard_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = bard_1
+			}
+			remove_trait = bard_1
+			add_trait = bard_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15BardB
+		trigger = {
+			has_character_flag = owl_guild_bard
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = bard_1
+					trait = bard_2
+					trait = bard_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = bard_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = bard_1
+			}
+			remove_trait = bard_1
+			add_trait = bard_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = bard_2
+			}
+			remove_trait = bard_2
+			add_trait = bard_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15BattlemageA
+		trigger = {
+			has_character_flag = bear_guild_battlemage
+			NOR = {
+				trait = battlemage_2
+				trait = battlemage_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = battlemage_1
+					trait = battlemage_2
+					trait = battlemage_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = battlemage_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = battlemage_1
+			}
+			remove_trait = battlemage_1
+			add_trait = battlemage_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15BattlemageB
+		trigger = {
+			has_character_flag = bear_guild_battlemage
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = battlemage_1
+					trait = battlemage_2
+					trait = battlemage_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = battlemage_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = battlemage_1
+			}
+			remove_trait = battlemage_1
+			add_trait = battlemage_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = battlemage_2
+			}
+			remove_trait = battlemage_2
+			add_trait = battlemage_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15CrusaderA
+		trigger = {
+			has_character_flag = bear_guild_crusader
+			NOR = {
+				trait = crusader_2
+				trait = crusader_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = crusader_1
+					trait = crusader_2
+					trait = crusader_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = crusader_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = crusader_1
+			}
+			remove_trait = crusader_1
+			add_trait = crusader_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15CrusaderB
+		trigger = {
+			has_character_flag = bear_guild_crusader
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = crusader_1
+					trait = crusader_2
+					trait = crusader_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = crusader_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = crusader_1
+			}
+			remove_trait = crusader_1
+			add_trait = crusader_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = crusader_2
+			}
+			remove_trait = crusader_2
+			add_trait = crusader_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15KnightA
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_knight
+				has_character_flag = owl_guild_knight
+			}
+			NOR = {
+				trait = knight_2
+				trait = knight_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = knight_1
+					trait = knight_2
+					trait = knight_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = knight_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = knight_1
+			}
+			remove_trait = knight_1
+			add_trait = knight_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15KnightB
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_knight
+				has_character_flag = owl_guild_knight
+			}
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = knight_1
+					trait = knight_2
+					trait = knight_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = knight_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = knight_1
+			}
+			remove_trait = knight_1
+			add_trait = knight_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = knight_2
+			}
+			remove_trait = knight_2
+			add_trait = knight_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15MonkA
+		trigger = {
+			has_character_flag = bear_guild_monk
+			NOR = {
+				trait = monk_2
+				trait = monk_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = monk_1
+					trait = monk_2
+					trait = monk_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = monk_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = monk_1
+			}
+			remove_trait = monk_1
+			add_trait = monk_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15MonkB
+		trigger = {
+			has_character_flag = bear_guild_monk
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = monk_1
+					trait = monk_2
+					trait = monk_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = monk_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = monk_1
+			}
+			remove_trait = monk_1
+			add_trait = monk_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = monk_2
+			}
+			remove_trait = monk_2
+			add_trait = monk_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = {
+		name = ATMSocieties15PriestA
+		trigger = {
+			has_character_flag = owl_guild_priest
+			NOR = {
+				trait = priest_2
+				trait = priest_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = priest_1
+					trait = priest_2
+					trait = priest_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = priest_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = priest_1
+			}
+			remove_trait = priest_1
+			add_trait = priest_2
+			break = yes
+		}
+	}
+	option = {
+		name = ATMSocieties15PriestB
+		trigger = {
+			has_character_flag = owl_guild_priest
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = priest_1
+					trait = priest_2
+					trait = priest_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = priest_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = priest_1
+			}
+			remove_trait = priest_1
+			add_trait = priest_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = priest_2
+			}
+			remove_trait = priest_2
+			add_trait = priest_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = {
+		name = ATMSocieties15RogueA
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_rogue
+				has_character_flag = owl_guild_rogue
+			}
+			NOR = {
+				trait = rogue_2
+				trait = rogue_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = rogue_1
+					trait = rogue_2
+					trait = rogue_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = rogue_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = rogue_1
+			}
+			remove_trait = rogue_1
+			add_trait = rogue_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15RogueB
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_rogue
+				has_character_flag = owl_guild_rogue
+			}
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = rogue_1
+					trait = rogue_2
+					trait = rogue_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = rogue_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = rogue_1
+			}
+			remove_trait = rogue_1
+			add_trait = rogue_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = rogue_2
+			}
+			remove_trait = rogue_2
+			add_trait = rogue_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15SavantA
+		trigger = {
+			has_character_flag = owl_guild_savant
+			NOR = {
+				trait = savant_2
+				trait = savant_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = savant_1
+					trait = savant_2
+					trait = savant_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = savant_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = savant_1
+			}
+			remove_trait = savant_1
+			add_trait = savant_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15SavantB
+		trigger = {
+			has_character_flag = owl_guild_savant
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = savant_1
+					trait = savant_2
+					trait = savant_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = savant_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = savant_1
+			}
+			remove_trait = savant_1
+			add_trait = savant_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = savant_2
+			}
+			remove_trait = savant_2
+			add_trait = savant_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15ScoutA
+		trigger = {
+			has_character_flag = bear_guild_scout
+			NOR = {
+				trait = scout_2
+				trait = scout_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = scout_1
+					trait = scout_2
+					trait = scout_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = scout_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = scout_1
+			}
+			remove_trait = scout_1
+			add_trait = scout_2
+			break = yes
+		}
+	}
+	option = {
+		name = ATMSocieties15ScoutB
+		trigger = {
+			has_character_flag = bear_guild_scout
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = scout_1
+					trait = scout_2
+					trait = scout_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = scout_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = scout_1
+			}
+			remove_trait = scout_1
+			add_trait = scout_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = scout_2
+			}
+			remove_trait = scout_2
+			add_trait = scout_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15SpellswordA
+		trigger = {
+			has_character_flag = bear_guild_spellsword
+			NOR = {
+				trait = spellsword_2
+				trait = spellsword_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = spellsword_1
+					trait = spellsword_2
+					trait = spellsword_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = spellsword_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = spellsword_1
+			}
+			remove_trait = spellsword_1
+			add_trait = spellsword_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15SpellswordB
+		trigger = {
+			has_character_flag = bear_guild_spellsword
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = spellsword_1
+					trait = spellsword_2
+					trait = spellsword_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = spellsword_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = spellsword_1
+			}
+			remove_trait = spellsword_1
+			add_trait = spellsword_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = spellsword_2
+			}
+			remove_trait = spellsword_2
+			add_trait = spellsword_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15ThiefA
+		trigger = {
+			has_character_flag = owl_guild_thief
+			NOR = {
+				trait = thief_2
+				trait = thief_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = thief_1
+					trait = thief_2
+					trait = thief_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = thief_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thief_1
+			}
+			remove_trait = thief_1
+			add_trait = thief_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15ThiefB
+		trigger = {
+			has_character_flag = owl_guild_thief
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = thief_1
+					trait = thief_2
+					trait = thief_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = thief_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thief_1
+			}
+			remove_trait = thief_1
+			add_trait = thief_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thief_2
+			}
+			remove_trait = thief_2
+			add_trait = thief_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties15TraderA
+		trigger = {
+			has_character_flag = owl_guild_trader
+			NOR = {
+				trait = trader_2
+				trait = trader_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = trader_1
+					trait = trader_2
+					trait = trader_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = trader_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = trader_1
+			}
+			remove_trait = trader_1
+			add_trait = trader_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15TraderB
+		trigger = {
+			has_character_flag = owl_guild_trader
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = trader_1
+					trait = trader_2
+					trait = trader_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = trader_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = trader_1
+			}
+			remove_trait = trader_1
+			add_trait = trader_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = trader_2
+			}
+			remove_trait = trader_2
+			add_trait = trader_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+	option = {
+		name = ATMSocieties15WayfarerA
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_wayfarer
+				has_character_flag = owl_guild_wayfarer
+			}
+			NOR = {
+				trait = wayfarer_2
+				trait = wayfarer_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = wayfarer_1
+					trait = wayfarer_2
+					trait = wayfarer_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = wayfarer_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = wayfarer_1
+			}
+			remove_trait = wayfarer_1
+			add_trait = wayfarer_2
+			break = yes
+		}
+	}
+	option = { 
+		name = ATMSocieties15WayfarerB
+		trigger = {
+			OR = {
+				has_character_flag = bear_guild_wayfarer
+				has_character_flag = owl_guild_wayfarer
+			}
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clear_atm_specialization_flags = yes
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = wayfarer_1
+					trait = wayfarer_2
+					trait = wayfarer_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = wayfarer_1
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = wayfarer_1
+			}
+			remove_trait = wayfarer_1
+			add_trait = wayfarer_2
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = wayfarer_2
+			}
+			remove_trait = wayfarer_2
+			add_trait = wayfarer_3
+			clear_atm_specialization_flags = yes
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ATMSocieties.13 }
+			}
+			break = yes
+		}
+	}
+	
+}
+
+character_event = {
+	id = ATMSocieties.16
+	desc = ATMSocieties16
+	picture = GFX_evt_library
+	
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = ATMSocieties16Acknowledge
+		trigger = {
+			society_member_of = bear_guild
+			is_warrior = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_1
+			}
+			hidden_tooltip = { remove_trait = warrior_1 }
+			add_trait = warrior_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_2
+			}
+			hidden_tooltip = { remove_trait = warrior_2 }
+			add_trait = warrior_3
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_3
+			}
+			hidden_tooltip = { remove_trait = warrior_3 }
+			add_trait = warrior_4
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_4
+			}
+			hidden_tooltip = { remove_trait = warrior_4 }
+			add_trait = warrior_5
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties16Acknowledge
+		trigger = {
+			society_member_of = bear_guild
+			is_agent = no
+			is_diplomat = no
+			is_mage = no
+			is_magistrate = no
+			is_warrior = no
+		}
+		add_trait = warrior_1
+	}
+	
+	option = { 
+		name = ATMSocieties16Acknowledge
+		trigger = {
+			society_member_of = owl_guild
+			is_diplomat = yes
+		}
+		if = {
+			limit = {
+				trait = diplomat_1
+			}
+			hidden_tooltip = { remove_trait = diplomat_1 }
+			add_trait = diplomat_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = diplomat_2
+			}
+			hidden_tooltip = { remove_trait = diplomat_2 }
+			add_trait = diplomat_3
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = diplomat_3
+			}
+			hidden_tooltip = { remove_trait = diplomat_3 }
+			add_trait = diplomat_4
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = diplomat_4
+			}
+			hidden_tooltip = { remove_trait = diplomat_4 }
+			add_trait = diplomat_5
+			break = yes
+		}
+	}
+	
+	option = { 
+		name = ATMSocieties16Acknowledge
+		trigger = {
+			society_member_of = owl_guild
+			is_agent = no
+			is_diplomat = no
+			is_magistrate = no
+			is_mage = no
+			is_warrior = no
+		}
+		add_trait = diplomat_1
+	}
+	
+}
+
+character_event = {
+	id = ATMSocieties.17
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	is_in_society = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		society_member_of = bear_guild 
+		has_any_quest = no
+		NOT = { has_character_modifier = quest_cooldown_timer }
+		NOT = { is_inaccessible_trigger = yes }
+	}
+	
+	immediate = {
+		random_list = {
+			125 = {
+				character_event = { id = ekguildflavor.100  }
+				modifier = {
+					factor = 0
+					is_society_grandmaster = yes
+				}
+				modifier = {
+					factor = 0
+					has_character_flag = guild_quests_disabled
+				}
+			}
+			50 = {
+				modifier = {
+					factor = 0.25
+					is_long_lived = yes
+				}
+				modifier = {
+					factor = 1.1
+					is_smart_trigger = yes
+				}
+				modifier = {
+					factor = 1.1
+					trait = ambitious
+				}
+				modifier = {
+					factor = 1.1
+					trait = diligent
+				}
+				modifier = {
+					factor = 0.9
+					is_dumb_trigger = yes
+				}
+				modifier = {
+					factor = 0.9
+					trait = content
+				}
+				modifier = {
+					factor = 0.9
+					trait = slothful
+				}
+				modifier = {
+					factor = 0
+					NOR = {
+						has_character_flag = bear_guild_assassin
+						has_character_flag = bear_guild_barbarian
+						has_character_flag = bear_guild_battlemage
+						has_character_flag = bear_guild_crusader
+						has_character_flag = bear_guild_knight
+						has_character_flag = bear_guild_monk
+						has_character_flag = bear_guild_rogue
+						has_character_flag = bear_guild_scout
+						has_character_flag = bear_guild_spellsword
+						has_character_flag = bear_guild_wayfarer
+					}
+				}
+				modifier = {
+					factor = 0
+					calc_true_if = {
+						amount = 2
+						trait = acrobat_3
+						trait = assassin_3
+						trait = barbarian_3
+						trait = bard_3
+						trait = battlemage_3
+						trait = crusader_3
+						trait = knight_3
+						trait = healer_3
+						trait = monk_3
+						trait = nightblade_3
+						trait = priest_3
+						trait = rogue_3
+						trait = savant_3
+						trait = scout_3
+						trait = sorcerer_3
+						trait = spellsword_3
+						trait = thief_3
+						trait = trader_3
+						trait = wayfarer_3
+						trait = witchhunter_3
+					}
+				}
+				character_event = { id = ATMSocieties.15 }
+			}
+			10 = {
+				modifier = {
+					factor = 0.5
+					is_landed = no
+				}
+				modifier = {
+					factor = 0.25
+					is_long_lived = yes
+				}
+				modifier = {
+					factor = 3
+					NOR = {
+						is_agent = yes
+						is_diplomat = yes
+						is_mage = yes
+						is_magistrate = yes
+						is_warrior = yes
+					}
+				}
+				modifier = {
+					factor = 1.1
+					is_smart_trigger = yes
+				}
+				modifier = {
+					factor = 1.1
+					trait = ambitious
+				}
+				modifier = {
+					factor = 1.1
+					trait = diligent
+				}
+				modifier = {
+					factor = 0.9
+					is_dumb_trigger = yes
+				}
+				modifier = {
+					factor = 0.9
+					trait = content
+				}
+				modifier = {
+					factor = 0.9
+					trait = slothful
+				}
+				modifier = {
+					factor = 2
+					trait = warrior_1
+				}
+				modifier = {
+					factor = 1.5
+					trait = warrior_2
+				}
+				modifier = {
+					factor = 0.5
+					trait = warrior_3
+				}
+				modifier = {
+					factor = 0.25
+					trait = warrior_4
+				}
+				modifier = {
+					factor = 0
+					OR = {
+						is_agent = yes
+						is_diplomat = yes
+						is_mage = yes
+						is_magistrate = yes
+						trait = warrior_5
+					}
+				}
+				character_event = { id = ATMSocieties.16 }
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = gladiator
+						lifestyle_traits = 1
+						has_character_flag = no_gladiator_for_me
+					}
+				}
+				society_propose_gladiator = yes
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = equestrian
+						lifestyle_traits = 1
+						has_character_flag = no_equestrian_for_me
+					}
+				}
+				society_propose_equestrian = yes
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = blacksmith
+						lifestyle_traits = 1
+						has_character_flag = no_blacksmith_for_me
+					}
+				}
+				society_propose_blacksmith = yes
+			}
+			25 = {
+			}
+		}
+	}
+}
+
+character_event = {
+	id = ATMSocieties.18
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	is_in_society = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		society_member_of = owl_guild
+		has_any_quest = no
+		NOT = { has_character_modifier = quest_cooldown_timer }
+		NOT = { is_inaccessible_trigger = yes }
+	}
+	
+	immediate = {
+		random_list = {
+			125 = {
+				society_quest_event = { id = ekguildflavor.400 }
+				modifier = {
+					factor = 0
+					is_society_grandmaster = yes
+				}
+				modifier = {
+					factor = 0
+					has_character_flag = guild_quests_disabled
+				}
+			}
+			50 = {
+				modifier = {
+					factor = 0.25
+					is_long_lived = yes
+				}
+				modifier = {
+					factor = 1.1
+					is_smart_trigger = yes
+				}
+				modifier = {
+					factor = 1.1
+					trait = ambitious
+				}
+				modifier = {
+					factor = 1.1
+					trait = diligent
+				}
+				modifier = {
+					factor = 0.9
+					is_dumb_trigger = yes
+				}
+				modifier = {
+					factor = 0.9
+					trait = content
+				}
+				modifier = {
+					factor = 0.9
+					trait = slothful
+				}
+				modifier = {
+					factor = 0
+					NOR = {
+						has_character_flag = owl_guild_acrobat
+						has_character_flag = owl_guild_assassin
+						has_character_flag = owl_guild_bard
+						has_character_flag = owl_guild_knight
+						has_character_flag = owl_guild_priest
+						has_character_flag = owl_guild_rogue
+						has_character_flag = owl_guild_savant
+						has_character_flag = owl_guild_thief
+						has_character_flag = owl_guild_trader
+						has_character_flag = owl_guild_wayfarer
+					}
+				}
+				modifier = {
+					factor = 0
+					calc_true_if = {
+						amount = 2
+						trait = acrobat_3
+						trait = assassin_3
+						trait = barbarian_3
+						trait = bard_3
+						trait = battlemage_3
+						trait = crusader_3
+						trait = knight_3
+						trait = healer_3
+						trait = monk_3
+						trait = nightblade_3
+						trait = priest_3
+						trait = rogue_3
+						trait = savant_3
+						trait = scout_3
+						trait = sorcerer_3
+						trait = spellsword_3
+						trait = thief_3
+						trait = trader_3
+						trait = wayfarer_3
+						trait = witchhunter_3
+					}
+				}
+				character_event = { id = ATMSocieties.15 }
+			}
+			10 = {
+				modifier = {
+					factor = 0.5
+					is_landed = no
+				}
+				modifier = {
+					factor = 0.25
+					is_long_lived = yes
+				}
+				modifier = {
+					factor = 3
+					NOR = {
+						is_agent = yes
+						is_diplomat = yes
+						is_mage = yes
+						is_magistrate = yes
+						is_warrior = yes
+					}
+				}
+				modifier = {
+					factor = 1.1
+					is_smart_trigger = yes
+				}
+				modifier = {
+					factor = 1.1
+					trait = ambitious
+				}
+				modifier = {
+					factor = 1.1
+					trait = diligent
+				}
+				modifier = {
+					factor = 0.9
+					is_dumb_trigger = yes
+				}
+				modifier = {
+					factor = 0.9
+					trait = content
+				}
+				modifier = {
+					factor = 0.9
+					trait = slothful
+				}
+				modifier = {
+					factor = 2
+					OR = {
+						trait = agent_1
+						trait = diplomat_1
+					}
+				}
+				modifier = {
+					factor = 1.5
+					OR = {
+						trait = agent_2
+						trait = diplomat_2
+					}
+				}
+				modifier = {
+					factor = 0.5
+					OR = {
+						trait = agent_3
+						trait = diplomat_3
+					}
+				}
+				modifier = {
+					factor = 0.25
+					OR = {
+						trait = agent_4
+						trait = diplomat_4
+					}
+				}
+				modifier = {
+					factor = 0
+					OR = {
+						is_mage = yes
+						is_magistrate = yes
+						is_warrior = yes
+						trait = agent_5
+						trait = diplomat_5
+					}
+				}
+				character_event = { id = ATMSocieties.09 }
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = musician
+						lifestyle_traits = 1
+						has_character_flag = no_musician_for_me
+					}
+				}
+				society_propose_musician = yes
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = painter
+						lifestyle_traits = 1
+						has_character_flag = no_painter_for_me
+					}
+				}
+				society_propose_painter = yes
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = magician
+						lifestyle_traits = 1
+						has_character_flag = no_magician_for_me
+					}
+				}
+				society_propose_magician = yes
+			}
+			25 = {
+			
+			}
+		}
+	}
+}
+
+character_event = {
+	id = ATMSocieties.19
+	desc = ATMSocieties19.desc
+	picture = GFX_evt_religious_exultation
+	border = GFX_event_normal_frame_religion
+	hide_new = yes
+
+	is_triggered_only = yes
+	
+	option = { # Sacrifice Minor Hunt #
+		name = ATMSocieties.19.optA
+		scaled_wealth = { 
+			value = -0.25
+			min = -25
+			max = -75
+		}
+		hidden_tooltip = { 
+				if = {
+					limit = {
+						NOT = {
+							trait = hunter
+						}
+					}
+					add_character_modifier = {
+						name = tiny_food_shortage
+						months = 6
+					}
+					any_courtier = {
+						limit = {
+							is_undead = no
+							de_facto_liege = ROOT
+						}
+						add_character_modifier = {
+							name = tiny_food_shortage
+							months = 6
+						}
+					}
+				}
+			random_list = {
+				40 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_1
+						years = 5 
+					}
+				}
+			
+				25 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_2
+						years = 5 
+					}
+				}
+				
+				25 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_3
+						years = 5 
+					}
+				}
+			
+				10 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_4
+						years = 5 
+					}
+				}
+			}
+		}
+	}
+	
+	option = { # Sacrifice Major Hunt #
+		name = ATMSocieties.19.optB
+		scaled_wealth = { 
+			value = -0.5
+			min = -50
+			max = -150
+		}
+		hidden_tooltip = { 
+			if = {
+				limit = {
+					NOT = {
+						trait = hunter
+					}
+				}
+				add_character_modifier = {
+					name = normal_food_shortage
+					months = 6
+				}
+				any_courtier = {
+					limit = {
+						de_facto_liege = ROOT
+						NOT = {
+							is_undead = yes
+						}
+					}
+					add_character_modifier = {
+						name = normal_food_shortage
+						months = 6
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					trait = hunter
+				}
+				add_character_modifier = {
+					name = tiny_food_shortage
+					months = 6
+				}
+				any_courtier = {
+					limit = {
+						de_facto_liege = ROOT
+						NOT = {
+							is_undead = yes
+						}
+					}
+					add_character_modifier = {
+						name = tiny_food_shortage
+						months = 6
+					}
+				}
+			}
+			
+			random_list = {
+				10 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_1
+						years = 5 
+					}
+				}
+			
+				40 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_2
+						years = 5 
+					}
+				}
+				
+				25 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_3
+						years = 5 
+					}
+				}
+			
+				25 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_4
+						years = 5 
+					}
+				}
+			}
+		}
+	}
+	
+	option = { # Sacrifice Pet #
+		name = ATMSocieties.19.OptC
+		trigger = {
+			OR = {
+				trait = ruthless
+				trait = lunatic
+				trait = cruel
+				has_character_modifier = genocidal_maniac
+				has_character_modifier = genocidal_maniac_2
+				has_character_modifier = genocidal_maniac_3
+			}
+			any_artifact = {
+				is_artifact_active = yes
+				has_artifact_flag = pet
+			}
+		}
+		hidden_tooltip = {
+			random_artifact = {
+				limit = {
+					has_artifact_flag = pet
+				}
+				destroy_artifact = yes
+			}
+			random_list = {
+				40 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_pet_1
+						years = 5 
+					}
+				}
+			
+				25 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_pet_2
+						years = 5 
+					}
+				}
+			
+				25 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_pet_3
+						years = 5 
+					}
+				}
+			
+				10 = {
+					add_character_modifier = { 
+						modifier = atmoran_sacrifice_pet_4
+						years = 5 
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+character_event = {
+	id = ATMSocieties.20
+
+	hide_window = yes
+
+	trigger = {
+		has_character_flag = has_sent_request_to_rank_up
+	}
+	
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				is_in_society = yes 
+			}
+			random_society_member = {
+				limit = {
+					is_society_grandmaster = yes
+					same_society_as = ROOT
+				}
+				character_event = { id = ATMSocieties.21 } 
+			}
+		}
+		if = {
+			limit = { is_in_society = no }
+			clr_character_flag = has_sent_request_to_rank_up
+		}
+	}
+}
+
+character_event = {
+	id = ATMSocieties.21
+	
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:rank_up_target = { letter_event = { id = ATMSocieties.22 } }
+	}
+}
+
+letter_event = {
+	id = ATMSocieties.22
+	desc = {
+		text = EVTDESC_MNM_10001_A
+		trigger = {
+			society_member_of = bear_guild
+		}
+	}
+	desc = {
+		text = EVTDESC_MNM_10001_A
+		trigger = {
+			society_member_of = owl_guild
+		}
+	}
+	border = GFX_event_letter_frame_intrigue
+
+	trigger = {
+		has_character_flag = has_sent_request_to_rank_up
+	}
+	
+	is_triggered_only = yes
+
+	option = {
+		name = {
+			text = EVTOPTA_10001
+		}
+		if = { 
+			limit = { 
+				AND = {
+					society_rank < 4 
+					OR = {
+						society_member_of = bear_guild
+						society_member_of = owl_guild
+					}
+				}
+			}
+		} 
+		society_rank_up = 1
+		hidden_effect = { society_rank_up_rewards_effect = yes }
+		clr_character_flag = has_sent_request_to_rank_up
+	}
+}

@@ -1,0 +1,797 @@
+bear_guild = {
+	
+	primary_attribute = martial
+	society_ranks_gfx = atmoran_raiders_ranks
+	opinion_to_other_members = +10
+	opinion_per_rank_above = +5
+	society_influence = no
+	society_rank_up_decision = Raider_Request_To_Rank_Up_Within_Society
+	
+	non_interference = {
+		always = yes
+	}
+
+	active = {
+		always = yes
+	}
+	
+	indestructible = yes
+	
+	can_join_society = {
+		is_in_society = no
+		NOT = { has_character_modifier = ek_society_pension }
+		hidden_trigger = {
+			NAND = {
+				ai = yes
+				is_society_rank_full = {
+					society = bear_guild
+					rank = 1
+				}
+				liege = {
+					is_playable = no
+				}
+			}
+			NOR = {
+				mercenary = yes
+				holy_order = yes
+				trait = clone
+			}
+		}
+		age = 16
+		religion = animism
+		OR = {
+			culture = atmoran
+			culture = nord
+		}
+		martial = 8
+		trigger_if = {
+			limit = { is_ruler = no }
+			liege = {
+				capital_scope = {
+					OR = {
+						region = nirn_atmora
+						region = nirn_roscrea
+						region = nirn_tamriel_solstheim
+						region = nirn_tamriel_northern_skyrim
+					}
+				}
+			}
+		}
+		
+		trigger_else = {
+			capital_scope = {
+				OR = {
+					region = nirn_atmora
+					region = nirn_roscrea
+					region = nirn_tamriel_solstheim
+					region = nirn_tamriel_northern_skyrim
+				}
+			}
+		}
+		
+		NOR = {
+			trait = sload
+			trait = necromacer
+			is_accesible_trigger = yes
+		}
+		OR = {
+			is_undead = no
+			is_unknown_vampire = yes
+		}
+		hidden_trigger = {
+			NOT = { has_character_flag = society_join_block }
+		}
+	}
+	
+	show_society = {
+		OR = {
+			society_member_of = bear_guild
+			AND = {
+				is_ruler = no
+				religion = animism
+				OR = {
+					culture = atmoran
+					culture = nord
+				}
+				liege = {
+					capital_scope = {
+						OR = {
+							region = nirn_atmora
+							region = nirn_roscrea
+							region = nirn_tamriel_solstheim
+							region = nirn_tamriel_northern_skyrim
+						}
+					}
+				}
+			}
+			AND = {
+				is_ruler = yes
+				religion = animism
+				OR = {
+					culture = atmoran
+					culture = nord
+				}
+				capital_scope = {
+					OR = {
+						region = nirn_atmora
+						region = nirn_roscrea
+						region = nirn_tamriel_solstheim
+						region = nirn_tamriel_northern_skyrim
+					}
+				}
+			}
+		}
+	}
+	
+	potential = {
+		age = 16
+		OR = {
+			is_undead = no
+			is_unknown_vampire = yes
+		}
+		hidden_trigger = {
+			NOT = { has_character_flag = society_join_block }
+		}
+		NOR = {
+			holy_order = yes
+			mercenary = yes
+			trait = clone
+		}
+		OR = {
+			culture = atmoran
+			culture = nord
+			religion = animism
+		}
+		NOT = { trait = necromancer }
+		controls_religion = no
+	}
+	
+	society_rank = {
+		level = 1
+		limit = 36
+		startup_limit = 5
+		modifier = {
+			monthly_character_prestige = 0.0375
+		}
+		decisions = {
+			power_specialization_tooltip
+			power_quest_tooltip
+			power_1_5_quest_tooltip
+		}
+	}
+	society_rank = {
+		level = 2
+		limit = 24
+		startup_limit = 4
+		modifier = {
+			monthly_character_prestige = 0.075
+		}
+		decisions = {
+			power_2_5_quest_tooltip
+			power_sacrifice_tooltip
+		}
+	}
+	society_rank = {
+		level = 3
+		limit = 12
+		startup_limit = 3
+		modifier = {
+			monthly_character_prestige = 0.125
+		}
+		decisions = {
+			power_lifestyle_tooltip
+			power_3_5_quest_tooltip
+		}
+	}
+	society_rank = {
+		level = 4
+		limit = 6
+		startup_limit = 2
+		modifier = {
+			monthly_character_prestige = 0.25
+			build_cost_castle_modifier = -0.1
+			build_cost_tribal_modifier = -0.1
+		}
+		decisions = {
+			power_4_5_quest_tooltip
+			request_grandmaster_retire
+		}
+	}
+	society_rank = {
+		level = 5
+		limit = 1
+		startup_limit = 1
+		modifier = {
+			monthly_character_prestige = 0.5
+			build_cost_castle_modifier = -0.2
+			build_cost_tribal_modifier = -0.2
+		}
+		decisions = {
+		}
+	}
+	
+	plots = {
+	}
+	
+	monthly_currency_gain = {
+		name = currency_name_bear_guild
+		
+		per_attribute = {
+    		name = martial
+    		value = 0.5
+    	}
+		has_trait = {
+			value = 1.5
+			trait = diligent
+		}
+		has_trait = {
+			value = 1.0
+			trait = brave
+		}
+		has_trait = {
+			value = 0.5
+			trait = strategist
+		}
+		has_trait = {
+			value = 1.25
+			trait = duelist
+		}
+		has_trait = {
+			value = 0.25
+			trait = hunter
+		}
+		has_trait = {
+			value = 1.25
+			trait = adventurer
+		}
+		has_trait = {
+			value = 0.75
+			trait = gladiator
+		}
+		has_trait = {
+			value = 0.5
+			trait = strong
+		}
+		has_trait = {
+			value = 0.5
+			trait = fortitude
+		}
+		has_trait = {
+			value = 0.5
+			trait = robust
+		}
+		has_trait = {
+			value = 0.5
+			trait = agile
+		}
+		has_trait = {
+			value = 0.25
+			trait = perceptive
+		}
+		has_trait = {
+			value = 0.25
+			trait = shrewd
+		}
+		has_trait = {
+			value = 0.25
+			trait = quick
+		}
+		has_trait = {
+			value = 0.25
+			trait = genius
+		}
+		has_trait = {
+			value = 0.25
+			trait = lucky
+		}
+		has_trait = {
+			value = 1
+			trait = warrior_3
+		}
+		has_trait = {
+			value = 1.5
+			trait = warrior_4
+		}
+		has_trait = {
+			value = 2
+			trait = warrior_5
+		}
+		has_trait = {
+			value = 1.5
+			trait = raider
+		}
+		has_trait = {
+			value = 0.25
+			trait = p_bear
+		}
+		society_rank = {
+			rank = 3
+			value = 0.5
+		}
+		society_rank = {
+			rank = 4
+			value = 1.0
+		}
+		society_rank = {
+			rank = 5
+			value = 3
+		}
+	}
+	member_score_per_attribute = 2
+	member_score_per_rank = 100
+
+	member_score = {
+		value = 50
+		
+		modifier = { 
+			factor = 1.25
+			combat_rating = 5 
+			NOT = { combat_rating = 10 } 
+		}
+		modifier = { 
+			factor = 1.5
+			combat_rating = 10
+			NOT = { combat_rating = 15 } 
+		}
+		modifier = { 
+			factor = 2.0
+			combat_rating = 15
+			NOT = { combat_rating = 20 } 
+		}
+		modifier = { 
+			factor = 2.5
+			combat_rating = 20
+			NOT = { combat_rating = 30 } 
+		}
+		modifier = { factor = 3.0 combat_rating >= 30 }
+		modifier = { factor = 2.0 trait = diligent }
+		modifier = { factor = 2.5 trait = raider }
+		modifier = { factor = 2.0 trait = brave }
+		modifier = { factor = 2.0 trait = strategist }
+		modifier = { factor = 1.5 trait = adventurer }
+		modifier = { factor = 1.5 trait = duelist }
+		modifier = { factor = 1.25 trait = hunter }
+		modifier = { factor = 1.75 trait = gladiator }
+		modifier = { factor = 1.5 is_strong_trigger = yes }
+		modifier = { factor = 1.25 trait = fortitude }
+		modifier = { factor = 1.5 trait = agile }
+		modifier = { factor = 1.25 is_smart_trigger = yes }
+		modifier = { factor = 1.25 trait = warrior_3 }
+		modifier = { factor = 1.5 trait = warrior_4 }
+		modifier = { factor = 2.0 trait = warrior_5 }
+		modifier = { factor = 2.0 is_barbarian = yes }
+		modifier = { factor = 2.5 trait = dragonborn }
+		modifier = { factor = 2.0 is_dragonblood = yes }
+		modifier = { factor = 1.25 is_witchhunter = yes }
+		modifier = { factor = 2.0 is_crusader = yes }
+		modifier = {
+			factor = 2
+			any_owned_bloodline = {
+				has_bloodline_flag = bloodline_ysgramor
+			}
+		}
+		modifier = { 
+			factor = 1.5
+			any_owned_bloodline = {
+				has_bloodline_flag = bloodline_companions
+			}
+		}
+		modifier = {
+			factor = 0.33
+			is_long_lived = yes
+		}
+		modifier = { factor = 0.75 is_dumb_trigger = yes }
+		modifier = { factor = 0.85 is_weak_trigger = yes }
+		modifier = { factor = 0.95 trait = dwarf }
+		modifier = { factor = 0.95 trait = hunchback }
+		modifier = { factor = 0.95 trait = clubfooted }
+		modifier = { factor = 0.95 trait = unlucky }
+		modifier = { factor = 0.95 OR = { trait = blinded trait = blind trait = blind_moth } }
+		modifier = { factor = 0.95 trait = deaf }
+		modifier = { factor = 0.95 has_severe_disability_trigger = yes }
+		modifier = { factor = 0.95 is_maimed_trigger = yes }
+		modifier = { factor = 0.95 has_mental_disorder_trigger = yes }
+		modifier = { factor = 0.98 trait = absent_minded }
+		modifier = { factor = 0.96 trait = slothful }
+	}
+	
+	startup_populate = {
+	    trigger = {
+			ai = yes
+	    	controls_religion = no
+			NOR = {
+				higher_tier_than = DUKE
+				mercenary = yes
+				holy_order = yes
+			}
+			age = 16
+			is_in_society = no
+			is_dumb_trigger = no
+			is_inaccessible_trigger = no
+			martial = 8
+			NOT = { trait = sload }
+			OR = {
+				is_undead = no
+				AND = {
+					is_undead = yes
+					trait = vampire
+				}
+			}
+			OR = {
+				AND = {
+					is_ruler = no
+					religion = animism
+					OR = {
+						culture = atmoran
+						culture = nord
+					}
+					liege = {
+						capital_scope = {
+							OR = {
+								region = nirn_atmora
+								region = nirn_roscrea
+								region = nirn_tamriel_solstheim
+								region = nirn_tamriel_northern_skyrim
+							}
+						}
+					}
+				}
+				AND = {
+					is_ruler = yes
+					religion = animism
+					OR = {
+						culture = atmoran
+						culture = nord
+					}
+					capital_scope = {
+						OR = {
+							region = nirn_atmora
+							region = nirn_roscrea
+							region = nirn_tamriel_solstheim
+							region = nirn_tamriel_northern_skyrim
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+}
+
+owl_guild = {
+	primary_attribute = diplomacy
+	society_ranks_gfx = generic_ranks
+	opinion_to_other_members = +10
+	opinion_per_rank_above = +5
+	society_influence = no
+	society_rank_up_decision = Storyteller_Request_To_Rank_Up_Within_Society
+	non_interference = {
+		always = yes
+	}
+	active = {
+		always = yes
+	}
+	indestructible = yes
+	
+	can_join_society = {
+		is_in_society = no
+		NOT = { has_character_modifier = ek_society_pension }
+		hidden_trigger = {
+			NAND = {
+				ai = yes
+				is_society_rank_full = {
+					society = owl_guild
+					rank = 1
+				}
+				liege = {
+					is_playable = no
+				}
+			}
+			NOR = {
+				mercenary = yes
+				holy_order = yes
+				trait = clone
+			}
+		}
+		age = 16
+		controls_religion = no
+		diplomacy = 8
+		trigger_if = {
+			limit = { is_ruler = no }
+			liege = {
+				capital_scope = {
+					OR = {
+						region = nirn_atmora
+						region = nirn_roscrea
+						region = nirn_tamriel_solstheim
+						region = nirn_tamriel_northern_skyrim
+					}
+				}
+			}
+		}
+		trigger_else = {
+			capital_scope = {
+				OR = {
+					region = nirn_atmora
+					region = nirn_roscrea
+					region = nirn_tamriel_solstheim
+					region = nirn_tamriel_northern_skyrim
+				}
+			}
+		}
+		NOT = { trait = sload }
+		is_inaccessible_trigger = no
+		OR = {
+			is_undead = no
+			is_unknown_vampire = yes
+		}
+		hidden_trigger = {
+			NOT = { has_character_flag = society_join_block }
+		}
+	}
+	
+	show_society = {
+		OR = {
+			society_member_of = owl_guild
+			AND = {
+				is_ruler = no
+				religion = animism
+				OR = {
+					culture = atmoran
+					culture = nord
+				}
+				liege = {
+					capital_scope = {
+						OR = {
+							region = nirn_atmora
+							region = nirn_roscrea
+							region = nirn_tamriel_solstheim
+							region = nirn_tamriel_northern_skyrim
+						}
+					}
+				}
+			}
+			AND = {
+				is_ruler = yes
+				religion = animism
+				OR = {
+					culture = atmoran
+					culture = nord
+				}
+				capital_scope = {
+					OR = {
+						region = nirn_atmora
+						region = nirn_roscrea
+						region = nirn_tamriel_solstheim
+						region = nirn_tamriel_northern_skyrim
+					}
+				}
+			}
+		}
+	}
+	
+	potential = {
+		age = 16
+		OR = {
+			is_undead = no
+			is_unknown_vampire = yes
+		}
+		hidden_trigger = {
+			NOT = { has_character_flag = society_join_block }
+		}
+		NOR = {
+			holy_order = yes
+			mercenary = yes
+			trait = clone
+		}
+		controls_religion = no
+	}
+	
+	society_rank = {
+		level = 1
+		limit = 36
+		startup_limit = 5
+		modifier = {
+			monthly_character_prestige = 0.01
+		}
+		decisions = {
+			power_specialization_tooltip
+			power_quest_tooltip
+			power_1_4_quest_tooltip
+		}
+	}
+	
+	society_rank = {
+		level = 2
+		limit = 24
+		startup_limit = 4
+		modifier = {
+			monthly_character_prestige = 0.05
+			atmoran_opinion = 2
+		}
+		decisions = {
+			power_2_4_quest_tooltip
+		}
+	}
+	
+	society_rank = {
+		level = 3
+		limit = 15
+		startup_limit = 4
+		modifier = {
+			monthly_character_prestige = 0.15
+			atmoran_opinion = 5
+		}
+		decisions = {
+			request_grandmaster_retire
+			power_lifestyle_tooltip
+			power_3_4_quest_tooltip
+		}
+	}
+
+	society_rank = {
+		level = 4
+		limit = 4
+		startup_limit = 2
+		modifier = {
+			monthly_character_prestige = 0.5
+			atmoran_opinion = 10
+		}
+		decisions = {
+		}
+	}
+	
+	plots = {
+	}
+	
+	monthly_currency_gain = {
+		name = currency_name_owl_guild
+		
+		per_attribute = {
+    		name = diplomacy
+    		value = 0.5
+    	}
+		has_trait = {
+			value = 2
+			trait = diligent
+		}
+		has_trait = {
+			value = 1
+			trait = socializer
+		}
+		has_trait = {
+			value = 1
+			trait = gregarious
+		}
+		has_trait = {
+			value = 1
+			trait = patient
+		}
+		has_trait = {
+			value = 1
+			trait = genius
+		}
+		has_trait = {
+			value = 1
+			trait = quick
+		}
+		has_trait = {
+			value = 1
+			trait = shrewd
+		}
+		has_trait = {
+			value = 1
+			trait = just
+		}
+		has_trait = {
+			value = 0.25
+			trait = p_owl
+		}
+		society_rank = {
+			rank = 4
+			value = 10
+		}
+	}
+	
+	member_score_per_attribute = 2
+	member_score_per_rank = 100
+
+	member_score = {
+		value = 50
+
+		modifier = {
+			factor = 0.33
+			is_long_lived = yes
+		}
+		modifier = {
+			factor = 2
+			trait = diligent
+		}
+		modifier = {
+			factor = 1.5
+			trait = socializer
+		}
+		modifier = {
+			factor = 1.5
+			trait = gregarious
+		}
+		modifier = {
+			factor = 1.5
+			trait = patient
+		}
+		modifier = {
+			factor = 1.5
+			OR = {
+				trait = genius
+				trait = quick
+				trait = shrewd
+			}
+		}
+		modifier = {
+			factor = 1.5
+			trait = just
+		}
+		modifier = {
+			factor = 2
+			trait = diplomat_5
+		}
+	}
+	startup_populate = {
+	    trigger = {
+			ai = yes
+	    	controls_religion = no
+			age = 16
+			is_in_society = no
+			is_dumb_trigger = no
+			is_inaccessible_trigger = no
+			diplomacy = 8
+			NOT = { trait = sload }
+			OR = {
+				is_undead = no
+				is_unknown_vampire = yes
+			}
+			OR = {
+				AND = {
+					is_ruler = no
+					religion = animism
+					OR = {
+						culture = atmoran
+						culture = nord
+					}
+					liege = {
+						capital_scope = {
+							OR = {
+								region = nirn_atmora
+								region = nirn_roscrea
+								region = nirn_tamriel_solstheim
+								region = nirn_tamriel_northern_skyrim
+							}
+						}
+					}
+				}
+				AND = {
+					is_ruler = yes
+					religion = animism
+					OR = {
+						culture = atmoran
+						culture = nord
+					}
+					capital_scope = {
+						OR = {
+							region = nirn_atmora
+							region = nirn_roscrea
+							region = nirn_tamriel_solstheim
+							region = nirn_tamriel_northern_skyrim
+						}
+					}
+				}
+			}
+			NOR = {
+				higher_tier_than = DUKE
+				mercenary = yes
+				holy_order = yes
+			}
+		}
+	}
+}

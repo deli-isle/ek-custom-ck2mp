@@ -4,6 +4,7 @@ building_holding_is_tower = {
 		FROMFROM = { title = b_direnni }
 		FROMFROM = { title = b_crystal }
 		FROMFROM = { title = b_falinesti }
+		FROMFROM = { title = b_dagothur }
 	}
 }
 
@@ -13,5 +14,6 @@ holding_is_tower = {
 		title = b_direnni
 		title = b_crystal
 		title = b_falinesti
+		title = b_dagothur
 	}
 }

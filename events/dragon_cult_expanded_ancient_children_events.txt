@@ -1,0 +1,2598 @@
+namespace = ancient_children
+
+########################JOINING############################
+
+#From on_character_ask_to_join_society
+character_event = {
+    id = ancient_children.100
+	hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+    	FROM = { leader = { society_member_of = children_of_the_ancient_ways } }
+    }
+    immediate = {
+    	FROM = { leader = { character_event = { id = ancient_children.101 } } } #target is the leader of the society
+    }
+}
+
+#Ping event
+character_event = {
+    id = ancient_children.101
+	hide_window = yes
+    is_triggered_only = yes
+    immediate = {
+    	FROM = { letter_event = { id = ancient_children.102 } } #send event back 
+    }
+}
+
+#Welcome letter
+letter_event = {
+    id = ancient_children.102
+    desc = EVTDESC_ancient_children.102
+    border = GFX_event_letter_frame_war
+	
+    is_triggered_only = yes
+
+    option = { #join the society
+        name = EVTOPTA_ancient_children.102
+		FROM = { ROOT = { join_society = children_of_the_ancient_ways } }
+    }
+    option = { #don't
+        name = EVTOPTB_ancient_children.102
+    }
+}
+
+########################AI JOIN AND AI RANK UP###########################
+
+character_event = { #force the AI to join a society
+	id = ancient_children.110
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { #if he's already a member, will force a rank up 25% of the time
+				ai = yes
+				prisoner = no
+				NOT = { trait = incapable }
+				society_member_of = children_of_the_ancient_ways
+				society_rank <= 3
+				society_can_rank_up = yes
+			}
+			random_list = {
+				75 = {}
+				25 = {
+					society_rank_up = 1					
+				}
+			}
+		}
+		any_courtier = {  #if you want courtier in the society enable this part
+			limit = {
+				ai = yes
+				prisoner = no
+				NOT = { trait = incapable }
+				is_adult = yes
+				is_in_society = no
+				controls_religion = no
+				NOT = { trait = sload }
+				is_inaccessible_trigger = no
+				OR = {
+					is_not_undead = yes
+					trait = vampire
+					trait = lich
+					trait = dragonpriest
+				}
+				block_general_event_trigger = no
+			}
+			character_event = { id = ancient_children.111 }
+		}
+		if = { #force the joining event on AI
+			limit = {
+				ai = yes
+				prisoner = no
+				NOT = { trait = incapable }
+				is_adult = yes
+				is_in_society = no
+				controls_religion = no
+				block_general_event_trigger = no
+				NOT = { trait = sload }
+				is_inaccessible_trigger = no
+				OR = {
+					is_not_undead = yes
+					trait = vampire
+					trait = lich
+					trait = dragonpriest
+				}
+			}
+			character_event = { id = ancient_children.111 }
+		}
+	}
+}
+
+character_event = { #AI join event
+	id = ancient_children.111
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		random_list = {
+			90 = { # do nothing
+			}
+			10 = { # try to join a society 10% of the time
+				trigger = { #meet the requirement
+					can_join_society = children_of_the_ancient_ways
+				}
+				modifier = { #things that will make that 10% of the time bigger, can be anything 
+					factor = 2
+					prestige = 200
+				}
+				join_society = children_of_the_ancient_ways #join the society
+				if = { # Make grandmaster is there is none
+					limit = {
+						NOT = {
+							society = {
+								any_society_member = {
+									is_society_grandmaster = yes
+								}
+							}
+						}
+					}
+					set_society_grandmaster = yes
+				}
+			}
+		}
+	}
+}
+
+#######################Rank UP#############################
+
+# Hidden start: Send the rank-up request to the current Grandmaster (delayed event on self, from decision to rank up)
+character_event = {
+	id = ancient_children.120
+
+	hide_window = yes
+
+	trigger = { #has pressed the button
+		has_character_flag = has_sent_request_to_rank_up
+	}
+	
+	is_triggered_only = yes
+
+	immediate = {
+		if = { #if he's still a member
+			limit = { is_in_society = yes }
+			random_society_member = { #will send the request to a random top rank member of the same society
+				limit = {
+					is_society_grandmaster = yes
+					same_society_as = ROOT
+				}
+				character_event = { id = ancient_children.121 } # send request to Grand Master.
+			}
+		}
+		if = { #if he's not a member
+			limit = { is_in_society = no }
+			clr_character_flag = has_sent_request_to_rank_up
+		}
+	}
+}
+
+# Grandmaster gets the rank-up request
+character_event = {
+	id = ancient_children.121
+	
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:rank_up_target = { letter_event = { id = ancient_children.122 } } #send it back
+	}
+}
+
+#Grand master approves my request
+letter_event = {
+	id = ancient_children.122
+	desc = EVTDESC_ancient_children.122
+	border = GFX_event_letter_frame_war
+
+	trigger = {
+		society_rank < 4 #cannot rank up past 4
+		has_character_flag = has_sent_request_to_rank_up
+	}
+	
+	is_triggered_only = yes
+
+	#Rank up approved
+	option = {
+		name = EVTOPTA_ancient_children.122
+		if = { limit = { society_rank < 4 } #if not max rank, rank up
+			society_rank_up = 1
+		}
+		clr_character_flag = has_sent_request_to_rank_up
+	}
+}
+
+#######################Grandmaster Cleanup#############################
+
+character_event = { #Invalid grandmaster
+	id = ancient_children.300
+	hide_window = yes
+	
+	trigger = {
+		NOT = { has_global_flag = children_of_the_ancient_ways_invalid_grandmaster }
+		NOT = { has_global_flag = children_of_the_ancient_ways_substitute_gm_hired }
+		society_member_of = children_of_the_ancient_ways
+		is_society_grandmaster = yes
+		NOT = { has_landed_title = d_dragon_cult }
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		set_global_flag = children_of_the_ancient_ways_invalid_grandmaster
+	}
+}
+
+character_event = { #Promotes valid grandmaster
+	id = ancient_children.301
+	hide_window = yes
+	
+	trigger = {
+		has_global_flag = children_of_the_ancient_ways_invalid_grandmaster
+		has_landed_title = d_dragon_cult
+		age = 16
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				ai = no
+			}
+			character_event = { id = ancient_children.303 }
+		}
+		
+		if = {
+			limit = {
+				ai = yes
+			}
+			if = {
+				limit = {
+					NOT = { trait = dragonpriest }
+				}
+				add_trait = dragonpriest
+			}
+			if = {
+				limit = {
+					NOT = { trait = lich }
+				}
+				add_trait = lich
+			}
+			if = {
+				limit = {
+					is_in_society = yes
+					NOT = { society_member_of = children_of_the_ancient_ways }
+				}
+				leave_society = yes
+				join_society = children_of_the_ancient_ways
+			}
+			if = {
+				limit = {
+					is_in_society = no
+				}
+				join_society = children_of_the_ancient_ways
+			}
+			set_society_grandmaster = yes
+			clr_global_flag = children_of_the_ancient_ways_invalid_grandmaster
+			
+			remove_trait = bard_1
+			remove_trait = bard_2
+			remove_trait = bard_3
+			remove_trait = wayfarer_1
+			remove_trait = wayfarer_2
+			remove_trait = wayfarer_3
+			remove_trait = savant_1
+			remove_trait = savant_2
+			remove_trait = savant_3
+			remove_trait = rogue_1
+			remove_trait = rogue_2
+			remove_trait = rogue_3
+			remove_trait = knight_1
+			remove_trait = knight_2
+			remove_trait = knight_3
+			remove_trait = crusader_1
+			remove_trait = crusader_2
+			remove_trait = crusader_3
+			remove_trait = barbarian_1
+			remove_trait = barbarian_2
+			remove_trait = barbarian_3
+			remove_trait = spellsword_1
+			remove_trait = spellsword_2
+			remove_trait = spellsword_3		
+			remove_trait = witchhunter_1
+			remove_trait = witchhunter_2
+			remove_trait = witchhunter_3
+			remove_trait = battlemage_1
+			remove_trait = battlemage_2
+			remove_trait = battlemage_3
+			remove_trait = sorcerer_1
+			remove_trait = sorcerer_2
+			remove_trait = sorcerer_3
+			remove_trait = trader_1
+			remove_trait = trader_2
+			remove_trait = trader_3	
+			remove_trait = monk_1
+			remove_trait = monk_2
+			remove_trait = monk_3
+			remove_trait = scout_1
+			remove_trait = scout_2
+			remove_trait = scout_3
+			remove_trait = healer_1
+			remove_trait = healer_2
+			remove_trait = healer_3	
+			remove_trait = acrobat_1
+			remove_trait = acrobat_2
+			remove_trait = acrobat_3	
+			remove_trait = thief_1
+			remove_trait = thief_2
+			remove_trait = thief_3
+			remove_trait = assassin_1
+			remove_trait = assassin_2
+			remove_trait = assassin_3	
+			remove_trait = nightblade_1
+			remove_trait = nightblade_2
+			remove_trait = nightblade_3
+			if = {
+				limit = {
+					OR = {
+						trait = priest_1
+						trait = priest_2
+					}
+				}
+				remove_trait = priest_1
+				remove_trait = priest_2
+				add_trait = priest_3
+			}
+			if = {
+				limit = {
+					NOR = {
+						trait = priest_1
+						trait = priest_2
+						trait = priest_3
+					}
+				}
+				add_trait = priest_3
+			}
+			hidden_tooltip = { set_character_flag = dragonborn_candidate }
+		}
+	}
+}
+
+character_event = { #Granmaster made Dragonpriest
+	id = ancient_children.302
+	hide_window = yes
+	
+	trigger = {
+		society_member_of = children_of_the_ancient_ways
+		is_society_grandmaster = yes
+		has_landed_title = d_dragon_cult
+		NOR = {
+			trait = dragonpriest
+			trait = lich
+		}
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		if = {
+			limit = {
+				NOT = { trait = dragonpriest }
+			}
+			add_trait = dragonpriest
+		}
+		if = {
+			limit = {
+				NOT = { trait = lich }
+			}
+			add_trait = lich
+		}
+		hidden_tooltip = { set_character_flag = dragonborn_candidate }
+	}
+}
+
+character_event = { #Promotes valid grandmaster, Player Choice
+	id = ancient_children.303
+	desc = EVTDESC_ancient_children.303
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTA_ancient_children.303
+		trigger = {
+			NOT = {
+				trait = dragonpriest
+				trait = lich
+			}
+		}
+		if = {
+			limit = {
+				NOT = { trait = dragonpriest }
+			}
+			add_trait = dragonpriest
+		}
+		if = {
+			limit = {
+				NOT = { trait = lich }
+			}
+			add_trait = lich
+		}
+		if = {
+			limit = {
+				is_in_society = yes
+				NOT = { society_member_of = children_of_the_ancient_ways }
+			}
+			leave_society = yes
+			join_society = children_of_the_ancient_ways
+		}
+		if = {
+			limit = {
+				is_in_society = no
+			}
+			join_society = children_of_the_ancient_ways
+			
+		}
+		set_society_grandmaster = yes
+		hidden_tooltip = { 
+			clr_global_flag = children_of_the_ancient_ways_invalid_grandmaster
+			set_character_flag = dragonborn_candidate		
+		
+		}
+		
+		hidden_tooltip = {
+			remove_trait = bard_1
+			remove_trait = bard_2
+			remove_trait = bard_3
+			remove_trait = wayfarer_1
+			remove_trait = wayfarer_2
+			remove_trait = wayfarer_3
+			remove_trait = savant_1
+			remove_trait = savant_2
+			remove_trait = savant_3
+			remove_trait = rogue_1
+			remove_trait = rogue_2
+			remove_trait = rogue_3
+			remove_trait = knight_1
+			remove_trait = knight_2
+			remove_trait = knight_3
+			remove_trait = crusader_1
+			remove_trait = crusader_2
+			remove_trait = crusader_3
+			remove_trait = barbarian_1
+			remove_trait = barbarian_2
+			remove_trait = barbarian_3
+			remove_trait = spellsword_1
+			remove_trait = spellsword_2
+			remove_trait = spellsword_3		
+			remove_trait = witchhunter_1
+			remove_trait = witchhunter_2
+			remove_trait = witchhunter_3
+			remove_trait = battlemage_1
+			remove_trait = battlemage_2
+			remove_trait = battlemage_3
+			remove_trait = sorcerer_1
+			remove_trait = sorcerer_2
+			remove_trait = sorcerer_3
+			remove_trait = trader_1
+			remove_trait = trader_2
+			remove_trait = trader_3	
+			remove_trait = monk_1
+			remove_trait = monk_2
+			remove_trait = monk_3
+			remove_trait = scout_1
+			remove_trait = scout_2
+			remove_trait = scout_3
+			remove_trait = healer_1
+			remove_trait = healer_2
+			remove_trait = healer_3	
+			remove_trait = acrobat_1
+			remove_trait = acrobat_2
+			remove_trait = acrobat_3	
+			remove_trait = thief_1
+			remove_trait = thief_2
+			remove_trait = thief_3
+			remove_trait = assassin_1
+			remove_trait = assassin_2
+			remove_trait = assassin_3	
+			remove_trait = nightblade_1
+			remove_trait = nightblade_2
+			remove_trait = nightblade_3
+		}
+		if = {
+			limit = {
+				OR = {
+					trait = priest_1
+					trait = priest_2
+				}
+			}
+			remove_trait = priest_1
+			remove_trait = priest_2
+			add_trait = priest_3
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = priest_1
+					trait = priest_2
+					trait = priest_3
+				}
+			}
+			add_trait = priest_3
+		}
+	}
+	
+	option = {
+		name = EVTOPTA_ancient_children.303
+		trigger = {
+			trait = dragonpriest
+			trait = lich
+		}
+		if = {
+			limit = {
+				is_in_society = yes
+				NOT = { society_member_of = children_of_the_ancient_ways }
+			}
+			leave_society = yes
+			join_society = children_of_the_ancient_ways
+		}
+		if = {
+			limit = {
+				is_in_society = no
+			}
+			join_society = children_of_the_ancient_ways
+			
+		}
+		set_society_grandmaster = yes
+		hidden_tooltip = { 
+			clr_global_flag = children_of_the_ancient_ways_invalid_grandmaster 
+			set_character_flag = dragonborn_candidate
+		}
+		
+		hidden_tooltip = {
+			remove_trait = bard_1
+			remove_trait = bard_2
+			remove_trait = bard_3
+			remove_trait = wayfarer_1
+			remove_trait = wayfarer_2
+			remove_trait = wayfarer_3
+			remove_trait = savant_1
+			remove_trait = savant_2
+			remove_trait = savant_3
+			remove_trait = rogue_1
+			remove_trait = rogue_2
+			remove_trait = rogue_3
+			remove_trait = knight_1
+			remove_trait = knight_2
+			remove_trait = knight_3
+			remove_trait = crusader_1
+			remove_trait = crusader_2
+			remove_trait = crusader_3
+			remove_trait = barbarian_1
+			remove_trait = barbarian_2
+			remove_trait = barbarian_3
+			remove_trait = spellsword_1
+			remove_trait = spellsword_2
+			remove_trait = spellsword_3		
+			remove_trait = witchhunter_1
+			remove_trait = witchhunter_2
+			remove_trait = witchhunter_3
+			remove_trait = battlemage_1
+			remove_trait = battlemage_2
+			remove_trait = battlemage_3
+			remove_trait = sorcerer_1
+			remove_trait = sorcerer_2
+			remove_trait = sorcerer_3
+			remove_trait = trader_1
+			remove_trait = trader_2
+			remove_trait = trader_3	
+			remove_trait = monk_1
+			remove_trait = monk_2
+			remove_trait = monk_3
+			remove_trait = scout_1
+			remove_trait = scout_2
+			remove_trait = scout_3
+			remove_trait = healer_1
+			remove_trait = healer_2
+			remove_trait = healer_3	
+			remove_trait = acrobat_1
+			remove_trait = acrobat_2
+			remove_trait = acrobat_3	
+			remove_trait = thief_1
+			remove_trait = thief_2
+			remove_trait = thief_3
+			remove_trait = assassin_1
+			remove_trait = assassin_2
+			remove_trait = assassin_3	
+			remove_trait = nightblade_1
+			remove_trait = nightblade_2
+			remove_trait = nightblade_3
+		}
+		if = {
+			limit = {
+				OR = {
+					trait = priest_1
+					trait = priest_2
+				}
+			}
+			remove_trait = priest_1
+			remove_trait = priest_2
+			add_trait = priest_3
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = priest_1
+					trait = priest_2
+					trait = priest_3
+				}
+			}
+			add_trait = priest_3
+		}
+	}
+	
+	option = {
+		name = EVTOPTB_ancient_children.303
+		if = {
+			limit = {
+				NOT = { trait = dragonpriest }
+			}
+			add_trait = dragonpriest
+		}
+		if = {
+			limit = {
+				NOT = { trait = lich }
+			}
+			add_trait = lich
+		}
+		hidden_tooltip = { 
+			set_global_flag = children_of_the_ancient_ways_substitute_gm_hired
+			clr_global_flag = children_of_the_ancient_ways_invalid_grandmaster
+			set_character_flag = dragonborn_candidate
+		}
+	}
+	
+	option = {
+		name = EVTOPTC_ancient_children.303
+		create_random_priest = {
+			random_traits = yes
+			dynasty = random
+			culture = ROOT
+			religion = dragon_cult
+			age = 346
+		}
+		new_character = {
+			add_trait = dragonpriest
+			add_trait = lich
+			add_trait = priest_3
+			add_trait = genius
+			add_trait = zealous
+			
+			if = {
+				limit = {
+					NOT = { trait = mage_5 }
+				}
+				remove_trait = mage_1
+				remove_trait = mage_2
+				remove_trait = mage_3
+				remove_trait = mage_4
+				add_trait = mage_5
+			}
+			grant_title_no_opinion = d_dragon_cult
+			join_society = children_of_the_ancient_ways
+			set_society_grandmaster = yes
+			hidden_tooltip = { set_character_flag = dragonborn_candidate }
+		}
+		hidden_tooltip = { clr_global_flag = children_of_the_ancient_ways_invalid_grandmaster }
+	}
+}
+
+#######################Powers#############################
+
+character_event = { #Study a Specilization
+	id = ancient_children.200
+	desc = EVTDESC_ancient_children.200
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		is_in_society = yes
+		society_member_of = children_of_the_ancient_ways
+		NOT = { has_character_modifier = denied_specialization_timer }
+		NOT = {
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+	option = { #Crusader
+		name = EVTOPTA_ancient_children.200
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = crusader_1
+				trait = crusader_2
+				NOR = {
+					trait = crusader_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = crusader_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_crusader
+	}
+	
+	option = { #Spellsword
+		name = EVTOPTB_ancient_children.200
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = spellsword_1
+				trait = spellsword_2
+				NOR = {
+					trait = spellsword_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = spellsword_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_spellsword
+	}
+	
+	option = { #Priest
+		name = EVTOPTC_ancient_children.200
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = priest_1
+				trait = priest_2
+				NOR = {
+					trait = priest_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = priest_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_priest
+	}
+	
+	option = {
+		name = eksocieties50Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+	option = { #More options
+		name = eksocieties50Wrap
+		character_event = { id = ancient_children.201 }
+	}
+}
+
+character_event = {
+	id = ancient_children.201
+	desc = EVTDESC_ancient_children.200
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Battlemage
+		name = EVTOPTA_ancient_children.201
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = battlemage_1
+				trait = battlemage_2
+				NOR = {
+					trait = battlemage_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = battlemage_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_battlemage
+	}
+	
+	option = { #Sorcerer
+		name = EVTOPTB_ancient_children.201
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = sorcerer_1
+				trait = sorcerer_2
+				NOR = {
+					trait = sorcerer_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = sorcerer_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_sorcerer
+	}
+	
+	option = { #Monk
+		name = EVTOPTC_ancient_children.201
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = monk_1
+				trait = monk_2
+				NOR = {
+					trait = monk_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = monk_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_monk
+	}
+	
+	option = {
+		name = eksocieties50Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+	option = { #More options
+		name = eksocieties50Wrap
+		character_event = { id = ancient_children.202 }
+	}
+}
+
+character_event = {
+	id = ancient_children.202
+	desc = EVTDESC_ancient_children.200
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Assassin
+		name = EVTOPTA_ancient_children.202
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = assassin_1
+				trait = assassin_2
+				NOR = {
+					trait = assassin_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = assassin_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_assassin
+	}
+	
+	option = { #Acrobat
+		name = EVTOPTB_ancient_children.202
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = acrobat_1
+				trait = acrobat_2
+				NOR = {
+					trait = acrobat_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = acrobat_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_acrobat
+	}
+	
+	option = { #Thief
+		name = EVTOPTC_ancient_children.202
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = thief_1
+				trait = thief_2
+				NOR = {
+					trait = thief_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = thief_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_thief
+	}
+	
+	option = {
+		name = eksocieties50Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+	option = { #More options
+		name = eksocieties50Wrap
+		character_event = { id = ancient_children.203 }
+	}
+}
+
+character_event = {
+	id = ancient_children.203
+	desc = EVTDESC_ancient_children.200
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Nightblade
+		name = EVTOPTA_ancient_children.203
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			OR = {
+				trait = nightblade_1
+				trait = nightblade_2
+				NOR = {
+					trait = nightblade_3
+					has_two_specializations = yes
+				}
+			}
+		}
+		custom_tooltip = { text = nightblade_study_tooltip }
+		set_character_flag = children_of_the_ancient_ways_nightblade
+	}
+	
+	option = {
+		name = eksocieties50Completed
+		trigger = { 
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+		clr_character_flag = children_of_the_ancient_ways_specialization_ongoing
+	}
+	
+	option = { #More options
+		name = eksocieties50Wrap
+		character_event = { id = ancient_children.200 }
+	}
+	
+	option = { #Failsafe
+		name = eksocieties50Decline
+		trigger = {
+		}
+		clr_character_flag = children_of_the_ancient_ways_specialization_ongoing
+		add_character_modifier = {
+			name = denied_specialization_timer
+			months = 12
+			hidden = yes
+		}
+	}
+}
+
+character_event = { #Specilizations for the AI
+	id = ancient_children.210
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	ai = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		is_in_society = yes
+		society_member_of = children_of_the_ancient_ways
+		
+		NOT = {
+			calc_true_if = {
+				amount = 2
+				trait = acrobat_3
+				trait = assassin_3
+				trait = barbarian_3
+				trait = bard_3
+				trait = battlemage_3
+				trait = crusader_3
+				trait = knight_3
+				trait = healer_3
+				trait = monk_3
+				trait = nightblade_3
+				trait = priest_3
+				trait = rogue_3
+				trait = savant_3
+				trait = scout_3
+				trait = sorcerer_3
+				trait = spellsword_3
+				trait = thief_3
+				trait = trader_3
+				trait = wayfarer_3
+				trait = witchhunter_3
+			}
+		}
+	}
+	
+	immediate = {
+		random_list = {
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = crusader_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = crusader_1
+								trait = crusader_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_crusader
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = spellsword_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = spellsword_1
+								trait = spellsword_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_spellsword
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = monk_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = monk_1
+								trait = monk_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_monk
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = sorcerer_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = sorcerer_1
+								trait = sorcerer_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_sorcerer
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = priest_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = priest_1
+								trait = priest_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_priest
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = thief_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = thief_1
+								trait = thief_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_thief
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = battlemage_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = battlemage_1
+								trait = battlemage_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_battlemage
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = acrobat_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = acrobat_1
+								trait = acrobat_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_acrobat
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = assassin_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = assassin_1
+								trait = assassin_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_assassin
+			}
+			10 = {
+				modifier = {
+					factor = 0
+					OR = {
+						trait = nightblade_3
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = nightblade_1
+								trait = nightblade_2
+							}
+						}
+					}
+				}
+				set_character_flag = children_of_the_ancient_ways_nightblade
+			}
+		}
+		
+		if = {
+			limit = {
+				calc_true_if = {
+					amount = 2
+					trait = acrobat_3
+					trait = assassin_3
+					trait = barbarian_3
+					trait = bard_3
+					trait = battlemage_3
+					trait = crusader_3
+					trait = knight_3
+					trait = healer_3
+					trait = monk_3
+					trait = nightblade_3
+					trait = priest_3
+					trait = rogue_3
+					trait = savant_3
+					trait = scout_3
+					trait = sorcerer_3
+					trait = spellsword_3
+					trait = thief_3
+					trait = trader_3
+					trait = wayfarer_3
+					trait = witchhunter_3
+				}
+			}
+			clr_character_flag = children_of_the_ancient_ways_specialization_ongoing
+			clr_character_flag = children_of_the_ancient_ways_crusader
+			clr_character_flag = children_of_the_ancient_ways_spellsword
+			clr_character_flag = children_of_the_ancient_ways_monk
+			clr_character_flag = children_of_the_ancient_ways_sorcerer
+			clr_character_flag = children_of_the_ancient_ways_priest
+			clr_character_flag = children_of_the_ancient_ways_thief
+			clr_character_flag = children_of_the_ancient_ways_battlemage
+			clr_character_flag = children_of_the_ancient_ways_acrobat
+			clr_character_flag = children_of_the_ancient_ways_assassin
+			clr_character_flag = children_of_the_ancient_ways_nightblade
+		}
+	}
+}
+
+character_event = { #Cancel Specilization
+	id = ancient_children.220
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		add_character_modifier = {
+			name = denied_specialization_timer
+			months = 12
+			hidden = yes
+		}
+		
+		clr_character_flag = children_of_the_ancient_ways_specialization_ongoing
+		clr_character_flag = children_of_the_ancient_ways_crusader
+		clr_character_flag = children_of_the_ancient_ways_spellsword
+		clr_character_flag = children_of_the_ancient_ways_monk
+		clr_character_flag = children_of_the_ancient_ways_sorcerer
+		clr_character_flag = children_of_the_ancient_ways_priest
+		clr_character_flag = children_of_the_ancient_ways_thief
+		clr_character_flag = children_of_the_ancient_ways_battlemage
+		clr_character_flag = children_of_the_ancient_ways_acrobat
+		clr_character_flag = children_of_the_ancient_ways_assassin
+		clr_character_flag = children_of_the_ancient_ways_nightblade 
+	}
+}
+
+character_event = { #Guild Specialization Level-Up
+	id = ancient_children.230
+	desc = EVTDESC_ancient_children.230
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		society_member_of = children_of_the_ancient_ways
+		OR = {
+			has_character_flag = children_of_the_ancient_ways_crusader
+			has_character_flag = children_of_the_ancient_ways_spellsword
+			has_character_flag = children_of_the_ancient_ways_monk
+			has_character_flag = children_of_the_ancient_ways_sorcerer
+			has_character_flag = children_of_the_ancient_ways_priest
+			has_character_flag = children_of_the_ancient_ways_thief
+			has_character_flag = children_of_the_ancient_ways_battlemage
+			has_character_flag = children_of_the_ancient_ways_acrobat
+			has_character_flag = children_of_the_ancient_ways_assassin
+			has_character_flag = children_of_the_ancient_ways_nightblade
+		}
+	}
+	
+	option = { #Level Up Crusader, Continue Studying
+		name = eksocieties100CrusaderA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_crusader
+			NOR = {
+				trait = crusader_2
+				trait = crusader_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = crusader_1
+					trait = crusader_2
+					trait = crusader_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = crusader_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = crusader_1
+			}
+			remove_trait = crusader_1
+			add_trait = crusader_2
+			break = yes
+		}
+	}
+	option = { #Level Up Crusader, Move On
+		name = eksocieties100CrusaderB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_crusader
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_crusader
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = crusader_1
+					trait = crusader_2
+					trait = crusader_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = crusader_1
+			clr_character_flag = children_of_the_ancient_ways_crusader
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = crusader_1
+			}
+			remove_trait = crusader_1
+			add_trait = crusader_2
+			clr_character_flag = children_of_the_ancient_ways_crusader
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = crusader_2
+			}
+			remove_trait = crusader_2
+			add_trait = crusader_3
+			clr_character_flag = children_of_the_ancient_ways_crusader
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Spellsword, Continue Studying
+		name = eksocieties100SpellswordA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_spellsword
+			NOR = {
+				trait = spellsword_2
+				trait = spellsword_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = spellsword_1
+					trait = spellsword_2
+					trait = spellsword_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = spellsword_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = spellsword_1
+			}
+			remove_trait = spellsword_1
+			add_trait = spellsword_2
+			break = yes
+		}
+	}
+	option = { #Level Up Spellsword, Move On
+		name = eksocieties100SpellswordB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_spellsword
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_spellsword
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = spellsword_1
+					trait = spellsword_2
+					trait = spellsword_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = spellsword_1
+			clr_character_flag = children_of_the_ancient_ways_spellsword
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = spellsword_1
+			}
+			remove_trait = spellsword_1
+			add_trait = spellsword_2
+			clr_character_flag = children_of_the_ancient_ways_spellsword
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = spellsword_2
+			}
+			remove_trait = spellsword_2
+			add_trait = spellsword_3
+			clr_character_flag = children_of_the_ancient_ways_spellsword
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Monk, Continue Studying
+		name = eksocieties100MonkA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_monk
+			NOR = {
+				trait = monk_2
+				trait = monk_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = monk_1
+					trait = monk_2
+					trait = monk_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = monk_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = monk_1
+			}
+			remove_trait = monk_1
+			add_trait = monk_2
+			break = yes
+		}
+	}
+	option = { #Level Up Monk, Move On
+		name = eksocieties100MonkB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_monk
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_monk
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = monk_1
+					trait = monk_2
+					trait = monk_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = monk_1
+			clr_character_flag = children_of_the_ancient_ways_monk
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = monk_1
+			}
+			remove_trait = monk_1
+			add_trait = monk_2
+			clr_character_flag = children_of_the_ancient_ways_monk
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = monk_2
+			}
+			remove_trait = monk_2
+			add_trait = monk_3
+			clr_character_flag = children_of_the_ancient_ways_monk
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Sorcerer, Continue Studying
+		name = eksocieties100SorcererA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_sorcerer
+			NOR = {
+				trait = sorcerer_2
+				trait = sorcerer_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = sorcerer_1
+					trait = sorcerer_2
+					trait = sorcerer_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = sorcerer_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = sorcerer_1
+			}
+			remove_trait = sorcerer_1
+			add_trait = sorcerer_2
+			break = yes
+		}
+	}
+	option = { #Level Up Sorcerer, Move On
+		name = eksocieties100SorcererB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_sorcerer
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_sorcerer
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = sorcerer_1
+					trait = sorcerer_2
+					trait = sorcerer_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = sorcerer_1
+			clr_character_flag = children_of_the_ancient_ways_sorcerer
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = sorcerer_1
+			}
+			remove_trait = sorcerer_1
+			add_trait = sorcerer_2
+			clr_character_flag = children_of_the_ancient_ways_sorcerer
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = sorcerer_2
+			}
+			remove_trait = sorcerer_2
+			add_trait = sorcerer_3
+			clr_character_flag = children_of_the_ancient_ways_sorcerer
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Priest, Continue Studying
+		name = eksocieties100PriestA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_priest
+			NOR = {
+				trait = priest_2
+				trait = priest_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = priest_1
+					trait = priest_2
+					trait = priest_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = priest_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = priest_1
+			}
+			remove_trait = priest_1
+			add_trait = priest_2
+			break = yes
+		}
+	}
+	option = { #Level Up Priest, Move On
+		name = eksocieties100PriestB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_priest
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_priest
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = priest_1
+					trait = priest_2
+					trait = priest_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = priest_1
+			clr_character_flag = children_of_the_ancient_ways_priest
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = priest_1
+			}
+			remove_trait = priest_1
+			add_trait = priest_2
+			clr_character_flag = children_of_the_ancient_ways_priest
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = priest_2
+			}
+			remove_trait = priest_2
+			add_trait = priest_3
+			clr_character_flag = children_of_the_ancient_ways_priest
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Thief, Continue Studying
+		name = eksocieties100ThiefA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_thief
+			NOR = {
+				trait = thief_2
+				trait = thief_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = thief_1
+					trait = thief_2
+					trait = thief_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = thief_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thief_1
+			}
+			remove_trait = thief_1
+			add_trait = thief_2
+			break = yes
+		}
+	}
+	option = { #Level Up Thief, Move On
+		name = eksocieties100ThiefB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_thief
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_thief
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = thief_1
+					trait = thief_2
+					trait = thief_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = thief_1
+			clr_character_flag = children_of_the_ancient_ways_thief
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thief_1
+			}
+			remove_trait = thief_1
+			add_trait = thief_2
+			clr_character_flag = children_of_the_ancient_ways_thief
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thief_2
+			}
+			remove_trait = thief_2
+			add_trait = thief_3
+			clr_character_flag = children_of_the_ancient_ways_thief
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Battlemage, Continue Studying
+		name = eksocieties100BattlemageA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_battlemage
+			NOR = {
+				trait = battlemage_2
+				trait = battlemage_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = battlemage_1
+					trait = battlemage_2
+					trait = battlemage_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = battlemage_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = battlemage_1
+			}
+			remove_trait = battlemage_1
+			add_trait = battlemage_2
+			break = yes
+		}
+	}
+	option = { #Level Up Battlemage, Move On
+		name = eksocieties100BattlemageB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_battlemage
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_battlemage
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = battlemage_1
+					trait = battlemage_2
+					trait = battlemage_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = battlemage_1
+			clr_character_flag = children_of_the_ancient_ways_battlemage
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = battlemage_1
+			}
+			remove_trait = battlemage_1
+			add_trait = battlemage_2
+			clr_character_flag = children_of_the_ancient_ways_battlemage
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = battlemage_2
+			}
+			remove_trait = battlemage_2
+			add_trait = battlemage_3
+			clr_character_flag = children_of_the_ancient_ways_battlemage
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Acrobat, Continue Studying
+		name = eksocieties100AcrobatA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_acrobat
+			NOR = {
+				trait = acrobat_2
+				trait = acrobat_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = acrobat_1
+					trait = acrobat_2
+					trait = acrobat_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = acrobat_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = acrobat_1
+			}
+			remove_trait = acrobat_1
+			add_trait = acrobat_2
+			break = yes
+		}
+	}
+	option = { #Level Up Acrobat, Move On
+		name = eksocieties100AcrobatB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_acrobat
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_acrobat
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = acrobat_1
+					trait = acrobat_2
+					trait = acrobat_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = acrobat_1
+			clr_character_flag = children_of_the_ancient_ways_acrobat
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = acrobat_1
+			}
+			remove_trait = acrobat_1
+			add_trait = acrobat_2
+			clr_character_flag = children_of_the_ancient_ways_acrobat
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = acrobat_2
+			}
+			remove_trait = acrobat_2
+			add_trait = acrobat_3
+			clr_character_flag = children_of_the_ancient_ways_acrobat
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Assassin, Continue Studying
+		name = eksocieties100AssassinA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_assassin
+			NOR = {
+				trait = assassin_2
+				trait = assassin_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = assassin_1
+					trait = assassin_2
+					trait = assassin_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = assassin_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = assassin_1
+			}
+			remove_trait = assassin_1
+			add_trait = assassin_2
+			break = yes
+		}
+	}
+	option = { #Level Up Assassin, Move On
+		name = eksocieties100AssassinB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_assassin
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_assassin
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = assassin_1
+					trait = assassin_2
+					trait = assassin_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = assassin_1
+			clr_character_flag = children_of_the_ancient_ways_assassin
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = assassin_1
+			}
+			remove_trait = assassin_1
+			add_trait = assassin_2
+			clr_character_flag = children_of_the_ancient_ways_assassin
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = assassin_2
+			}
+			remove_trait = assassin_2
+			add_trait = assassin_3
+			clr_character_flag = children_of_the_ancient_ways_assassin
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+	
+	option = { #Level Up Nightblade, Continue Studying
+		name = eksocieties100NightbladeA
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_nightblade
+			NOR = {
+				trait = nightblade_2
+				trait = nightblade_3
+			}
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = nightblade_1
+					trait = nightblade_2
+					trait = nightblade_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = nightblade_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = nightblade_1
+			}
+			remove_trait = nightblade_1
+			add_trait = nightblade_2
+			break = yes
+		}
+	}
+	option = { #Level Up Nightblade, Move On
+		name = eksocieties100NightbladeB
+		trigger = {
+			has_character_flag = children_of_the_ancient_ways_nightblade
+		}
+		if = {
+			limit = {
+				has_maxed_specializations = yes
+			}
+			clr_character_flag = children_of_the_ancient_ways_nightblade
+			break = yes
+		}
+		if = {
+			limit = {
+				NOR = {
+					trait = nightblade_1
+					trait = nightblade_2
+					trait = nightblade_3
+				}
+			}
+			#change variable command removed. DO NOT DELETE THIS
+			add_trait = nightblade_1
+			clr_character_flag = children_of_the_ancient_ways_nightblade
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210}
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = nightblade_1
+			}
+			remove_trait = nightblade_1
+			add_trait = nightblade_2
+			clr_character_flag = children_of_the_ancient_ways_nightblade
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = nightblade_2
+			}
+			remove_trait = nightblade_2
+			add_trait = nightblade_3
+			clr_character_flag = children_of_the_ancient_ways_nightblade
+			if = {
+				limit = {
+					ai = no
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.200 }
+			}
+			if = {
+				limit = {
+					ai = yes
+					can_actually_level_up_specialization = yes
+				}
+				character_event = { id = ancient_children.210 }
+			}
+			break = yes
+		}
+	}
+}
+
+character_event = { #Buy Tech Points
+	id = ancient_children.250
+	desc = eksocieties.250.d
+	is_triggered_only = yes
+	
+	picture = GFX_evt_dragon_temple
+	
+	option = {
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+		}
+		
+		name = eksocieties.250.cul
+		culture_techpoints = 50
+	}
+	
+	after = {
+		# Apply the modifier
+		hidden_tooltip = {
+			if = {
+				limit = { has_character_flag = exchanging_influence_for_tech }
+				add_character_modifier = {
+					name = society_advancements_purchased
+					duration = 3650
+				}
+				detract_society_currency_major_effect_scaling = yes
+				clr_character_flag = exchanging_influence_for_tech
+			}
+		}
+	}
+}

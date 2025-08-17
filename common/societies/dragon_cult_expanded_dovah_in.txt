@@ -1,0 +1,574 @@
+dovah_in_society = {
+	primary_attribute = martial
+	society_ranks_gfx = companions_society_ranks
+	opinion_to_other_members = +5 
+	opinion_per_rank_above = +10
+	society_rank_up_decision = request_to_rank_up_within_dovah_in_society
+	is_secret = no 
+	criminal = no
+	is_religious = yes
+	devil_worshipper = no
+	society_influence = no
+	
+	non_interference = { 
+		always = yes
+	}
+	
+	active = {
+		has_global_flag = dovah_in_society_formed
+		is_title_active = d_dovah_in
+	}
+	
+	indestructible = yes
+	
+	can_join_society = {
+		is_in_society = no
+		hidden_trigger = {
+			NAND = {
+				ai = yes
+				is_society_rank_full = {
+					society = dovah_in_society
+					rank = 1
+				}
+				liege = {
+					is_playable = no
+				}
+			}
+			NOR = {
+				mercenary = yes
+				trait = clone
+			}
+		}
+		age = 16
+		controls_religion = no
+		OR = {
+			religion = dragon_cult
+			is_dragonblood = yes
+		}
+		custom_tooltip = {
+			text = did_not_betray_society
+			NOT = { has_character_flag = betrayed_children_of_the_ancient_ways}
+		}
+		
+		trigger_if = {
+			limit = { is_ruler = no }
+			liege = {
+				capital_scope = {
+					OR = {
+        				region = nirn_tamriel
+        				region = nirn_atmora
+    				}
+				}
+			}
+		}
+		
+		NOT = { trait = sload }
+		is_inaccessible_trigger = no
+		OR = {
+			is_not_undead = yes
+			trait = vampire
+			trait = lich
+			trait = dragonpriest
+		}
+		hidden_trigger = {
+			NOT = { has_character_flag = society_join_block }
+		}
+		#OR = {
+		#	has_landed_title = d_dovah_in
+		#	liege = { has_landed_title = d_dovah_in }
+		#}
+	}
+	
+	show_society = {
+		has_global_flag = dovah_in_society_formed
+		OR = {
+			society_member_of = dovah_in_society
+			AND = {
+				OR = {
+					religion = dragon_cult
+					is_dragonblood = yes
+				}
+				OR = {
+					AND = {
+						is_ruler = no
+						liege = {
+							capital_scope = {
+								OR = {
+        							region = nirn_tamriel
+        							region = nirn_atmora
+    							}
+							}
+						}
+					}
+					AND = {
+						is_ruler = yes
+						capital_scope = {
+							OR = {
+        						region = nirn_tamriel
+        						region = nirn_atmora
+    						}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	potential = {
+		general_society_join_conditions = yes
+		age = 16
+		OR = {
+			is_not_undead = yes
+			trait = vampire
+			trait = lich
+			trait = dragonpriest
+		}
+		hidden_trigger = {
+			NOT = { has_character_flag = society_join_block }
+		}
+		NOR = {
+			mercenary = yes
+			trait = clone
+		}
+		controls_religion = no
+		OR = {
+			religion = dragon_cult
+			is_dragonblood = yes
+		}
+		OR = {
+			AND = {
+				is_ruler = no
+				liege = {
+					capital_scope = {
+						OR = {
+        				region = nirn_tamriel
+        				region = nirn_atmora
+    					}
+					}
+				}
+			}
+			AND = {
+				is_ruler = yes
+				capital_scope = {
+					OR = {
+        				region = nirn_tamriel
+        				region = nirn_atmora
+    				}
+				}
+			}
+		}
+	}
+	
+	society_rank = {
+		level = 1
+		limit = 48
+		startup_limit = 12
+		modifier = {
+			monthly_character_prestige = 0.01
+		}
+		decisions = {
+			study_specialization_dovah_in_society
+			dovah_in_summon_dragon_1
+		}
+		powers = {
+			dragon_cult_expanded_warrior_training
+			dragon_cult_expanded_thuum_training
+		}
+	}
+	
+	society_rank = {
+		level = 2
+		limit = 24
+		startup_limit = 8
+		modifier = {
+			monthly_character_prestige = 0.05
+		}
+		decisions = {
+			purchase_techpoints_decision_dovah_in_society
+			dovah_in_summon_dragon_2
+		}
+	}
+	
+	society_rank = {
+		level = 3
+		limit = 12
+		startup_limit = 6
+		modifier = {
+			monthly_character_prestige = 0.15
+			build_cost_castle_modifier = -0.1
+			build_cost_tribal_modifier = -0.1
+		}
+		decisions = {
+			dovah_in_summon_dragon_3
+		}
+	}
+
+	society_rank = {
+		level = 4
+		limit = 1
+		startup_limit = 1
+		modifier = {
+			monthly_character_prestige = 0.5
+			build_cost_castle_modifier = -0.2
+			build_cost_tribal_modifier = -0.2
+		}
+		decisions = {
+			dovah_in_summon_dragon_4
+		}
+		
+		custom_tooltip = dce_society_holy_order_gm_tt
+	}
+	
+	plots = {
+	}
+	
+	monthly_currency_gain = {
+		name = currency_name_dovah_in_society
+		
+		per_attribute = {
+    		name = martial
+    		value = 0.5
+    	}
+		has_trait = {
+			trait = dragonpriest
+			value = 10
+		}
+		has_trait = {
+			trait = dragonborn
+			value = 5
+		}
+		has_trait = {
+			trait = dragonborn_g_1
+			value = 3.5
+		}
+		has_trait = {
+			trait = dragonborn_g_2
+			value = 3
+		}
+		has_trait = {
+			trait = dragonborn_g_3
+			value = 2.5
+		}
+		has_trait = {
+			trait = dragonborn_g_4
+			value = 2
+		}
+		has_trait = {
+			trait = dragonborn_g_5
+			value = 1.5
+		}
+		has_trait = {
+			trait = dragonborn_descendant
+			value = 1
+		}
+		has_trait = {
+			trait = lich
+			value = 2
+		}
+		#Personality
+		has_trait = {
+			value = 0.75
+			trait = diligent
+		}
+		has_trait = {
+			value = 1.25
+			trait = brave
+		}
+		has_trait = {
+			value = 0.75
+			trait = zealous
+		}
+		has_trait = {
+			value = 0.25
+			trait = drunkard
+		}
+		has_trait = {
+			value = 0.5
+			trait = stubborn
+		}
+		#Lifestyles
+		has_trait = {
+			value = 0.5
+			trait = strategist
+		}
+		has_trait = {
+			value = 1.25
+			trait = hunter
+		}
+		has_trait = {
+			value = 1
+			trait = duelist
+		}
+		has_trait = {
+			value = 1.0
+			trait = adventurer
+		}
+		has_trait = {
+			value = 0.75
+			trait = gladiator
+		}
+		has_trait = {
+			value = 0.25
+			trait = equestrian
+		}
+		has_trait = {
+			value = 1.0
+			trait = blacksmith
+		}
+		#Congenital Traits
+		has_trait = {
+			value = 1.0
+			trait = strong
+		}
+		has_trait = {
+			value = 0.75
+			trait = raht
+		}
+		has_trait = {
+			value = 0.75
+			trait = fortitude
+		}
+		has_trait = {
+			value = 1.0
+			trait = robust
+		}
+		has_trait = {
+			value = 0.5
+			trait = agile
+		}
+		has_trait = {
+			value = 0.5
+			trait = perceptive
+		}
+		has_trait = {
+			value = 0.25
+			trait = shrewd
+		}
+		has_trait = {
+			value = 0.5
+			trait = powerful_voice
+		}
+		has_trait = {
+			value = 0.25
+			trait = lucky
+		}
+		#Educations
+		has_trait = {
+			value = 1
+			trait = warrior_3
+		}
+		has_trait = {
+			value = 1.5
+			trait = warrior_4
+		}
+		has_trait = {
+			value = 2
+			trait = warrior_5
+		}
+		has_trait = {
+			value = 0.5
+			trait = mage_4
+		}
+		has_trait = {
+			value = 1.0
+			trait = mage_5
+		}
+		#Ranks
+		society_rank = {
+			rank = 2
+			value = 1.0
+		}
+		society_rank = {
+			rank = 3
+			value = 2.0
+		}
+		society_rank = {
+			rank = 4
+			value = 3.0
+		}
+	}
+	
+	member_score_per_attribute = 2
+	member_score_per_rank = 100
+	
+	member_score = {
+		value = 50
+
+		modifier = { 
+			factor = 1.25
+			combat_rating = 5 
+			NOT = { combat_rating = 10 } 
+		}
+		modifier = { 
+			factor = 1.5
+			combat_rating = 10
+			NOT = { combat_rating = 15 } 
+		}
+		modifier = { 
+			factor = 2.0
+			combat_rating = 15
+			NOT = { combat_rating = 20 } 
+		}
+		modifier = { 
+			factor = 2.5
+			combat_rating = 20
+			NOT = { combat_rating = 30 } 
+		}
+		modifier = { factor = 3.0 combat_rating >= 30 }
+		modifier = {
+			factor = 0.33
+			is_long_lived = yes
+			NOT = { trait = lich }
+		}
+		modifier = {
+			trait = dragonborn
+			factor = 10
+		}
+		modifier = {
+			trait = dragonpriest
+			factor = 20
+		}
+		modifier = {
+			trait = dragonborn_g_1
+			factor = 8
+		}
+		modifier = {
+			trait = dragonborn_g_2
+			factor = 6
+		}
+		modifier = {
+			trait = dragonborn_g_3
+			factor = 5
+		}
+		modifier = {
+			trait = dragonborn_g_4
+			factor = 4
+		}
+		modifier = {
+			trait = dragonborn_g_5
+			factor = 3
+		}
+		modifier = {
+			trait = dragonborn_descendant
+			factor = 2
+		}
+		modifier = {
+			trait = lich
+			factor = 1.3
+		}
+		modifier = { factor = 2.5 trait = just }
+		modifier = { factor = 1.5 trait = brave }
+		modifier = { factor = 1.25 trait = stubborn }
+		modifier = { factor = 2.0 trait = strategist }
+		modifier = { factor = 1.5 trait = adventurer }
+		modifier = { factor = 1.5 trait = duelist }
+		modifier = { factor = 1.25 trait = hunter }
+		modifier = { factor = 1.5 trait = blacksmith }
+		modifier = { factor = 1.75 trait = gladiator }
+		modifier = { factor = 1.25 trait = equestrian }
+		modifier = { factor = 1.15 trait = smuggler }
+		modifier = { factor = 1.25 is_strong_trigger = yes }
+		modifier = { factor = 1.25 trait = fortitude }
+		modifier = { factor = 1.25 trait = agile }
+		modifier = { factor = 1.25 is_smart_trigger = yes }
+		modifier = { factor = 1.25 trait = warrior_3 }
+		modifier = { factor = 1.5 trait = warrior_4 }
+		modifier = { factor = 2.0 trait = warrior_5 }
+		modifier = { factor = 1.5 is_knight = yes }
+		modifier = { factor = 2.0 is_barbarian = yes }
+		modifier = { factor = 1.25 is_spellsword = yes }
+		modifier = { factor = 1.25 is_battlemage = yes }
+		modifier = { factor = 1.25 is_assassin = yes }
+		modifier = { factor = 2.0 is_swordsinger = yes }
+		modifier = { factor = 2.5 is_ansei = yes }
+		modifier = { factor = 1.5 is_crusader = yes }
+		modifier = { factor = 2.5 trait = dragonborn }
+		modifier = { factor = 2.0 is_dragonblood = yes }
+		modifier = { factor = 0.75 is_dumb_trigger = yes }
+		modifier = { factor = 0.85 is_weak_trigger = yes }
+		modifier = {
+			trait = diligent
+			factor = 1.3
+		}
+		modifier = {
+			trait = temperate
+			factor = 1.3
+		}
+		modifier = {
+			OR = {
+				trait = thuum_1
+				trait = thuum_2
+				trait = thuum_3
+			}
+			factor = 1.3
+		}
+		modifier = {
+			trait = patient
+			factor = 1.3
+		}
+		modifier = {
+			trait = zealous
+			factor = 1.3
+		}
+		modifier = {
+			trait = erudite
+			factor = 1.1
+		}
+		modifier = {
+			trait = pilgrim
+			factor = 1.1
+		}
+		modifier = {
+			trait = theologian
+			factor = 1.1
+		}
+	}
+	
+	startup_populate = {
+		trigger = {
+			ai = yes
+			controls_religion = no
+		   	religion = dragon_cult
+			age = 16
+			is_in_society = no
+			is_inaccessible_trigger = no
+			NOT = { higher_tier_than = DUKE }
+			NOT = { mercenary = yes }
+			NOT = { trait = cynical }
+			has_secret_religion_trait_trigger = no
+			NOT = { trait = sload }
+			OR = {
+				is_not_undead = yes
+				is_unknown_vampire = yes
+				AND = {
+					trait = lich
+					religion = dragon_cult
+				}
+				trait = dragonpriest
+			}
+			OR = {
+				AND = {
+					is_ruler = no
+					liege = {
+						capital_scope = {
+							OR = {
+        					region = nirn_tamriel
+        					region = nirn_atmora
+    						}
+						}
+					}
+				}
+				AND = {
+					is_ruler = yes
+					capital_scope = {
+						OR = {
+        					region = nirn_tamriel
+        					region = nirn_atmora
+    					}
+					}
+				}
+			}
+			martial = 8
+		}
+	}
+}

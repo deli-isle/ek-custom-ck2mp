@@ -20,6 +20,7 @@ character_event = {
 		}
 		NOT = {
 			trait = undead
+			trait = dce_undead
 		}
 		NOR = { 
 			has_character_flag = no_lich_decay
@@ -30,6 +31,11 @@ character_event = {
 	mean_time_to_happen = {
 		months = 300
 		
+		
+		modifier = {
+			factor = 0.25
+			trait = dragonpriest
+		}
 		modifier = {
 			factor = 0.5
 			trait = honest
@@ -94,6 +100,10 @@ character_event = {
 		months = 300
 		
 		modifier = {
+			factor = 0.25
+			trait = dragonpriest
+		}
+		modifier = {
 			factor = 0.5
 			trait = honest
 		}
@@ -155,6 +165,10 @@ character_event = {
 		months = 600
 		
 		modifier = {
+			factor = 0.25
+			trait = dragonpriest
+		}
+		modifier = {
 			factor = 0.5
 			trait = honest
 		}
@@ -187,9 +201,16 @@ character_event = {
 				add_trait = disabler
 				remove_racial_trait = yes
 				set_graphical_culture = draugr
-				culture = draugr 
-				add_trait = undead
+				#culture = draugr 
+				#add_trait = undead
+				add_trait = dce_undead
 				remove_character_modifier = lich_decay_2
+				if = {
+					limit = {
+						trait = undead
+					}
+					remove_trait = undead
+				}
 			}
 		}
 	}

@@ -1,0 +1,30 @@
+dagoth_send_donation;Donate to the Sixth House;;;;;;;;;x
+dagoth_send_donation_desc;Send some of your wealth to help the Sixth House.;;;;;;;;;x
+dagoth_show_trial;Show Trial;;;;;;;;;x
+dagoth_show_trial_desc;Give up a prisoner, to be judged by a member of Sixth House.;;;;;;;;;x
+dagoth_cleanse_province;Cleanse Provinces.;;;;;;;;;x
+dagoth_cleanse_province_desc;Ask [Root.Offmap.Ruler.GetTitle] to help with widespread dangers in your provinces.;;;;;;;;;x
+dagoth_temple_forces;Sixth House Army;;;;;;;;;x
+dagoth_temple_forces_desc;Call upon forces of Sixth House to defend your territory against outlander invaders.;;;;;;;;;x
+dagoth_influencing_dreams;Influencing Dreams;;;;;;;;;x
+dagoth_influencing_dreams_desc;Ask [Root.Offmap.Ruler.GetTitle] to use [Root.Offmap.Ruler.GetHerHis] influence over local populace to lower unrest.;;;;;;;;;x
+dagoth_voryn_grace;Guiding Dreams;;;;;;;;;x
+dagoth_voryn_grace_desc;Ask [Root.Offmap.Ruler.GetTitle] to help you overcome mental challenges.;;;;;;;;;x
+dagoth_voryn_blessing;[Root.Offmap.Ruler.GetTitle]'s Blessing;;;;;;;;;x
+dagoth_voryn_blessing_desc;Ask [Root.Offmap.Ruler.GetTitle] to grant you additional protection agains your enemies.;;;;;;;;;x
+dagoth_voryn_touch;Curing Dream;;;;;;;;;x
+dagoth_voryn_touch_desc;Ask [Root.Offmap.Ruler.GetTitle] to help you overcome physical illness.;;;;;;;;;x
+dagoth_voryn_corprus;Divine Disease;;;;;;;;;x
+dagoth_voryn_corprus_desc;Meditate and ask [Root.Offmap.Ruler.GetTitle] for guidance in deepening connection with [Root.Offmap.Ruler.GetHerHim] and Heart of Lorkhan.;;;;;;;;;x
+dagoth_voryn_corprus_1;Divine Disease;;;;;;;;;x
+dagoth_voryn_corprus_1_desc;Meditate and ask [Root.Offmap.Ruler.GetTitle] for guidance in deepening connection with [Root.Offmap.Ruler.GetHerHim] and Heart of Lorkhan.;;;;;;;;;x
+dagoth_voryn_corprus_2;Divine Disease;;;;;;;;;x
+dagoth_voryn_corprus_2_desc;Meditate and ask [Root.Offmap.Ruler.GetTitle] for guidance in deepening connection with [Root.Offmap.Ruler.GetHerHim] and Heart of Lorkhan.;;;;;;;;;x
+dagoth_voryn_corprus_3;Divine Disease;;;;;;;;;x
+dagoth_voryn_corprus_3_desc;Meditate and ask [Root.Offmap.Ruler.GetTitle] for guidance in deepening connection with [Root.Offmap.Ruler.GetHerHim] and Heart of Lorkhan.;;;;;;;;;x
+dagoth_voryn_corprus_4;Divine Disease;;;;;;;;;x
+dagoth_voryn_corprus_4_desc;Meditate and ask [Root.Offmap.Ruler.GetTitle] for guidance in deepening connection with [Root.Offmap.Ruler.GetHerHim] and Heart of Lorkhan.;;;;;;;;;x
+dagoth_voryn_corprus_5;Divine Disease;;;;;;;;;x
+dagoth_voryn_corprus_5_desc;Meditate and ask [Root.Offmap.Ruler.GetTitle] for guidance in deepening connection with [Root.Offmap.Ruler.GetHerHim] and Heart of Lorkhan.;;;;;;;;;x
+dagoth_voryn_corprus_6;Divine Disease;;;;;;;;;x
+dagoth_voryn_corprus_6_desc;Meditate and ask [Root.Offmap.Ruler.GetTitle] for guidance in deepening connection with [Root.Offmap.Ruler.GetHerHim] and Heart of Lorkhan.;;;;;;;;;x

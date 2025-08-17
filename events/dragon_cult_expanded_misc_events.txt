@@ -1,0 +1,1026 @@
+namespace = dce_misc
+
+#Top id = 013
+
+character_event = { #AI Can become dragonpriests too
+	id = dce_misc.001
+	hide_window = yes
+	
+	ai = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		religion = dragon_cult
+		OR = {
+			tier = duke
+			tier = king
+			tier = emperor
+		}
+		OR = {
+			NOT = { is_undead = yes }
+			AND = {
+				is_undead = yes
+				trait = lich
+			}
+			AND = {
+				is_undead = yes
+				trait = vampire
+			}
+		}
+		prestige = 300
+		piety = 150
+	}
+	
+	mean_time_to_happen = {
+		months = 300
+	}
+	
+	immediate = {
+		random_list = {
+			5 = {
+				modifier = {
+					factor = 0
+					OR = {
+						AND = {
+							has_two_specializations = yes
+							NOR = {
+								trait = priest_1
+								trait = priest_2
+								trait = priest_3
+							}
+						}
+						trait = dragonpriest
+					}
+				}
+				modifier = {
+					factor = 10
+					trait = dragonborn
+				}
+				modifier = {
+					factor = 1.5
+					OR = {
+						society_rank = { society = children_of_the_ancient_ways rank == 2 }
+						society_rank = { society = dovah_in_society rank == 2 }
+					}
+				}
+				modifier = {
+					factor = 2
+					OR = {
+						society_rank = { society = children_of_the_ancient_ways rank == 3 }
+						society_rank = { society = dovah_in_society rank == 3 }
+					}
+				}
+				modifier = {
+					factor = 2.5
+					OR = {
+						AND = {
+							society_rank = { society = children_of_the_ancient_ways rank == 4 }
+							NOT = { is_society_grandmaster = yes }
+						}
+						AND = {
+							society_rank = { society = dovah_in_society rank == 4 }
+							NOT = { is_society_grandmaster = yes }
+						}
+					}
+				}
+				modifier = {
+					factor = 5
+					OR = {
+						AND = {
+							society_member_of = children_of_the_ancient_ways
+							is_society_grandmaster = yes
+						}
+						AND = {
+							society_member_of = dovah_in_society
+							is_society_grandmaster = yes
+						}
+					}
+				}
+				remove_trait = immortal
+				remove_trait = lycan
+				remove_trait = known_lycan
+				remove_trait = known_lycan_benevolent
+				remove_trait = vampire
+				remove_trait = known_vampire
+				remove_trait = known_vampire_benevolent
+				remove_trait = priest_1
+				remove_trait = priest_2
+				add_trait = dragonpriest
+				add_trait = priest_3
+				add_trait = lich
+				set_character_flag = dragonborn_candidate
+			}
+			65 = {
+				piety = 50
+			}
+			30 = {
+				piety = 10
+			}
+		}
+	}
+}
+
+character_event = { #Establish religious head
+	id = dce_misc.009
+	desc = EVTDESC_dce_misc.009
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = { #Become Religious Head
+		name = EVTOPTA_dce_misc.009
+		trigger = {
+			trait = dragonpriest
+		}
+		grant_title = d_dragon_cult
+	}
+	
+	option = { #AI Religious Head
+		name = EVTOPTB_dce_misc.009
+		
+		trigger = { NOT = { ai = yes } }
+		
+		custom_tooltip = {
+			text = EVTOPTB_dce_misc.009_tt
+			
+			create_random_priest = {
+				random_traits = yes
+				dynasty = random
+				culture = ROOT
+				religion = dragon_cult
+				age = 346
+			}
+			new_character = {
+				add_trait = dragonpriest
+				add_trait = lich
+				add_trait = priest_3
+				add_trait = crusader_3
+				add_trait = genius
+				add_trait = zealous
+				if = {
+					limit = {
+						NOT = {
+							trait = mage_5
+						}
+					}
+					remove_trait = mage_1
+					remove_trait = mage_2
+					remove_trait = mage_3
+					remove_trait = mage_4
+					add_trait = mage_5
+				}
+				grant_title_no_opinion = d_dragon_cult
+			}
+		}
+	}
+}
+
+#######################General Cleanup#############################
+
+character_event = { #Dragonpriests must be Dragon Cult, Called from on_startup
+	id = dce_misc.002
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		trait = dragonpriest
+		NOT = { religion = dragon_cult }
+	}
+	
+	immediate = {
+		remove_trait = dragonpriest
+	}
+}
+
+character_event = { #Dragonpriests must be Dragon Cult, for in-game use
+	id = dce_misc.003
+	hide_window = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	trigger = {
+		trait = dragonpriest
+		NOT = { religion = dragon_cult }
+	}
+	
+	immediate = {
+		remove_trait = dragonpriest
+	}
+}
+
+character_event = { #Fires the Substitute GM if the Religious leader dies, Called from on_death
+	id = dce_misc.011
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = children_of_the_ancient_ways_substitute_gm_hired
+		has_landed_title = d_dragon_cult
+	}
+	
+	immediate = {
+		clr_global_flag = children_of_the_ancient_ways_substitute_gm_hired
+	}
+}
+
+character_event = { #Fires the Substitute GM if the Religious leader no longer exists
+	id = dce_misc.012
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = children_of_the_ancient_ways_substitute_gm_hired
+		is_title_active = d_dragon_cult
+		d_dragon_cult = { has_holder = no }
+	}
+	
+	immediate = {
+		clr_global_flag = children_of_the_ancient_ways_substitute_gm_hired
+	}
+}
+
+character_event = { #Why do my characters get the udead trait?
+	id = dce_misc.013
+	hide_window = yes
+	
+	trigger = {
+		trait = dce_undead
+		trait = undead
+	}
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	immediate = {
+		remove_trait = undead
+	}
+}
+
+#######################Societies#############################
+
+character_event = { #Thu'um
+	id = dce_misc.004
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	is_in_society = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		OR = {
+			society_member_of = children_of_the_ancient_ways
+			society_member_of = dovah_in_society
+		}
+		
+		NOT = { is_inaccessible_trigger = yes }
+		
+		NOT = { trait = thuum_3 }
+		
+		# Can't combine Thu'um and Sword-Singing
+		NOR = {
+			trait = swordsinger_1
+			trait = swordsinger_2
+			trait = swordsinger_3
+			trait = ansei_1
+			trait = ansei_2
+			trait = ansei_3
+		}
+		
+		# Mute characters can't use the Voice (see Tiber Septim)
+		NOT = { trait = mute }
+	}
+	
+	immediate = {
+		random = {
+			chance = 10
+			
+			modifier = {
+				factor = 0.5
+				is_landed = no
+			}
+			modifier = {
+				factor = 0.15 #Mer and other such beings take longer to learn
+				is_long_lived = yes
+				NOT = { trait = dragonpriest }
+			}
+			#The more you learn, the longer it takes
+			modifier = {
+				factor = 0.75
+				trait = thuum_1
+			}
+			modifier = {
+				factor = 0.33
+				trait = thuum_2
+			}
+			# Chosen of the Dragons
+			modifier = {
+				factor = 3
+				trait = dragonpriest
+			}
+			# Dragonblood
+			modifier = {
+				factor = 2.5 # Stacks with below
+				trait = dragonborn
+			}
+			modifier = {
+				factor = 2
+				is_dragonblood = yes
+			}
+			# Society rank
+			modifier = {
+				factor = 1.25
+				society_rank = 2
+			}
+			modifier = {
+				factor = 1.75
+				society_rank = 3
+			}
+			modifier = { #Got tired of Masters of the Way without any thu'um knowledge.
+				factor = 2.25
+				society_rank = 4
+			}
+			#Trait bonuses
+			works_hard_be_smart_score_value = yes
+			#Trait maluses
+			lazy_stupid_score_value = yes
+			#Scaling with society influence
+			guild_influence_modifier = yes
+			
+			character_event = { id = dce_misc.005 days = 10 random = 3  }
+		}
+	}
+}
+
+character_event = { #Thu'um contd.
+	id = dce_misc.005
+	desc = EKGuildFlavor525
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EKGuildFlavorAccept
+		if = {
+			limit = {
+				NOR = {
+					trait = thuum_1
+					trait = thuum_2
+					trait = thuum_3
+				}
+			}
+			add_trait = thuum_1
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thuum_1
+			}
+			remove_trait = thuum_1
+			add_trait = thuum_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = thuum_2
+			}
+			remove_trait = thuum_2
+			add_trait = thuum_3
+			break = yes
+		}
+	}
+}
+
+character_event = { #Education Rank-up
+	id = dce_misc.006
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	is_in_society = yes
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	trigger = {
+		NOT = { is_inaccessible_trigger = yes }
+		
+		#Can't upgrade your education if it's already at its maximum duh
+		NOT = { maxed_education = yes }
+		
+		OR = {
+			
+			# Characters without an education (how the hell could that happen) pick up one here
+			NOR = {
+				is_diplomat = yes
+				is_warrior = yes
+				is_magistrate = yes
+				is_agent = yes
+				is_mage = yes
+			}
+			
+			# Characters with an education upgrade it here, depending on their education and society (bottom text)
+			AND = {
+				is_agent = yes
+				society_member_of = children_of_the_ancient_ways
+			}
+			AND = {
+				is_mage = yes
+				society_member_of = children_of_the_ancient_ways
+			}
+			AND = {
+				is_warrior = yes
+				society_member_of = dovah_in_society
+			}
+		}
+			
+		# Need to not be a complete dumbass
+		trigger_if = {
+			limit = { is_diplomat = yes }
+			
+			trigger_if = {
+				limit = { has_bottom_tier_education_trait_trigger = yes }
+				diplomacy = 5
+			}
+			
+			trigger_else_if = {
+				limit = { has_2nd_tier_education_trait_trigger = yes }
+				diplomacy = 10
+			}
+			
+			trigger_else_if = {
+				limit = { has_3rd_tier_education_trait_trigger = yes }
+				diplomacy = 15
+			}
+			
+			trigger_else_if = {
+				limit = { has_top_tier_education_trait_trigger = yes }
+				diplomacy = 20
+			}
+		}
+		
+		trigger_else_if = {
+			limit = { is_warrior = yes }
+			
+			trigger_if = {
+				limit = { has_bottom_tier_education_trait_trigger = yes }
+				martial = 5
+			}
+			
+			trigger_else_if = {
+				limit = { has_2nd_tier_education_trait_trigger = yes }
+				martial = 10
+			}
+			
+			trigger_else_if = {
+				limit = { has_3rd_tier_education_trait_trigger = yes }
+				martial = 15
+			}
+			
+			trigger_else_if = {
+				limit = { has_top_tier_education_trait_trigger = yes }
+				martial = 20
+			}
+		}
+		
+		trigger_else_if = {
+			limit = { is_magistrate = yes }
+			
+			trigger_if = {
+				limit = { has_bottom_tier_education_trait_trigger = yes }
+				stewardship = 5
+			}
+			
+			trigger_else_if = {
+				limit = { has_2nd_tier_education_trait_trigger = yes }
+				stewardship = 10
+			}	
+			
+			trigger_else_if = {
+				limit = { has_3rd_tier_education_trait_trigger = yes }
+				stewardship = 15
+			}
+			
+			trigger_else_if = {
+				limit = { has_top_tier_education_trait_trigger = yes }
+				stewardship = 20
+			}
+		}	
+		
+		trigger_else_if = {
+			limit = { is_agent = yes }
+			
+			trigger_if = {
+				limit = { has_bottom_tier_education_trait_trigger = yes }
+				intrigue = 5
+			}
+			
+			trigger_else_if = {
+				limit = { has_2nd_tier_education_trait_trigger = yes }
+				intrigue = 10
+			}
+			
+			trigger_else_if = {
+				limit = { has_3rd_tier_education_trait_trigger = yes }
+				intrigue = 15
+			}
+			
+			trigger_else_if = {
+				limit = { has_top_tier_education_trait_trigger = yes }
+				intrigue = 20
+			}
+		}
+		
+		trigger_else_if = {
+			limit = { is_mage = yes }
+			
+			trigger_if = {
+				limit = { has_bottom_tier_education_trait_trigger = yes }
+				learning = 5
+			}
+			
+			trigger_else_if = {
+				limit = { has_2nd_tier_education_trait_trigger = yes }
+				learning = 10
+			}
+			
+			trigger_else_if = {
+				limit = { has_3rd_tier_education_trait_trigger = yes }
+				learning = 15
+			}
+			
+			trigger_else_if = {
+				limit = { has_top_tier_education_trait_trigger = yes }
+				learning = 20
+			}
+		}
+	}
+	
+	immediate = {
+		random = {
+			chance = 20
+			
+			modifier = {
+				factor = 0.5
+				is_landed = no
+			}
+			modifier = {
+				factor = 0.25
+				is_long_lived = yes
+				NOT = { trait = dragonpriest }
+			}
+			#Characters without an education really need one rn
+			modifier = {
+				factor = 3
+				NOR = {
+					is_agent = yes
+					is_diplomat = yes
+					is_mage = yes
+					is_magistrate = yes
+					is_warrior = yes
+				}
+			}
+			#Trait bonuses
+			works_hard_be_smart_score_value = yes
+			#Trait maluses
+			lazy_stupid_score_value = yes
+			#The higher your education, the more difficult it is to upgrade it
+			modifier = {
+				factor = 2
+				has_bottom_tier_education_trait_trigger = yes
+			}
+			modifier = {
+				factor = 1.5
+				has_2nd_tier_education_trait_trigger = yes
+			}
+			modifier = {
+				factor = 0.5
+				has_3rd_tier_education_trait_trigger = yes
+			}
+			modifier = {
+				factor = 0.25
+				has_top_tier_education_trait_trigger = yes
+			}
+			#Scaling with society influence
+			#guild_influence_modifier = yes
+			#Scaling with main stat
+			modifier = {
+				factor = 1.1
+				
+				OR = {
+					AND = {
+						is_diplomat = yes
+						diplomacy = 10
+					}
+					AND = {
+						is_warrior = yes
+						martial = 10
+					}
+					AND = {
+						is_magistrate = yes
+						stewardship = 10
+					}
+					AND = {
+						is_agent = yes
+						intrigue = 10
+					}
+					AND = {
+						is_mage = yes
+						learning = 10
+					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				
+				OR = {
+					AND = {
+						is_diplomat = yes
+						diplomacy = 15
+					}
+					AND = {
+						is_warrior = yes
+						martial = 15
+					}
+					AND = {
+						is_magistrate = yes
+						stewardship = 15
+					}
+					AND = {
+						is_agent = yes
+						intrigue = 15
+					}
+					AND = {
+						is_mage = yes
+						learning = 15
+					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				
+				OR = {
+					AND = {
+						is_diplomat = yes
+						diplomacy = 20
+					}
+					AND = {
+						is_warrior = yes
+						martial = 20
+					}
+					AND = {
+						is_magistrate = yes
+						stewardship = 20
+					}
+					AND = {
+						is_agent = yes
+						intrigue = 20
+					}
+					AND = {
+						is_mage = yes
+						learning = 20
+					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				
+				OR = {
+					AND = {
+						is_diplomat = yes
+						diplomacy = 25
+					}
+					AND = {
+						is_warrior = yes
+						martial = 25
+					}
+					AND = {
+						is_magistrate = yes
+						stewardship = 25
+					}
+					AND = {
+						is_agent = yes
+						intrigue = 25
+					}
+					AND = {
+						is_mage = yes
+						learning = 25
+					}
+				}
+			}
+			modifier = {
+				factor = 1.1
+				
+				OR = {
+					AND = {
+						is_diplomat = yes
+						diplomacy = 30
+					}
+					AND = {
+						is_warrior = yes
+						martial = 30
+					}
+					AND = {
+						is_magistrate = yes
+						stewardship = 30
+					}
+					AND = {
+						is_agent = yes
+						intrigue = 30
+					}
+					AND = {
+						is_mage = yes
+						learning = 30
+					}
+				}
+			}
+			#Focus
+			modifier = {
+				factor = 1.25
+				OR = {
+					AND = {
+						is_diplomat = yes
+						OR = {
+							has_focus = focus_carousing
+							has_focus = focus_family
+						}
+					}
+					AND = {
+						is_warrior = yes
+						OR = {
+							has_focus = focus_war
+							has_focus = focus_hunting
+						}
+					}
+					AND = {
+						is_magistrate = yes
+						OR = {
+							has_focus = focus_business
+							has_focus = focus_rulership
+						}
+					}
+					AND = {
+						is_agent = yes
+						OR = {
+							has_focus = focus_intrigue
+							has_focus = focus_seduction
+						}
+					}
+					AND = {
+						is_mage = yes
+						has_focus = focus_scholarship
+					}
+				}	
+			}
+			
+			if = {
+				limit = { has_character_flag = education_rankup_check4 }
+				clr_character_flag = education_rankup_check4
+				character_event = { id = dce_misc.007 days = 10 random = 3 }
+			}
+			
+			else_if = {
+				character_event = { id = dce_misc.008 days = 10 random = 3  }
+			}
+		}
+	}
+}
+
+character_event = { #Education Rank-up
+	id = dce_misc.007
+	desc = eksocieties110
+	picture = GFX_evt_dragon_temple
+	
+	min_age = 16
+	capable_only = yes
+	prisoner = no
+	
+	is_triggered_only = yes
+	
+	option = { #Level Up Warrior! - This is for normal circumstances
+		name = eksocieties110Acknowledge
+		trigger = {
+			society_member_of = dovah_in_society
+			is_warrior = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_1
+			}
+			hidden_tooltip = { remove_trait = warrior_1 }
+			add_trait = warrior_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_2
+			}
+			hidden_tooltip = { remove_trait = warrior_2 }
+			add_trait = warrior_3
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_3
+			}
+			hidden_tooltip = { remove_trait = warrior_3 }
+			add_trait = warrior_4
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = warrior_4
+			}
+			hidden_tooltip = { remove_trait = warrior_4 }
+			add_trait = warrior_5
+			break = yes
+		}
+	}
+	option = { #Level Up Warrior! - This is for uneducated characters
+		name = eksocieties110Acknowledge
+		trigger = {
+			society_member_of = dovah_in_society
+			is_agent = no
+			is_diplomat = no
+			is_mage = no
+			is_magistrate = no
+			is_warrior = no
+		}
+		add_trait = warrior_1
+	}
+	
+	option = { #Level Up Mage! - This is for normal circumstances
+		name = eksocieties110Acknowledge
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			is_mage = yes
+		}
+		if = {
+			limit = {
+				trait = mage_1
+			}
+			hidden_tooltip = { remove_trait = mage_1 }
+			add_trait = mage_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = mage_2
+			}
+			hidden_tooltip = { remove_trait = mage_2 }
+			add_trait = mage_3
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = mage_3
+			}
+			hidden_tooltip = { remove_trait = mage_3 }
+			add_trait = mage_4
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = mage_4
+			}
+			hidden_tooltip = { remove_trait = mage_4 }
+			add_trait = mage_5
+			break = yes
+		}
+	}
+	option = { #Level Up Mage! - This is for uneducated characters
+		name = eksocieties110Acknowledge
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			is_agent = no
+			is_diplomat = no
+			is_mage = no
+			is_magistrate = no
+			is_warrior = no
+		}
+		add_trait = mage_1
+	}
+	
+	option = { #Level Up Agent! - This is for normal circumstances
+		name = eksocieties110Acknowledge
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			is_agent = yes
+		}
+		if = {
+			limit = {
+				trait = agent_1
+			}
+			hidden_tooltip = { remove_trait = agent_1 }
+			add_trait = agent_2
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = agent_2
+			}
+			hidden_tooltip = { remove_trait = agent_2 }
+			add_trait = agent_3
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = agent_3
+			}
+			hidden_tooltip = { remove_trait = agent_3 }
+			add_trait = agent_4
+			break = yes
+		}
+		if = {
+			limit = {
+				trait = agent_4
+			}
+			hidden_tooltip = { remove_trait = agent_4 }
+			add_trait = agent_5
+			break = yes
+		}
+	}
+	option = { #Level Up Agent! - This is for uneducated characters
+		name = eksocieties110Acknowledge
+		trigger = {
+			society_member_of = children_of_the_ancient_ways
+			is_agent = no
+			is_diplomat = no
+			is_magistrate = no
+			is_mage = no
+			is_warrior = no
+		}
+		add_trait = agent_1
+	}
+}
+
+## Not a rank up, but you made some progress
+character_event = {
+	id = dce_misc.008
+	desc = eksocieties.111.d
+	picture = GFX_evt_dragon_temple
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = { has_character_flag = education_rankup_check3 }
+			clr_character_flag = education_rankup_check3
+			set_character_flag = education_rankup_check4
+		}
+		
+		else_if = {
+			limit = { has_character_flag = education_rankup_check2 }
+			clr_character_flag = education_rankup_check2
+			set_character_flag = education_rankup_check3
+		}
+		
+		else_if = {
+			limit = { has_character_flag = education_rankup_check1 }
+			clr_character_flag = education_rankup_check1
+			set_character_flag = education_rankup_check2
+		}
+		
+		else = {
+			set_character_flag = education_rankup_check1
+		}
+	}
+	
+	option = {
+		trigger = { has_character_flag = education_rankup_check4 }
+		name = eksocieties.111.optA
+		
+		custom_tooltip = { text = EDUCATION_RANK_UP_CHECK4_CT }
+	}
+	
+	option = {
+		trigger = { has_character_flag = education_rankup_check3 }
+		name = eksocieties.111.optB
+		
+		custom_tooltip = { text = EDUCATION_RANK_UP_CHECK3_CT }
+	}
+	
+	option = {
+		trigger = { has_character_flag = education_rankup_check2 }
+		name = eksocieties.111.optC
+		
+		custom_tooltip = { text = EDUCATION_RANK_UP_CHECK2_CT }
+	}
+	
+	option = {
+		trigger = { has_character_flag = education_rankup_check1 }
+		name = eksocieties.111.optD
+		
+		custom_tooltip = { text = EDUCATION_RANK_UP_CHECK1_CT }
+	}
+}

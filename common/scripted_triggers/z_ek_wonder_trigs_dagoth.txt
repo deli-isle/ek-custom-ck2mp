@@ -1,0 +1,6 @@
+title_sanctum_keeper_suitability = {
+	OR = {
+		is_learned_trigger = yes
+		is_advanced_ash_creature = yes
+	}
+}

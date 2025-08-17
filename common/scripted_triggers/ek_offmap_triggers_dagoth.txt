@@ -1,0 +1,33 @@
+dagoth_voryn_boon_decisions_enabled_trigger = {
+	dagoth_voryn_decisions_enabled_trigger = yes
+	custom_tooltip = {
+		text = china_offmap_boon_decisions_enabled_trigger_cd_tt
+		FROM = { NOT = { has_character_modifier = jd_china_boon_cd } }
+	}
+}
+
+dagoth_voryn_decisions_enabled_trigger = {
+	dagoth_voryn = {
+		NOR = {
+			has_status = dagoth_0
+			has_policy = dagoth_hidden
+		}
+		custom_tooltip = {
+			text = china_offmap_decisions_enabled_trigger_war_tt
+			NOT = { governor = { war_with = FROM } }
+		}
+		governor = {
+			show_scope_change = no
+			is_within_diplo_range = FROM
+			hidden_trigger  = { NOT = { character = FROM } } #Governor cannot use boon/tributes decisions
+		}
+	}
+	hidden_trigger = { has_dlc = "Jade Dragon" }
+}
+
+likes_sixth_house_religion = {
+	religion = sixth_house
+}
+likes_sacrifice_dagoth = {
+	has_character_modifier = dagoth_recent_donation
+}

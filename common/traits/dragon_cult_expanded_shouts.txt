@@ -1,0 +1,191 @@
+dce_aura_whisper_1 = {
+	arrest_chance_modifier = 0.1
+	murder_plot_power_modifier = 0.1
+	
+	customizer = no
+	random = no
+}
+
+dce_aura_whisper_2 = {
+	arrest_chance_modifier = 0.2
+	murder_plot_power_modifier = 0.2
+	
+	customizer = no
+	random = no
+}
+
+dce_aura_whisper_3 = {
+	arrest_chance_modifier = 0.3
+	murder_plot_power_modifier = 0.3
+	
+	customizer = no
+	random = no
+}
+
+dce_battle_fury_1 = {
+	command_modifier = {
+		damage = 0.15
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_battle_fury_2 = {
+	command_modifier = {
+		damage = 0.25
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_battle_fury_3 = {
+	command_modifier = {
+		damage = 0.35
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_become_ethereal_1 = {
+	defensive_plot_power_modifier = 0.1
+	
+	command_modifier = {
+		defence = 0.15
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_become_ethereal_2 = {
+	defensive_plot_power_modifier = 0.2
+	
+	command_modifier = {
+		defence = 0.25
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_become_ethereal_3 = {
+	defensive_plot_power_modifier = 0.3
+	
+	command_modifier = {
+		defence = 0.35
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_bend_will_1 = {
+	general_opinion = 10
+	global_revolt_risk = -0.02
+	
+	customizer = no
+	random = no
+}
+
+dce_bend_will_2 = {
+	general_opinion = 20
+	global_revolt_risk = -0.04
+	
+	customizer = no
+	random = no
+}
+
+dce_bend_will_3 = {
+	general_opinion = 30
+	global_revolt_risk = -0.08
+	
+	customizer = no
+	random = no
+}
+
+dce_dismay_1 = {
+	command_modifier = {
+		morale_offence = 0.15
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_dismay_2 = {
+	command_modifier = {
+		morale_offence = 0.25
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_dismay_3 = {
+	command_modifier = {
+		morale_offence = 0.30
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_unrelenting_force_1 = {
+	command_modifier = {
+		siege = 0.15
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_unrelenting_force_2 = {
+	command_modifier = {
+		siege = 0.25
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_unrelenting_force_3 = {
+	command_modifier = {
+		siege = 0.35
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_whirlwind_sprint_1 = {
+	command_modifier = {
+		speed = 0.15
+		retreat = 0.15
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_whirlwind_sprint_2 = {
+	command_modifier = {
+		speed = 0.25
+		retreat = 0.25
+	}
+	
+	customizer = no
+	random = no
+}
+
+dce_whirlwind_sprint_3 = {
+	command_modifier = {
+		speed = 0.35
+		retreat = 0.35
+	}
+	
+	customizer = no
+	random = no
+}
