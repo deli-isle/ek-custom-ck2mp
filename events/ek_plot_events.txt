@@ -2856,10 +2856,24 @@ character_event = {
 			}
 		}
 		modifier = {
-			factor = 0.33
+			factor = 0.2
 			any_backed_character = {
 				has_plot = plot_kidnap
 				plot_power = 2.0
+			}
+		}
+		modifier = {
+			factor = 0.15
+			any_backed_character = {
+				has_plot = plot_kidnap
+				plot_power = 2.5
+			}
+		}
+		modifier = {
+			factor = 0.10
+			any_backed_character = {
+				has_plot = plot_kidnap
+				plot_power = 3.0
 			}
 		}
 	}
